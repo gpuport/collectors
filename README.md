@@ -1,5 +1,12 @@
 # GPUPort Data Collectors
 
+[![Lint](https://github.com/gpuport/collectors/workflows/Lint/badge.svg)](https://github.com/gpuport/collectors/actions/workflows/lint.yml)
+[![Type Check](https://github.com/gpuport/collectors/workflows/Type%20Check/badge.svg)](https://github.com/gpuport/collectors/actions/workflows/type-check.yml)
+[![Test](https://github.com/gpuport/collectors/workflows/Test/badge.svg)](https://github.com/gpuport/collectors/actions/workflows/test.yml)
+[![codecov](https://codecov.io/gh/gpuport/collectors/branch/main/graph/badge.svg)](https://codecov.io/gh/gpuport/collectors)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
+[![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
+
 Data collectors for the GPUPort platform.
 
 ## Development Setup
@@ -9,65 +16,72 @@ Data collectors for the GPUPort platform.
 - Python 3.12 or higher
 - [uv](https://docs.astral.sh/uv/) - Fast Python package installer and resolver
 
-### Installation
+### Quick Start
 
 ```bash
 # Install uv if you haven't already
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# Create a virtual environment and install dependencies
+# Complete development setup (installs dependencies and pre-commit hooks)
+make dev-setup
+```
+
+### Manual Installation
+
+```bash
+# Install dependencies
 uv sync
 
-# Or manually:
-uv venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-uv pip install -e ".[dev]"
+# Install pre-commit hooks
+make pre-commit-install
 ```
 
-## Development Tools
+## Development Workflow
 
-### Linting and Formatting with Ruff
+### Using Make Commands
 
-```bash
-# Check code style
-ruff check .
-
-# Format code
-ruff format .
-
-# Auto-fix issues
-ruff check --fix .
-```
-
-### Type Checking with mypy
+The project includes a Makefile with common development tasks:
 
 ```bash
+# Show all available commands
+make help
+
+# Install dependencies
+make install-dev
+
+# Run code formatter
+make format
+
+# Run linter
+make lint
+
 # Run type checker
-mypy src
+make type-check
+
+# Run tests
+make test
+
+# Run tests with coverage
+make test-cov
+
+# Run all checks (lint + type-check + test)
+make check
+
+# Run pre-commit hooks manually
+make pre-commit-run
+
+# Clean generated files
+make clean
 ```
 
-### Testing with pytest
+### Pre-commit Hooks
 
-```bash
-# Run all tests
-pytest
+The project uses pre-commit hooks to ensure code quality. Hooks are automatically installed with `make dev-setup` and run on every commit:
 
-# Run with coverage report
-pytest --cov
-
-# Run specific test file
-pytest tests/test_example.py
-
-# Run tests in watch mode
-pytest -f
-```
-
-### Run All Checks
-
-```bash
-# Format, lint, type check, and test
-ruff format . && ruff check --fix . && mypy src && pytest
-```
+- **Ruff**: Code formatting and linting
+- **Mypy**: Static type checking
+- **Pytest**: Unit tests (fast mode, no coverage)
+- **File checks**: Trailing whitespace, end-of-file, YAML/TOML validation
 
 ## License
 
