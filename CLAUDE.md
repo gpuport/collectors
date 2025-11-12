@@ -2,7 +2,7 @@
 
 ## Project Constitution
 
-**IMPORTANT**: This project follows the GPU Port constitution defined in `.specify/memory/constitution.md`.
+**IMPORTANT**: This project follows the GPU Port constitution defined in `docs/CONSTITUTION.md`.
 
 Before implementing any feature or making architectural decisions, you MUST review and follow the constitution, which includes:
 
@@ -19,7 +19,7 @@ Before implementing any feature or making architectural decisions, you MUST revi
 
 ### Implementation Guidelines:
 
-- Read the full constitution at `.specify/memory/constitution.md` before starting any task
+- Read the full constitution at `docs/CONSTITUTION.md` before starting any task
 - When in doubt, refer back to constitution principles
 - All code must align with constitutional requirements
 - Breaking constitution rules requires explicit discussion and approval
