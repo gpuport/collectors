@@ -1,0 +1,17 @@
+# GPUPort Collectors Default Configuration
+#
+# This file defines default settings for timeouts, retries, and other global configuration
+# values used across all provider collectors.
+
+# HTTP Request Settings
+# Default timeout for HTTP requests in seconds
+timeout: 30
+
+# Retry Settings
+# Maximum number of retry attempts for failed requests
+max_retries: 3
+
+# Exponential backoff factor for retry delays
+# Delay between retries = backoff_factor * (2 ^ retry_number)
+# Example: with backoff_factor=2, delays will be 2s, 4s, 8s
+backoff_factor: 2

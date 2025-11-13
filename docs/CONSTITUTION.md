@@ -8,7 +8,7 @@
 - All GPU types MUST map to standardized names (e.g., "RTX 4090" not "4090" vs "RTX4090" vs "4090 24GB")
 - Pricing MUST normalize to USD per hour (focus on on-demand pricing)
 - Region/location codes MUST map to standard geo identifiers (US, EU, AP, etc.)
-- Availability MUST use consistent enum states (available, limited, unavailable)
+- Availability MUST use consistent enum states ("High", "Medium", "Low", "Not Available")
 - Data transformation layer MUST be provider-agnostic and testable independently
 
 **Rationale:** Users expect apples-to-apples comparison. Inconsistent normalization leads to misleading results, user confusion, and loss of trust.
