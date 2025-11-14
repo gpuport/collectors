@@ -33,22 +33,10 @@ def runpod_collector(collector_config):
 def sample_datacenter_response():
     """Sample datacenter discovery response."""
     return {
-        "gpuTypes": [
-            {
-                "id": "NVIDIA A100 80GB PCIe",
-                "nodeGroupDatacenters": [
-                    {"id": "EU-RO-1", "name": "EU-RO-1"},
-                    {"id": "US-TX-1", "name": "US-TX-1"},
-                    {"id": "US-CA-1", "name": "US-CA-1"},
-                ],
-            },
-            {
-                "id": "NVIDIA H100 80GB HBM3",
-                "nodeGroupDatacenters": [
-                    {"id": "EU-RO-1", "name": "EU-RO-1"},
-                    {"id": "US-TX-1", "name": "US-TX-1"},
-                ],
-            },
+        "dataCenters": [
+            {"id": "EU-RO-1", "name": "EU-RO-1"},
+            {"id": "US-CA-1", "name": "US-CA-1"},
+            {"id": "US-TX-1", "name": "US-TX-1"},
         ]
     }
 
@@ -117,12 +105,12 @@ class TestDatacenterDiscovery:
 
         datacenters = await runpod_collector._get_datacenters()
 
-        # Should return unique sorted datacenters
+        # Should return sorted datacenter IDs
         assert datacenters == ["EU-RO-1", "US-CA-1", "US-TX-1"]
 
     async def test_get_datacenters_empty(self, runpod_collector):
-        """Test datacenter discovery with no GPUs."""
-        runpod_collector._execute_graphql = AsyncMock(return_value={"gpuTypes": []})
+        """Test datacenter discovery with empty response."""
+        runpod_collector._execute_graphql = AsyncMock(return_value={"dataCenters": []})
 
         datacenters = await runpod_collector._get_datacenters()
 
@@ -263,7 +251,7 @@ class TestFetchInstances:
 
         # Mock GraphQL execution to return different responses
         async def mock_execute(query, variables=None):
-            if "nodeGroupDatacenters" in query and "lowestPrice" not in query:
+            if "dataCenters" in query:
                 # Datacenter discovery query
                 return sample_datacenter_response
             # Full GPU data query

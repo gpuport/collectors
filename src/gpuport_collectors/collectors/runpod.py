@@ -87,29 +87,18 @@ class RunPodCollector(BaseCollector):
 
         query = """
         query {
-          gpuTypes {
+          dataCenters {
             id
-            nodeGroupDatacenters {
-              id
-              name
-            }
+            name
           }
         }
         """
 
         data = await self._execute_graphql(query)
-        gpu_types = data.get("gpuTypes", [])
+        datacenters_data = data.get("dataCenters", [])
 
-        # Collect all unique datacenters across all GPU types
-        datacenters = set()
-        for gpu in gpu_types:
-            dcs = gpu.get("nodeGroupDatacenters", [])
-            # Extract datacenter IDs from the DataCenter objects
-            for dc in dcs:
-                if isinstance(dc, dict) and "id" in dc:
-                    datacenters.add(dc["id"])
-
-        datacenter_list = sorted(datacenters)
+        # Extract datacenter IDs
+        datacenter_list = sorted([dc["id"] for dc in datacenters_data if "id" in dc])
 
         self._logger.info(
             "Discovered datacenters",
