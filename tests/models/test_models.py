@@ -208,21 +208,23 @@ class TestGPUInstance:
         assert instance.region == "US"
 
     def test_price_validation_positive(self):
-        """Test that Price must be positive."""
-        with pytest.raises(ValidationError, match="greater than 0"):
-            GPUInstance(
-                provider="RunPod",
-                instance_type="RTX 4090",
-                v_cpus=8.0,
-                memory_gib=32.0,
-                accelerator_name="RTX 4090",
-                accelerator_count=1.0,
-                region="US",
-                price=0,
-                availability=AvailabilityStatus.HIGH,
-            )
+        """Test that Price must be non-negative (0 allowed for unavailable)."""
+        # Zero is allowed for unavailable instances
+        instance = GPUInstance(
+            provider="RunPod",
+            instance_type="RTX 4090",
+            v_cpus=8.0,
+            memory_gib=32.0,
+            accelerator_name="RTX 4090",
+            accelerator_count=1.0,
+            region="US",
+            price=0,
+            availability=AvailabilityStatus.NOT_AVAILABLE,
+        )
+        assert instance.price == 0
 
-        with pytest.raises(ValidationError, match="greater than 0"):
+        # Negative prices are not allowed
+        with pytest.raises(ValidationError, match="greater than or equal to 0"):
             GPUInstance(
                 provider="RunPod",
                 instance_type="RTX 4090",
@@ -266,8 +268,24 @@ class TestGPUInstance:
         assert instance.price == 1000
 
     def test_spot_price_validation_positive(self):
-        """Test that SpotPrice must be positive when provided."""
-        with pytest.raises(ValidationError, match="greater than 0"):
+        """Test that SpotPrice must be non-negative when provided (0 allowed for unavailable)."""
+        # Zero is allowed for unavailable instances
+        instance = GPUInstance(
+            provider="RunPod",
+            instance_type="RTX 4090",
+            v_cpus=8.0,
+            memory_gib=32.0,
+            accelerator_name="RTX 4090",
+            accelerator_count=1.0,
+            region="US",
+            price=0,
+            spot_price=0,
+            availability=AvailabilityStatus.NOT_AVAILABLE,
+        )
+        assert instance.spot_price == 0
+
+        # Negative spot prices are not allowed
+        with pytest.raises(ValidationError, match="greater than or equal to 0"):
             GPUInstance(
                 provider="RunPod",
                 instance_type="RTX 4090",
@@ -277,7 +295,7 @@ class TestGPUInstance:
                 accelerator_count=1.0,
                 region="US",
                 price=0.79,
-                spot_price=0,
+                spot_price=-1,
                 availability=AvailabilityStatus.HIGH,
             )
 

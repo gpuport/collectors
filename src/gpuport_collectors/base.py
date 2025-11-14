@@ -5,7 +5,6 @@ must extend, ensuring consistent interface and behavior across all providers.
 """
 
 import asyncio
-import logging
 from abc import ABC, abstractmethod
 from collections.abc import Callable
 from functools import wraps
@@ -13,8 +12,7 @@ from typing import Any, TypeVar
 
 from gpuport_collectors.config import CollectorConfig, default_config
 from gpuport_collectors.models import GPUInstance
-
-logger = logging.getLogger(__name__)
+from gpuport_collectors.observability import get_observability_manager
 
 T = TypeVar("T")
 
@@ -52,6 +50,10 @@ def with_retry(func: Callable[..., Any]) -> Callable[..., Any]:
         last_exception: Exception | None = None
         base_delay = self.config.base_delay
 
+        # Get observability manager and logger
+        obs_manager = get_observability_manager(self.config.observability)
+        logger = obs_manager.get_logger(__name__)
+
         for attempt in range(self.config.max_retries + 1):
             try:
                 return await func(self, *args, **kwargs)
@@ -61,16 +63,24 @@ def with_retry(func: Callable[..., Any]) -> Callable[..., Any]:
                 # If this was the last attempt, raise the exception
                 if attempt >= self.config.max_retries:
                     logger.error(
-                        f"{self.provider_name}: All {self.config.max_retries + 1} "
-                        f"attempts failed. Last error: {e}"
+                        "All retry attempts failed",
+                        error=e,
+                        provider_name=self.provider_name,
+                        max_retries=self.config.max_retries + 1,
+                        attempts_made=attempt + 1,
                     )
                     raise
 
                 # Calculate exponential backoff delay
                 delay = base_delay * (self.config.backoff_factor**attempt)
                 logger.warning(
-                    f"{self.provider_name}: Attempt {attempt + 1} failed: {e}. "
-                    f"Retrying in {delay}s..."
+                    "Retry attempt failed, retrying",
+                    provider_name=self.provider_name,
+                    attempt=attempt + 1,
+                    max_retries=self.config.max_retries + 1,
+                    retry_delay=delay,
+                    error_type=type(e).__name__,
+                    error_message=str(e),
                 )
 
                 await asyncio.sleep(delay)
@@ -107,6 +117,10 @@ class BaseCollector(ABC):
         # to avoid shared mutable state across collectors
         self.config = config or default_config.model_copy(deep=True)
 
+        # Initialize observability
+        self._obs_manager = get_observability_manager(self.config.observability)
+        self._logger = self._obs_manager.get_logger(__name__)
+
     @property
     @abstractmethod
     def provider_name(self) -> str:
@@ -117,6 +131,50 @@ class BaseCollector(ABC):
         Returns:
             Provider name (e.g., "RunPod", "Lambda Labs", "Vast.ai")
         """
+
+    async def fetch_instances_with_tracing(self) -> list[GPUInstance]:
+        """Fetch instances with automatic tracing and error logging.
+
+        This method wraps fetch_instances() with observability infrastructure.
+        It automatically creates a trace span for the operation and logs
+        any errors that occur.
+
+        Returns:
+            List of GPUInstance objects from the provider
+
+        Raises:
+            Exception: Any exception from the underlying fetch_instances call
+        """
+        with self._obs_manager.trace_operation(
+            "fetch_instances",
+            provider=self.provider_name,
+        ) as span:
+            try:
+                self._logger.info(
+                    "Fetching instances",
+                    provider_name=self.provider_name,
+                )
+
+                instances = await self.fetch_instances()
+
+                self._logger.info(
+                    "Successfully fetched instances",
+                    provider_name=self.provider_name,
+                    instance_count=len(instances),
+                )
+
+                if span:
+                    span.set_attribute("instance_count", len(instances))
+
+                return instances
+
+            except Exception as e:
+                self._logger.error(
+                    "Failed to fetch instances",
+                    error=e,
+                    provider_name=self.provider_name,
+                )
+                raise
 
     @abstractmethod
     async def fetch_instances(self) -> list[GPUInstance]:

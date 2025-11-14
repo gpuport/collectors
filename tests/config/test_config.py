@@ -124,9 +124,9 @@ class TestCollectorConfig:
         """Test that the model can be dumped to a dict."""
         config = CollectorConfig(timeout=60, max_retries=5, backoff_factor=1.5)
         data = config.model_dump()
-        assert data == {
-            "timeout": 60,
-            "max_retries": 5,
-            "backoff_factor": 1.5,
-            "base_delay": 5.0,
-        }
+        assert data["timeout"] == 60
+        assert data["max_retries"] == 5
+        assert data["backoff_factor"] == 1.5
+        assert data["base_delay"] == 5.0
+        assert "observability" in data
+        assert data["observability"]["enabled"] is False

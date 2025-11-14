@@ -107,13 +107,13 @@ class GPUInstance(BaseModel):
     )
     price: float = Field(
         ...,
-        gt=0,
-        description="The price in USD per hour",
+        ge=0,
+        description="The price in USD per hour (0 if not available)",
     )
     spot_price: float | None = Field(
         default=None,
-        gt=0,
-        description="The spot price in USD per hour",
+        ge=0,
+        description="The spot price in USD per hour (0 if not available)",
     )
     availability: AvailabilityStatus = Field(
         ...,
