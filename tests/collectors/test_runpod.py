@@ -1,10 +1,12 @@
 """Tests for RunPod collector."""
 
+import asyncio
 import json
 import os
 from pathlib import Path
 from unittest.mock import AsyncMock, patch
 
+import aiohttp
 import pytest
 
 from gpuport_collectors.collectors.runpod import RunPodCollector
@@ -379,3 +381,161 @@ class TestFixtureData:
             assert "price" in instance
             assert "availability" in instance
             assert "raw_data" in instance
+
+
+class TestErrorHandling:
+    """Tests for error handling and timeout scenarios."""
+
+    @pytest.fixture
+    def no_retry_collector(self):
+        """Create RunPod collector with no retries for faster error testing."""
+        config = CollectorConfig(
+            timeout=30,
+            max_retries=0,  # No retries for faster tests
+            observability=ObservabilityConfig(enabled=False),
+        )
+        with patch.dict(os.environ, {"RUNPOD_API_KEY": "test-api-key"}):
+            return RunPodCollector(config)
+
+    async def test_timeout_during_execute_graphql(self, no_retry_collector):
+        """Test that API timeouts are handled gracefully."""
+        # Mock timeout error
+        no_retry_collector._execute_graphql = AsyncMock(side_effect=TimeoutError("Request timeout"))
+
+        # Should raise TimeoutError immediately (no retries)
+        with pytest.raises(asyncio.TimeoutError):
+            await no_retry_collector.fetch_instances()
+
+    async def test_http_error_during_fetch(self, no_retry_collector):
+        """Test that HTTP errors are handled properly."""
+        # Mock HTTP error
+        no_retry_collector._execute_graphql = AsyncMock(
+            side_effect=aiohttp.ClientError("Connection failed")
+        )
+
+        # Should raise ClientError immediately (no retries)
+        with pytest.raises(aiohttp.ClientError):
+            await no_retry_collector.fetch_instances()
+
+    async def test_graphql_error_response(self, no_retry_collector):
+        """Test handling of GraphQL error responses."""
+        # Mock GraphQL error response
+        no_retry_collector._execute_graphql = AsyncMock(
+            side_effect=ValueError("GraphQL errors: [{'message': 'Invalid query'}]")
+        )
+
+        # Should raise ValueError immediately (no retries)
+        with pytest.raises(ValueError, match="GraphQL errors"):
+            await no_retry_collector.fetch_instances()
+
+    async def test_partial_failure_during_pricing_queries(
+        self, runpod_collector, sample_datacenter_response
+    ):
+        """Test that fetch_instances handles partial failures gracefully."""
+        gpu_types_response = {
+            "gpuTypes": [
+                {
+                    "id": "NVIDIA A100 80GB PCIe",
+                    "displayName": "A100 80GB",
+                    "memoryInGb": 80,
+                    "cudaCores": 6912,
+                },
+                {
+                    "id": "NVIDIA H100 80GB HBM3",
+                    "displayName": "H100 80GB",
+                    "memoryInGb": 80,
+                    "cudaCores": 14592,
+                },
+            ]
+        }
+
+        # First pricing query succeeds, second fails
+        pricing_response_a100 = {
+            "gpuTypes": [
+                {
+                    "id": "NVIDIA A100 80GB PCIe",
+                    "displayName": "A100 80GB",
+                    "memoryInGb": 80,
+                    "cudaCores": 6912,
+                    "eu_ro_1": {
+                        "stockStatus": "High",
+                        "uninterruptablePrice": 1.89,
+                        "minimumBidPrice": 0.79,
+                        "availableGpuCounts": [1, 2, 3],
+                    },
+                    "us_ca_1": None,
+                    "us_tx_1": None,
+                }
+            ]
+        }
+
+        call_count = [0]
+
+        async def mock_execute(query, variables=None):
+            call_count[0] += 1
+            if "dataCenters" in query:
+                return sample_datacenter_response
+            if "gpuTypes {" in query and "cudaCores" in query and "lowestPrice" not in query:
+                return gpu_types_response
+            if "NVIDIA A100" in query:
+                return pricing_response_a100
+            if "NVIDIA H100" in query:
+                # Simulate failure for H100
+                raise aiohttp.ClientError("Timeout for H100")
+            return {"gpuTypes": []}
+
+        runpod_collector._execute_graphql = AsyncMock(side_effect=mock_execute)
+
+        # Should continue processing despite one failure
+        # Note: with_retry decorator on fetch_instances will retry, so this will eventually fail
+        # But _fetch_gpu_pricing catches exceptions and returns None
+        instances = await runpod_collector.fetch_instances()
+
+        # Should have instances from A100 only (H100 failed)
+        assert len(instances) == 1
+        assert instances[0].instance_type == "NVIDIA A100 80GB PCIe"
+
+    async def test_empty_response_handling(self, runpod_collector):
+        """Test handling of empty API responses."""
+
+        # Mock empty responses
+        async def mock_execute(query, variables=None):
+            if "dataCenters" in query:
+                return {"dataCenters": []}
+            if "gpuTypes" in query:
+                return {"gpuTypes": []}
+            return {}
+
+        runpod_collector._execute_graphql = AsyncMock(side_effect=mock_execute)
+
+        # Should return empty list without errors
+        instances = await runpod_collector.fetch_instances()
+        assert instances == []
+
+    async def test_malformed_response_handling(self, runpod_collector):
+        """Test handling of malformed API responses."""
+
+        # Mock malformed response (missing expected fields)
+        async def mock_execute(query, variables=None):
+            if "dataCenters" in query:
+                return {"dataCenters": [{"id": "EU-RO-1", "name": "EU-RO-1"}]}
+            if "gpuTypes" in query and "lowestPrice" not in query:
+                return {
+                    "gpuTypes": [
+                        {
+                            "id": "NVIDIA A100 80GB PCIe",
+                            "displayName": "A100 80GB",
+                            "memoryInGb": 80,
+                            "cudaCores": 6912,
+                        }
+                    ]
+                }
+            # Malformed pricing response (missing required fields)
+            return {"gpuTypes": [{"id": "test"}]}
+
+        runpod_collector._execute_graphql = AsyncMock(side_effect=mock_execute)
+
+        # Should handle gracefully (skip malformed entries)
+        instances = await runpod_collector.fetch_instances()
+        # Should return empty list since pricing data is malformed
+        assert instances == []
