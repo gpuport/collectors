@@ -9,6 +9,14 @@ import gpuport_collectors.observability as observability
 from gpuport_collectors.config import ObservabilityConfig
 
 
+@pytest.fixture(autouse=True)
+def reset_observability_manager():
+    """Reset the global observability manager before and after each test."""
+    observability._observability_manager = None
+    yield
+    observability._observability_manager = None
+
+
 class TestStructuredLogger:
     """Tests for the StructuredLogger class."""
 
@@ -249,16 +257,44 @@ class TestObservabilityManager:
         mock_span.set_attribute.assert_any_call("error.type", "ValueError")
         mock_span.set_attribute.assert_any_call("error.message", "test error")
 
+    def test_shutdown_cleanup(self):
+        """Test that shutdown properly cleans up providers and resets state."""
+        config = ObservabilityConfig(enabled=True, honeycomb_api_key="test-key")
+        manager = observability.ObservabilityManager(config)
+
+        # Create mock providers
+        mock_tracer_provider = Mock()
+        mock_logger_provider = Mock()
+
+        with (
+            patch("gpuport_collectors.observability.OTLPSpanExporter"),
+            patch(
+                "gpuport_collectors.observability.TracerProvider", return_value=mock_tracer_provider
+            ),
+            patch("gpuport_collectors.observability.OTLPLogExporter"),
+            patch(
+                "gpuport_collectors.observability.LoggerProvider", return_value=mock_logger_provider
+            ),
+        ):
+            manager.initialize()
+
+            assert manager._initialized is True
+            assert manager._tracer_provider is mock_tracer_provider
+            assert manager._logger_provider is mock_logger_provider
+
+            # Shutdown should call shutdown on both providers and reset state
+            manager.shutdown()
+
+            mock_tracer_provider.shutdown.assert_called_once()
+            mock_logger_provider.shutdown.assert_called_once()
+            assert manager._initialized is False
+
 
 class TestGetObservabilityManager:
     """Tests for the get_observability_manager function."""
 
     def test_get_manager_singleton(self):
         """Test that get_observability_manager returns a singleton."""
-        # Reset the global manager
-
-        observability._observability_manager = None
-
         config = ObservabilityConfig(enabled=False)
         manager1 = observability.get_observability_manager(config)
         manager2 = observability.get_observability_manager()
@@ -267,9 +303,6 @@ class TestGetObservabilityManager:
 
     def test_get_manager_with_default_config(self):
         """Test getting manager with default config."""
-
-        observability._observability_manager = None
-
         manager = observability.get_observability_manager()
 
         assert isinstance(manager, observability.ObservabilityManager)

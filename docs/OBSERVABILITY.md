@@ -172,7 +172,7 @@ Observability automatically creates traces for collector operations:
 
 ### Automatic Tracing
 
-The `with_retry` decorator and `fetch_instances_with_tracing` method automatically create traces:
+The `fetch_instances_with_tracing` method creates distributed traces, and if your `fetch_instances` method uses the `@with_retry` decorator, all retry attempts will be visible within the trace:
 
 ```python
 from gpuport_collectors.base import BaseCollector, with_retry
@@ -182,15 +182,20 @@ class MyCollector(BaseCollector):
     def provider_name(self) -> str:
         return "MyProvider"
 
-    @with_retry  # Automatically traced
+    @with_retry  # Retries with structured logging (visible in traces when using fetch_instances_with_tracing)
     async def fetch_instances(self):
         # Your implementation here
         return instances
 
-# Use the tracing wrapper
+# Use the tracing wrapper to create spans
 collector = MyCollector()
-instances = await collector.fetch_instances_with_tracing()
+instances = await collector.fetch_instances_with_tracing()  # Creates trace span
 ```
+
+**How it works:**
+- `fetch_instances_with_tracing()` creates a trace span for the entire fetch operation
+- `@with_retry` provides automatic retry logic with structured logging
+- All retry attempts happen within the trace span, making them visible in Honeycomb
 
 ### Manual Tracing
 

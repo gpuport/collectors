@@ -60,8 +60,8 @@ class StructuredLogger:
             console_handler.setLevel(getattr(logging, config.log_level))
             self.logger.addHandler(console_handler)
 
-        # Add Honeycomb handler if provided
-        if honeycomb_handler:
+        # Add Honeycomb handler if provided and not already attached
+        if honeycomb_handler and honeycomb_handler not in self.logger.handlers:
             self.logger.addHandler(honeycomb_handler)
 
     def _format_message(self, message: str, **context: Any) -> str:
