@@ -18,6 +18,7 @@ class CollectorConfig(BaseModel):
         timeout: HTTP request timeout in seconds
         max_retries: Maximum number of retry attempts for failed requests
         backoff_factor: Exponential backoff multiplier for retry delays
+        base_delay: Initial delay in seconds for retry backoff
     """
 
     timeout: int = Field(
@@ -34,6 +35,11 @@ class CollectorConfig(BaseModel):
         default=2.0,
         gt=0,
         description="Exponential backoff multiplier for retry delays",
+    )
+    base_delay: float = Field(
+        default=5.0,
+        gt=0,
+        description="Initial delay in seconds for retry backoff",
     )
 
     @field_validator("timeout")

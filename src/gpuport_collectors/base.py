@@ -26,10 +26,10 @@ def with_retry(func: Callable[..., Any]) -> Callable[..., Any]:
     backoff. The retry behavior is configured via the collector's config object.
 
     The backoff delay follows the pattern: base_delay * (backoff_factor ^ attempt_number)
-    For example, with base_delay=5 and backoff_factor=3:
-    - Retry 1: 5s (5 * 3^0)
-    - Retry 2: 15s (5 * 3^1)
-    - Retry 3: 45s (5 * 3^2)
+    For example, with base_delay=5 and backoff_factor=2 (defaults):
+    - Retry 1: 5s (5 * 2^0)
+    - Retry 2: 10s (5 * 2^1)
+    - Retry 3: 20s (5 * 2^2)
 
     Args:
         func: The async function to wrap with retry logic
@@ -50,7 +50,7 @@ def with_retry(func: Callable[..., Any]) -> Callable[..., Any]:
     @wraps(func)
     async def wrapper(self: "BaseCollector", *args: Any, **kwargs: Any) -> Any:
         last_exception: Exception | None = None
-        base_delay = 5  # Initial delay in seconds
+        base_delay = self.config.base_delay
 
         for attempt in range(self.config.max_retries + 1):
             try:
