@@ -1,5 +1,6 @@
 """RunPod GPU collector using GraphQL API."""
 
+import asyncio
 import os
 import time
 from typing import Any
@@ -14,15 +15,18 @@ from gpuport_collectors.models import AvailabilityStatus, GPUInstance
 class RunPodCollector(BaseCollector):
     """Collector for RunPod GPU availability data.
 
-    Uses RunPod's GraphQL API with an optimized single-call strategy:
-    1. Fetch GPU types with their available datacenters (nodeGroupDatacenters)
-    2. Build query with only GPU-datacenter combinations that exist
+    Uses RunPod's GraphQL API to fetch all GPU availability:
+    1. Query all datacenters (39 total)
+    2. Query pricing for ALL GPU types across ALL datacenters in one request
+    3. Filter client-side based on which pricing responses have availability
 
-    This avoids querying 1,599 combinations (41 GPUs x 39 datacenters) when
-    typically only a handful have current availability.
+    Note: We query all combinations because nodeGroupDatacenters is unreliable
+    and can show empty arrays for GPUs that are actually available in multiple
+    datacenters. See RUNPOD_NODEGROUPDATACENTERS_BUG.md for details.
     """
 
     GRAPHQL_ENDPOINT = "https://api.runpod.io/graphql"
+    MAX_CONCURRENT_REQUESTS = 3  # Rate limiting for API calls
 
     def __init__(self, config: CollectorConfig) -> None:
         """Initialize RunPod collector.
@@ -37,6 +41,7 @@ class RunPodCollector(BaseCollector):
         self.api_key = os.environ.get("RUNPOD_API_KEY")
         if not self.api_key:
             raise ValueError("RUNPOD_API_KEY environment variable must be set")
+        self._semaphore = asyncio.Semaphore(self.MAX_CONCURRENT_REQUESTS)
 
     @property
     def provider_name(self) -> str:
@@ -46,7 +51,7 @@ class RunPodCollector(BaseCollector):
     async def _execute_graphql(
         self, query: str, variables: dict[str, Any] | None = None
     ) -> dict[str, Any]:
-        """Execute a GraphQL query against RunPod API.
+        """Execute a GraphQL query against RunPod API with rate limiting.
 
         Args:
             query: GraphQL query string
@@ -61,7 +66,9 @@ class RunPodCollector(BaseCollector):
         """
         url = f"{self.GRAPHQL_ENDPOINT}?api_key={self.api_key}"
 
+        # Use semaphore for rate limiting (max concurrent requests)
         async with (
+            self._semaphore,
             aiohttp.ClientSession() as session,
             session.post(
                 url,
@@ -78,88 +85,38 @@ class RunPodCollector(BaseCollector):
             data: dict[str, Any] = result.get("data", {})
             return data
 
-    async def _get_gpu_datacenter_mapping(self) -> dict[str, dict[str, Any]]:
-        """Get GPU types with their available datacenters.
+    async def _get_all_datacenters(self) -> list[str]:
+        """Get all RunPod datacenters.
 
         Returns:
-            Dict mapping GPU ID to GPU data including nodeGroupDatacenters
-            Example: {
-                "NVIDIA A100 80GB PCIe": {
-                    "displayName": "A100 80GB",
-                    "memoryInGb": 80,
-                    "cudaCores": 6912,
-                    "datacenters": ["EU-RO-1", "US-TX-1"]
-                }
-            }
+            List of all datacenter IDs (39 total)
         """
         self._logger.info(
-            "Discovering GPU types and their datacenters",
+            "Fetching all datacenters",
             provider_name=self.provider_name,
         )
 
         query = """
         query {
-          gpuTypes {
+          dataCenters {
             id
-            displayName
-            memoryInGb
-            cudaCores
-            nodeGroupDatacenters {
-              id
-              name
-            }
+            name
           }
         }
         """
 
         data = await self._execute_graphql(query)
-        gpu_types = data.get("gpuTypes", [])
+        datacenters = data.get("dataCenters", [])
 
-        # Build mapping of GPU ID to GPU data with datacenter list
-        gpu_mapping = {}
-        total_combinations = 0
-
-        for gpu in gpu_types:
-            gpu_id = gpu["id"]
-            datacenters = [
-                dc["id"]
-                for dc in gpu.get("nodeGroupDatacenters", [])
-                if isinstance(dc, dict) and "id" in dc
-            ]
-
-            total_combinations += len(datacenters)
-
-            gpu_mapping[gpu_id] = {
-                "displayName": gpu.get("displayName", ""),
-                "memoryInGb": gpu.get("memoryInGb", 0),
-                "cudaCores": gpu.get("cudaCores", 0),
-                "datacenters": sorted(datacenters),
-            }
+        dc_ids = [dc["id"] for dc in datacenters]
 
         self._logger.info(
-            "Discovered GPU types and datacenters",
+            "Fetched datacenters",
             provider_name=self.provider_name,
-            gpu_type_count=len(gpu_types),
-            total_combinations=total_combinations,
+            datacenter_count=len(dc_ids),
         )
 
-        return gpu_mapping
-
-    def _get_all_datacenters_from_mapping(
-        self, gpu_mapping: dict[str, dict[str, Any]]
-    ) -> list[str]:
-        """Get all unique datacenters from GPU mapping.
-
-        Args:
-            gpu_mapping: Dict mapping GPU ID to available datacenters
-
-        Returns:
-            Sorted list of all unique datacenters that have any GPU available
-        """
-        all_dcs = set()
-        for gpu_data in gpu_mapping.values():
-            all_dcs.update(gpu_data["datacenters"])
-        return sorted(all_dcs)
+        return sorted(dc_ids)
 
     def _build_pricing_query(self, datacenters: list[str]) -> str:
         """Build GraphQL query for pricing across datacenters.
@@ -221,48 +178,45 @@ class RunPodCollector(BaseCollector):
     def _parse_gpu_data(
         self,
         gpu: dict[str, Any],
-        datacenters: list[str],  # noqa: ARG002
-        gpu_mapping: dict[str, dict[str, Any]],
+        datacenters: list[str],
     ) -> list[GPUInstance]:
-        """Parse GPU data and create GPUInstance for each available region.
+        """Parse GPU data and create GPUInstance for each datacenter with availability.
 
-        Only creates instances for GPU-datacenter combinations that exist in
-        the gpu_mapping (from nodeGroupDatacenters). This avoids creating 1,599
-        instances when only a few combinations are actually available.
+        Creates instances only for datacenters where the GPU has actual availability
+        (non-null stockStatus in pricing response). This filters out the ~95% of
+        GPU-datacenter combinations that don't have availability.
 
         Args:
             gpu: GPU type data from GraphQL response with pricing
-            datacenters: List of datacenters queried (for fallback/validation)
-            gpu_mapping: Mapping of GPU IDs to their available datacenters
+            datacenters: List of all datacenters queried
 
         Returns:
             List of GPUInstance objects (one per available region only)
         """
         instances = []
         collected_at = int(time.time())
-        gpu_id = gpu["id"]
 
-        # Get available datacenters for this GPU from the mapping
-        available_datacenters = gpu_mapping.get(gpu_id, {}).get("datacenters", [])
-
-        # Only create instances for datacenters where this GPU is actually available
-        for dc in available_datacenters:
+        # Check each datacenter for availability
+        for dc in datacenters:
             # Convert datacenter ID to alias format
             alias = dc.lower().replace("-", "_")
             pricing = gpu.get(alias)
 
+            # Skip if no pricing data or no stock status (means not available)
+            if not pricing or not pricing.get("stockStatus"):
+                continue
+
             # Get pricing data (0.0 if unavailable or None)
-            # Handle both missing pricing dict and None values within the dict
-            price = pricing.get("uninterruptablePrice") if pricing else None
+            price = pricing.get("uninterruptablePrice")
             price = price if price is not None else 0.0
 
-            spot_price = pricing.get("minimumBidPrice") if pricing else None
+            spot_price = pricing.get("minimumBidPrice")
             spot_price = spot_price if spot_price is not None else 0.0
 
-            stock_status = pricing.get("stockStatus") if pricing else None
+            stock_status = pricing.get("stockStatus")
 
             # availableGpuCounts can be a list or None
-            quantity_raw = pricing.get("availableGpuCounts") if pricing else None
+            quantity_raw = pricing.get("availableGpuCounts")
             if isinstance(quantity_raw, list):
                 quantity = sum(quantity_raw) if quantity_raw else 0
             elif quantity_raw is not None:
@@ -296,7 +250,7 @@ class RunPodCollector(BaseCollector):
                         "memoryInGb": gpu["memoryInGb"],
                         "cudaCores": gpu.get("cudaCores"),
                     },
-                    "pricing": pricing or {},
+                    "pricing": pricing,
                     "datacenter": dc,
                 },
             )
@@ -305,55 +259,136 @@ class RunPodCollector(BaseCollector):
 
         return instances
 
+    async def _get_all_gpu_types(self) -> list[dict[str, Any]]:
+        """Get all GPU types.
+
+        Returns:
+            List of GPU type dictionaries with id, displayName, memoryInGb, cudaCores
+        """
+        self._logger.info(
+            "Fetching all GPU types",
+            provider_name=self.provider_name,
+        )
+
+        query = """
+        query {
+          gpuTypes {
+            id
+            displayName
+            memoryInGb
+            cudaCores
+          }
+        }
+        """
+
+        data = await self._execute_graphql(query)
+        gpu_types = data.get("gpuTypes", [])
+
+        self._logger.info(
+            "Fetched GPU types",
+            provider_name=self.provider_name,
+            gpu_type_count=len(gpu_types),
+        )
+
+        gpu_types_list: list[dict[str, Any]] = gpu_types
+        return gpu_types_list
+
+    async def _fetch_gpu_pricing(
+        self, gpu_id: str, datacenters: list[str]
+    ) -> dict[str, Any] | None:
+        """Fetch pricing for a single GPU type across all datacenters.
+
+        Args:
+            gpu_id: GPU type ID to query
+            datacenters: List of all datacenter IDs
+
+        Returns:
+            GPU data with pricing for all datacenters, or None if query fails
+        """
+        query = self._build_pricing_query(datacenters)
+
+        # Modify query to filter for specific GPU type
+        query = query.replace("gpuTypes {", f'gpuTypes(input: {{ id: "{gpu_id}" }}) {{')
+
+        try:
+            data = await self._execute_graphql(query)
+            gpu_types = data.get("gpuTypes", [])
+
+            if gpu_types:
+                gpu_data: dict[str, Any] = gpu_types[0]
+                return gpu_data
+            self._logger.warning(
+                "No data returned for GPU type",
+                provider_name=self.provider_name,
+                gpu_id=gpu_id,
+            )
+            return None
+        except Exception as e:
+            self._logger.error(
+                "Failed to fetch pricing for GPU type",
+                provider_name=self.provider_name,
+                gpu_id=gpu_id,
+                error=e,
+            )
+            return None
+
     @with_retry
     async def fetch_instances(self) -> list[GPUInstance]:
-        """Fetch GPU instances from RunPod API with optimized querying.
+        """Fetch GPU instances from RunPod API.
 
-        Uses an efficient two-call strategy:
-        1. Get GPU types WITH their nodeGroupDatacenters (available regions)
-        2. Query pricing ONLY for GPU-datacenter combinations that exist
+        Uses a per-GPU-type query strategy:
+        1. Get all GPU types (41 total)
+        2. Get all datacenters (39 total)
+        3. For each GPU type, query pricing across all datacenters (41 queries)
+           - Each query has 39 datacenter aliases (manageable complexity)
+           - Max 3 concurrent queries via semaphore
 
-        This avoids querying 1,599 combinations (41 GPUs x 39 datacenters) when
-        typically only a handful have current availability.
+        This approach is simple, maintainable, and avoids excessive query complexity
+        while ensuring we don't miss any available GPUs.
 
         Returns:
             List of GPUInstance objects (only for available combinations)
         """
-        # Step 1: Get GPU types with their available datacenters
-        gpu_mapping = await self._get_gpu_datacenter_mapping()
+        # Step 1: Get all GPU types
+        gpu_types = await self._get_all_gpu_types()
 
-        if not gpu_mapping:
+        if not gpu_types:
             self._logger.warning(
                 "No GPU types discovered",
                 provider_name=self.provider_name,
             )
             return []
 
-        # Step 2: Get unique datacenters that have ANY GPU available
-        datacenters = self._get_all_datacenters_from_mapping(gpu_mapping)
+        # Step 2: Get all datacenters
+        datacenters = await self._get_all_datacenters()
 
         if not datacenters:
             self._logger.warning(
-                "No datacenters with available GPUs",
+                "No datacenters discovered",
                 provider_name=self.provider_name,
             )
             return []
 
-        # Step 3: Build and execute optimized pricing query
+        # Step 3: Query pricing for each GPU type across all datacenters
         self._logger.info(
             "Fetching GPU pricing data",
             provider_name=self.provider_name,
+            gpu_type_count=len(gpu_types),
             datacenter_count=len(datacenters),
+            total_queries=len(gpu_types),
         )
 
-        query = self._build_pricing_query(datacenters)
-        data = await self._execute_graphql(query)
-        gpu_types = data.get("gpuTypes", [])
+        # Create tasks for each GPU type (semaphore limits concurrency)
+        tasks = [self._fetch_gpu_pricing(gpu["id"], datacenters) for gpu in gpu_types]
 
-        # Step 4: Parse response - only create instances for available combos
+        # Execute all queries with max 3 concurrent
+        gpu_pricing_results = await asyncio.gather(*tasks)
+
+        # Step 4: Parse all results and create instances
         instances: list[GPUInstance] = []
-        for gpu in gpu_types:
-            instances.extend(self._parse_gpu_data(gpu, datacenters, gpu_mapping))
+        for gpu_data in gpu_pricing_results:
+            if gpu_data:
+                instances.extend(self._parse_gpu_data(gpu_data, datacenters))
 
         # Log summary statistics
         available_instances = [
