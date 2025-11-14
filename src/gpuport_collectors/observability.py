@@ -234,9 +234,9 @@ class ObservabilityManager:
     def shutdown(self) -> None:
         """Shutdown observability infrastructure and flush pending spans and logs."""
         if self._tracer_provider:
-            self._tracer_provider.shutdown()
+            self._tracer_provider.shutdown()  # type: ignore[no-untyped-call]
         if self._logger_provider:
-            self._logger_provider.shutdown()
+            self._logger_provider.shutdown()  # type: ignore[no-untyped-call]
         if self._initialized:
             self._initialized = False
             logger.info("Observability shutdown")
