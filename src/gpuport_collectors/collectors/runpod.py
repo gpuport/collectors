@@ -64,7 +64,8 @@ class RunPodCollector(BaseCollector):
             aiohttp.ClientError: On HTTP errors
             ValueError: On GraphQL errors
         """
-        url = f"{self.GRAPHQL_ENDPOINT}?api_key={self.api_key}"
+        url = self.GRAPHQL_ENDPOINT
+        headers = {"Authorization": f"Bearer {self.api_key}"}
 
         # Use semaphore for rate limiting (max concurrent requests)
         async with (
@@ -73,6 +74,7 @@ class RunPodCollector(BaseCollector):
             session.post(
                 url,
                 json={"query": query, "variables": variables or {}},
+                headers=headers,
                 timeout=aiohttp.ClientTimeout(total=self.config.timeout),
             ) as response,
         ):
