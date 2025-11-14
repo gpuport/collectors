@@ -6,7 +6,9 @@ using OpenTelemetry with Honeycomb.io as the backend.
 
 import logging
 import os
+import threading
 import traceback
+from collections.abc import Generator
 from contextlib import contextmanager
 from datetime import UTC, datetime
 from typing import Any
@@ -20,6 +22,7 @@ from opentelemetry.sdk._logs.export import BatchLogRecordProcessor
 from opentelemetry.sdk.resources import Resource
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
+from opentelemetry.trace import INVALID_SPAN, Span
 
 from gpuport_collectors.config import ObservabilityConfig
 
@@ -51,13 +54,13 @@ class StructuredLogger:
             honeycomb_handler: Optional OpenTelemetry logging handler for Honeycomb
         """
         self.logger = logging.getLogger(name)
-        self.logger.setLevel(getattr(logging, config.log_level))
+        self.logger.setLevel(getattr(logging, config.log_level, logging.INFO))
         self.config = config
 
         # Add console handler for local output
         if not self.logger.handlers:
             console_handler = logging.StreamHandler()
-            console_handler.setLevel(getattr(logging, config.log_level))
+            console_handler.setLevel(getattr(logging, config.log_level, logging.INFO))
             self.logger.addHandler(console_handler)
 
         # Add Honeycomb handler if provided and not already attached
@@ -77,13 +80,17 @@ class StructuredLogger:
         timestamp = datetime.now(UTC).isoformat()
         parts = [f"timestamp={timestamp}"]
 
-        if "provider_name" in context:
-            parts.append(f"provider={context.pop('provider_name')}")
+        # Extract provider_name if present (without mutating context)
+        provider_name = context.get("provider_name")
+        if provider_name:
+            parts.append(f"provider={provider_name}")
 
         parts.append(f"msg={message}")
 
+        # Add remaining context fields (excluding provider_name)
         for key, value in context.items():
-            parts.append(f"{key}={value}")
+            if key != "provider_name":
+                parts.append(f"{key}={value}")
 
         return " ".join(parts)
 
@@ -221,7 +228,7 @@ class ObservabilityManager:
 
         # Create logging handler for Honeycomb
         self._honeycomb_handler = LoggingHandler(
-            level=getattr(logging, self.config.log_level),
+            level=getattr(logging, self.config.log_level, logging.INFO),
             logger_provider=self._logger_provider,
         )
 
@@ -268,7 +275,7 @@ class ObservabilityManager:
         self,
         operation_name: str,
         **attributes: Any,
-    ) -> Any:
+    ) -> Generator[Span, None, None]:
         """Context manager for tracing an operation.
 
         Args:
@@ -276,7 +283,7 @@ class ObservabilityManager:
             **attributes: Additional attributes to add to the span
 
         Yields:
-            The current span
+            The current span, or INVALID_SPAN if observability is not initialized
 
         Example:
             ```python
@@ -286,8 +293,8 @@ class ObservabilityManager:
             ```
         """
         if not self._initialized:
-            # If not initialized, just yield without tracing
-            yield None
+            # If not initialized, yield a no-op span instead of None
+            yield INVALID_SPAN
             return
 
         tracer = self.get_tracer(__name__)
@@ -310,14 +317,17 @@ class ObservabilityManager:
                 raise
 
 
-# Global observability manager instance
+# Global observability manager instance and thread safety
 _observability_manager: ObservabilityManager | None = None
+_observability_lock = threading.Lock()
 
 
 def get_observability_manager(
     config: ObservabilityConfig | None = None,
 ) -> ObservabilityManager:
     """Get the global observability manager instance.
+
+    Thread-safe singleton implementation using double-checked locking pattern.
 
     Args:
         config: Optional configuration to initialize with
@@ -327,14 +337,19 @@ def get_observability_manager(
     """
     global _observability_manager
 
+    # First check without lock (fast path)
     if _observability_manager is None:
-        if config is None:
-            from gpuport_collectors.config import default_config
+        # Acquire lock for initialization
+        with _observability_lock:
+            # Double-check after acquiring lock
+            if _observability_manager is None:
+                if config is None:
+                    from gpuport_collectors.config import default_config
 
-            config = default_config.observability
+                    config = default_config.observability
 
-        _observability_manager = ObservabilityManager(config)
-        _observability_manager.initialize()
+                _observability_manager = ObservabilityManager(config)
+                _observability_manager.initialize()
 
     return _observability_manager
 

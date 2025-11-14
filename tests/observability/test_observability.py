@@ -195,12 +195,14 @@ class TestObservabilityManager:
 
     def test_trace_operation_when_not_initialized(self):
         """Test trace_operation context manager when not initialized."""
+        from opentelemetry.trace import INVALID_SPAN
+
         config = ObservabilityConfig(enabled=False)
         manager = observability.ObservabilityManager(config)
 
-        # Should not raise an exception
+        # Should return INVALID_SPAN instead of None
         with manager.trace_operation("test_op", key="value") as span:
-            assert span is None
+            assert span is INVALID_SPAN
 
     @patch("gpuport_collectors.observability.trace.get_tracer")
     def test_trace_operation_when_initialized(self, mock_get_tracer):
