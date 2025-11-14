@@ -1,0 +1,87 @@
+[
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA A100 80GB PCIe",
+    "accelerator_name": "A100 80GB",
+    "region": "EU-RO-1",
+    "price": 1.89,
+    "spot_price": 0.79,
+    "availability": "high",
+    "quantity": 10,
+    "v_cpus": 0,
+    "memory_gib": 0,
+    "accelerator_count": 1,
+    "accelerator_mem_gib": 80,
+    "collected_at": 1700000000,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA A100 80GB PCIe",
+        "displayName": "A100 80GB",
+        "memoryInGb": 80,
+        "cudaCores": 6912
+      },
+      "pricing": {
+        "stockStatus": "High",
+        "uninterruptablePrice": 1.89,
+        "minimumBidPrice": 0.79,
+        "availableGpuCounts": 10
+      },
+      "datacenter": "EU-RO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA A100 80GB PCIe",
+    "accelerator_name": "A100 80GB",
+    "region": "US-TX-1",
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "not_available",
+    "quantity": 0,
+    "v_cpus": 0,
+    "memory_gib": 0,
+    "accelerator_count": 1,
+    "accelerator_mem_gib": 80,
+    "collected_at": 1700000000,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA A100 80GB PCIe",
+        "displayName": "A100 80GB",
+        "memoryInGb": 80,
+        "cudaCores": 6912
+      },
+      "pricing": {},
+      "datacenter": "US-TX-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H100 80GB HBM3",
+    "accelerator_name": "H100 80GB",
+    "region": "EU-RO-1",
+    "price": 2.89,
+    "spot_price": 1.29,
+    "availability": "medium",
+    "quantity": 3,
+    "v_cpus": 0,
+    "memory_gib": 0,
+    "accelerator_count": 1,
+    "accelerator_mem_gib": 80,
+    "collected_at": 1700000000,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H100 80GB HBM3",
+        "displayName": "H100 80GB",
+        "memoryInGb": 80,
+        "cudaCores": 14592
+      },
+      "pricing": {
+        "stockStatus": "Medium",
+        "uninterruptablePrice": 2.89,
+        "minimumBidPrice": 1.29,
+        "availableGpuCounts": 3
+      },
+      "datacenter": "EU-RO-1"
+    }
+  }
+]

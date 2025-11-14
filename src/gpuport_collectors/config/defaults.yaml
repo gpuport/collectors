@@ -41,3 +41,11 @@ observability:
 
   # OTLP exporter endpoint
   exporter_endpoint: "https://api.honeycomb.io:443"
+
+# Collector-Specific Settings
+collectors:
+  # RunPod collector configuration
+  runpod:
+    enabled: true
+    # API key (use RUNPOD_API_KEY environment variable)
+    api_key: null
