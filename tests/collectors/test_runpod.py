@@ -96,34 +96,59 @@ class TestRunPodCollectorInit:
             RunPodCollector(collector_config)
 
 
-class TestDatacenterDiscovery:
-    """Tests for datacenter discovery."""
+class TestGPUDatacenterMapping:
+    """Tests for GPU-datacenter mapping discovery."""
 
-    async def test_get_datacenters(self, runpod_collector, sample_datacenter_response):
-        """Test datacenter discovery from API."""
-        runpod_collector._execute_graphql = AsyncMock(return_value=sample_datacenter_response)
+    async def test_get_gpu_datacenter_mapping(self, runpod_collector):
+        """Test GPU type discovery with their available datacenters."""
+        response = {
+            "gpuTypes": [
+                {
+                    "id": "NVIDIA A100 80GB PCIe",
+                    "displayName": "A100 80GB",
+                    "memoryInGb": 80,
+                    "cudaCores": 6912,
+                    "nodeGroupDatacenters": [
+                        {"id": "EU-RO-1", "name": "EU-RO-1"},
+                        {"id": "US-TX-1", "name": "US-TX-1"},
+                    ],
+                },
+                {
+                    "id": "NVIDIA H100 80GB HBM3",
+                    "displayName": "H100 80GB",
+                    "memoryInGb": 80,
+                    "cudaCores": 14592,
+                    "nodeGroupDatacenters": [
+                        {"id": "EU-RO-1", "name": "EU-RO-1"},
+                    ],
+                },
+            ]
+        }
+        runpod_collector._execute_graphql = AsyncMock(return_value=response)
 
-        datacenters = await runpod_collector._get_datacenters()
+        mapping = await runpod_collector._get_gpu_datacenter_mapping()
 
-        # Should return sorted datacenter IDs
-        assert datacenters == ["EU-RO-1", "US-CA-1", "US-TX-1"]
+        assert len(mapping) == 2
+        assert "NVIDIA A100 80GB PCIe" in mapping
+        assert mapping["NVIDIA A100 80GB PCIe"]["datacenters"] == ["EU-RO-1", "US-TX-1"]
+        assert mapping["NVIDIA H100 80GB HBM3"]["datacenters"] == ["EU-RO-1"]
 
-    async def test_get_datacenters_empty(self, runpod_collector):
-        """Test datacenter discovery with empty response."""
-        runpod_collector._execute_graphql = AsyncMock(return_value={"dataCenters": []})
+    async def test_get_gpu_datacenter_mapping_empty(self, runpod_collector):
+        """Test mapping discovery with empty response."""
+        runpod_collector._execute_graphql = AsyncMock(return_value={"gpuTypes": []})
 
-        datacenters = await runpod_collector._get_datacenters()
+        mapping = await runpod_collector._get_gpu_datacenter_mapping()
 
-        assert datacenters == []
+        assert mapping == {}
 
 
 class TestQueryBuilding:
     """Tests for GraphQL query construction."""
 
-    def test_build_gpu_query(self, runpod_collector):
-        """Test building GPU query with datacenter aliases."""
+    def test_build_pricing_query(self, runpod_collector):
+        """Test building pricing query with datacenter aliases."""
         datacenters = ["EU-RO-1", "US-TX-1"]
-        query = runpod_collector._build_gpu_query(datacenters)
+        query = runpod_collector._build_pricing_query(datacenters)
 
         # Verify query contains GPU fields
         assert "gpuTypes" in query
@@ -135,6 +160,18 @@ class TestQueryBuilding:
         assert "us_tx_1: lowestPrice" in query
         assert 'dataCenterId: "EU-RO-1"' in query
         assert 'dataCenterId: "US-TX-1"' in query
+
+    def test_get_all_datacenters_from_mapping(self, runpod_collector):
+        """Test extracting unique datacenters from GPU mapping."""
+        gpu_mapping = {
+            "GPU1": {"datacenters": ["EU-RO-1", "US-TX-1"]},
+            "GPU2": {"datacenters": ["EU-RO-1"]},
+            "GPU3": {"datacenters": []},
+        }
+
+        datacenters = runpod_collector._get_all_datacenters_from_mapping(gpu_mapping)
+
+        assert datacenters == ["EU-RO-1", "US-TX-1"]  # Sorted unique
 
 
 class TestStockStatusMapping:
@@ -179,7 +216,16 @@ class TestGPUDataParsing:
             },
         }
 
-        instances = runpod_collector._parse_gpu_data(gpu, ["EU-RO-1"])
+        gpu_mapping = {
+            "NVIDIA A100 80GB PCIe": {
+                "displayName": "A100 80GB",
+                "memoryInGb": 80,
+                "cudaCores": 6912,
+                "datacenters": ["EU-RO-1"],
+            }
+        }
+
+        instances = runpod_collector._parse_gpu_data(gpu, ["EU-RO-1"], gpu_mapping)
 
         assert len(instances) == 1
         instance = instances[0]
@@ -204,7 +250,16 @@ class TestGPUDataParsing:
             "us_tx_1": None,  # Unavailable
         }
 
-        instances = runpod_collector._parse_gpu_data(gpu, ["US-TX-1"])
+        gpu_mapping = {
+            "NVIDIA A100 80GB PCIe": {
+                "displayName": "A100 80GB",
+                "memoryInGb": 80,
+                "cudaCores": 6912,
+                "datacenters": ["US-TX-1"],
+            }
+        }
+
+        instances = runpod_collector._parse_gpu_data(gpu, ["US-TX-1"], gpu_mapping)
 
         assert len(instances) == 1
         instance = instances[0]
@@ -231,7 +286,16 @@ class TestGPUDataParsing:
             "us_tx_1": None,
         }
 
-        instances = runpod_collector._parse_gpu_data(gpu, ["EU-RO-1", "US-TX-1"])
+        gpu_mapping = {
+            "NVIDIA A100 80GB PCIe": {
+                "displayName": "A100 80GB",
+                "memoryInGb": 80,
+                "cudaCores": 6912,
+                "datacenters": ["EU-RO-1", "US-TX-1"],
+            }
+        }
+
+        instances = runpod_collector._parse_gpu_data(gpu, ["EU-RO-1", "US-TX-1"], gpu_mapping)
 
         assert len(instances) == 2
         # Should have one available and one unavailable
@@ -244,25 +308,48 @@ class TestGPUDataParsing:
 class TestFetchInstances:
     """Tests for complete fetch instances workflow."""
 
-    async def test_fetch_instances(
-        self, runpod_collector, sample_datacenter_response, sample_gpu_response
-    ):
+    async def test_fetch_instances(self, runpod_collector, sample_gpu_response):
         """Test complete fetch workflow with mocked API."""
+
+        # Mock GPU-datacenter mapping discovery
+        mapping_response = {
+            "gpuTypes": [
+                {
+                    "id": "NVIDIA A100 80GB PCIe",
+                    "displayName": "A100 80GB",
+                    "memoryInGb": 80,
+                    "cudaCores": 6912,
+                    "nodeGroupDatacenters": [
+                        {"id": "EU-RO-1", "name": "EU-RO-1"},
+                        {"id": "US-TX-1", "name": "US-TX-1"},
+                    ],
+                },
+                {
+                    "id": "NVIDIA H100 80GB HBM3",
+                    "displayName": "H100 80GB",
+                    "memoryInGb": 80,
+                    "cudaCores": 14592,
+                    "nodeGroupDatacenters": [
+                        {"id": "EU-RO-1", "name": "EU-RO-1"},
+                    ],
+                },
+            ]
+        }
 
         # Mock GraphQL execution to return different responses
         async def mock_execute(query, variables=None):
-            if "dataCenters" in query:
-                # Datacenter discovery query
-                return sample_datacenter_response
-            # Full GPU data query
+            if "nodeGroupDatacenters" in query:
+                # GPU-datacenter mapping query
+                return mapping_response
+            # Pricing query
             return sample_gpu_response
 
         runpod_collector._execute_graphql = AsyncMock(side_effect=mock_execute)
 
         instances = await runpod_collector.fetch_instances()
 
-        # Should have instances for all GPU x region combinations
-        # A100: 2 regions, H100: 1 region (but query built for 2)
+        # Should have instances only for GPUs with available datacenters
+        # A100: 2 regions, H100: 1 region
         assert len(instances) > 0
 
         # Verify mix of available and unavailable
