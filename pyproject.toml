@@ -9,6 +9,7 @@ authors = [
     {name = "GPUPort Team"}
 ]
 dependencies = [
+    "aiohttp>=3.13.2",
     "opentelemetry-api>=1.38.0",
     "opentelemetry-exporter-otlp-proto-http>=1.38.0",
     "opentelemetry-sdk>=1.38.0",
@@ -127,6 +128,10 @@ ignore_missing_imports = true
 [[tool.mypy.overrides]]
 module = "gpuport_collectors.observability"
 warn_unused_ignores = false
+
+[[tool.mypy.overrides]]
+module = "aiohttp"
+ignore_missing_imports = true
 
 # Pytest configuration
 [tool.pytest.ini_options]

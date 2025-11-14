@@ -63,15 +63,15 @@ class GPUInstance(BaseModel):
         min_length=1,
         description="The type of instance",
     )
-    v_cpus: float = Field(
-        ...,
+    v_cpus: float | None = Field(
+        default=None,
         gt=0,
-        description="The number of virtual CPUs",
+        description="The number of virtual CPUs (None if not provided by provider)",
     )
-    memory_gib: float = Field(
-        ...,
+    memory_gib: float | None = Field(
+        default=None,
         gt=0,
-        description="The amount of memory in GiB",
+        description="The amount of memory in GiB (None if not provided by provider)",
     )
     arch: str | None = Field(
         default=None,
