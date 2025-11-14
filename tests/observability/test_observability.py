@@ -256,7 +256,6 @@ class TestGetObservabilityManager:
     def test_get_manager_singleton(self):
         """Test that get_observability_manager returns a singleton."""
         # Reset the global manager
-        import gpuport_collectors.observability
 
         gpuport_collectors.observability._observability_manager = None
 
@@ -268,7 +267,6 @@ class TestGetObservabilityManager:
 
     def test_get_manager_with_default_config(self):
         """Test getting manager with default config."""
-        import gpuport_collectors.observability
 
         gpuport_collectors.observability._observability_manager = None
 
