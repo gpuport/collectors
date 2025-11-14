@@ -138,6 +138,7 @@ class RunPodCollector(BaseCollector):
                 """
             )
 
+        newline = "\n"
         return f"""
         query {{
           gpuTypes {{
@@ -146,7 +147,7 @@ class RunPodCollector(BaseCollector):
             memoryInGb
             cudaCores
             nodeGroupDatacenters
-            {chr(10).join(datacenter_aliases)}
+            {newline.join(datacenter_aliases)}
           }}
         }}
         """
@@ -221,7 +222,7 @@ class RunPodCollector(BaseCollector):
                         "memoryInGb": gpu["memoryInGb"],
                         "cudaCores": gpu.get("cudaCores"),
                     },
-                    "pricing": pricing if pricing else {},
+                    "pricing": pricing or {},
                     "datacenter": dc,
                 },
             )

@@ -14,6 +14,7 @@ from pathlib import Path
 
 from gpuport_collectors.collectors.runpod import RunPodCollector
 from gpuport_collectors.config import CollectorConfig, ObservabilityConfig
+from gpuport_collectors.models import AvailabilityStatus
 
 
 async def main() -> None:
@@ -38,8 +39,8 @@ async def main() -> None:
     print()
 
     # Show some statistics
-    available = [i for i in instances if i.price > 0]
-    unavailable = [i for i in instances if i.price == 0]
+    available = [i for i in instances if i.availability != AvailabilityStatus.NOT_AVAILABLE]
+    unavailable = [i for i in instances if i.availability == AvailabilityStatus.NOT_AVAILABLE]
 
     print(f"  Available instances: {len(available)}")
     print(f"  Unavailable instances: {len(unavailable)}")
@@ -57,31 +58,15 @@ async def main() -> None:
     print("Sample GPUs by availability:")
     for gpu_type in sorted(gpu_types)[:3]:  # Show first 3 types
         gpu_instances = [i for i in instances if i.accelerator_name == gpu_type]
-        available_count = len([i for i in gpu_instances if i.price > 0])
+        available_count = len(
+            [i for i in gpu_instances if i.availability != AvailabilityStatus.NOT_AVAILABLE]
+        )
         print(f"  {gpu_type}: {available_count}/{len(gpu_instances)} regions available")
 
     print()
 
-    # Convert instances to JSON-serializable format
-    instances_data = [
-        {
-            "provider": i.provider,
-            "instance_type": i.instance_type,
-            "accelerator_name": i.accelerator_name,
-            "region": i.region,
-            "price": i.price,
-            "spot_price": i.spot_price,
-            "availability": i.availability.value,
-            "quantity": i.quantity,
-            "v_cpus": i.v_cpus,
-            "memory_gib": i.memory_gib,
-            "accelerator_count": i.accelerator_count,
-            "accelerator_mem_gib": i.accelerator_mem_gib,
-            "collected_at": i.collected_at,
-            "raw_data": i.raw_data,
-        }
-        for i in instances
-    ]
+    # Convert instances to JSON-serializable format using Pydantic's model_dump
+    instances_data = [i.model_dump() for i in instances]
 
     # Save to fixtures (synchronously - this is a one-time utility script)
     fixtures_dir = Path(__file__).parent.parent / "fixtures"
