@@ -9,6 +9,12 @@
 
 Data collectors for the GPUPort platform.
 
+## Features
+
+- **Automatic Retry Logic**: Exponential backoff with configurable retry attempts
+- **Type-Safe Configuration**: Pydantic-based configuration with validation
+- **Observability**: Built-in logging and distributed tracing (OpenTelemetry) with Honeycomb.io integration
+
 ## Development Setup
 
 ### Prerequisites

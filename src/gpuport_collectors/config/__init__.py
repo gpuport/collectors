@@ -5,10 +5,53 @@ following the constitutional requirement for type-safe settings management.
 """
 
 from pathlib import Path
-from typing import Self
+from typing import Literal, Self
 
 import yaml
 from pydantic import BaseModel, Field, field_validator
+
+
+class ObservabilityConfig(BaseModel):
+    """Observability configuration for logging and tracing.
+
+    Attributes:
+        enabled: Whether observability is enabled
+        honeycomb_api_key: Honeycomb API key for sending telemetry
+        service_name: Service name for telemetry data
+        environment: Environment name (e.g., production, staging, development)
+        log_level: Logging level
+        exporter_protocol: OTLP exporter protocol
+        exporter_endpoint: OTLP exporter endpoint
+    """
+
+    enabled: bool = Field(
+        default=False,
+        description="Enable observability (logging and tracing)",
+    )
+    honeycomb_api_key: str | None = Field(
+        default=None,
+        description="Honeycomb API key (can also be set via HONEYCOMB_API_KEY env var)",
+    )
+    service_name: str = Field(
+        default="gpuport-collectors",
+        description="Service name for telemetry",
+    )
+    environment: str = Field(
+        default="development",
+        description="Environment name",
+    )
+    log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"] = Field(
+        default="INFO",
+        description="Logging level",
+    )
+    exporter_protocol: Literal["http/protobuf", "grpc"] = Field(
+        default="http/protobuf",
+        description="OTLP exporter protocol",
+    )
+    exporter_endpoint: str = Field(
+        default="https://api.honeycomb.io:443",
+        description="OTLP exporter endpoint",
+    )
 
 
 class CollectorConfig(BaseModel):
@@ -19,6 +62,7 @@ class CollectorConfig(BaseModel):
         max_retries: Maximum number of retry attempts for failed requests
         backoff_factor: Exponential backoff multiplier for retry delays
         base_delay: Initial delay in seconds for retry backoff
+        observability: Observability configuration
     """
 
     timeout: int = Field(
@@ -40,6 +84,10 @@ class CollectorConfig(BaseModel):
         default=5.0,
         gt=0,
         description="Initial delay in seconds for retry backoff",
+    )
+    observability: ObservabilityConfig = Field(
+        default_factory=ObservabilityConfig,
+        description="Observability configuration",
     )
 
     @field_validator("timeout")
@@ -98,4 +146,4 @@ class CollectorConfig(BaseModel):
 # Create a global instance with default settings
 default_config = CollectorConfig.load_defaults()
 
-__all__ = ["CollectorConfig", "default_config"]
+__all__ = ["CollectorConfig", "ObservabilityConfig", "default_config"]
