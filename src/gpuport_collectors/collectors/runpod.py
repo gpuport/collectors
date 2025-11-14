@@ -89,7 +89,10 @@ class RunPodCollector(BaseCollector):
         query {
           gpuTypes {
             id
-            nodeGroupDatacenters
+            nodeGroupDatacenters {
+              id
+              name
+            }
           }
         }
         """
@@ -101,7 +104,10 @@ class RunPodCollector(BaseCollector):
         datacenters = set()
         for gpu in gpu_types:
             dcs = gpu.get("nodeGroupDatacenters", [])
-            datacenters.update(dcs)
+            # Extract datacenter IDs from the DataCenter objects
+            for dc in dcs:
+                if isinstance(dc, dict) and "id" in dc:
+                    datacenters.add(dc["id"])
 
         datacenter_list = sorted(datacenters)
 
@@ -146,7 +152,6 @@ class RunPodCollector(BaseCollector):
             displayName
             memoryInGb
             cudaCores
-            nodeGroupDatacenters
             {newline.join(datacenter_aliases)}
           }}
         }}
@@ -188,13 +193,26 @@ class RunPodCollector(BaseCollector):
         for dc in datacenters:
             # Convert datacenter ID to alias format
             alias = dc.lower().replace("-", "_")
-            pricing = gpu.get(alias, {})
+            pricing = gpu.get(alias)
 
-            # Get pricing data (0.0 if unavailable)
-            price = pricing.get("uninterruptablePrice", 0.0) if pricing else 0.0
-            spot_price = pricing.get("minimumBidPrice", 0.0) if pricing else 0.0
+            # Get pricing data (0.0 if unavailable or None)
+            # Handle both missing pricing dict and None values within the dict
+            price = pricing.get("uninterruptablePrice") if pricing else None
+            price = price if price is not None else 0.0
+
+            spot_price = pricing.get("minimumBidPrice") if pricing else None
+            spot_price = spot_price if spot_price is not None else 0.0
+
             stock_status = pricing.get("stockStatus") if pricing else None
-            quantity = pricing.get("availableGpuCounts", 0) if pricing else 0
+
+            # availableGpuCounts can be a list or None
+            quantity_raw = pricing.get("availableGpuCounts") if pricing else None
+            if isinstance(quantity_raw, list):
+                quantity = sum(quantity_raw) if quantity_raw else 0
+            elif quantity_raw is not None:
+                quantity = int(quantity_raw)
+            else:
+                quantity = 0
 
             instance = GPUInstance(
                 # Identification
@@ -212,7 +230,7 @@ class RunPodCollector(BaseCollector):
                 v_cpus=None,
                 memory_gib=None,
                 accelerator_count=1,
-                accelerator_mem_gib=gpu["memoryInGb"],
+                accelerator_mem_gib=gpu["memoryInGb"] if gpu.get("memoryInGb", 0) > 0 else None,
                 # Metadata
                 collected_at=collected_at,
                 raw_data={

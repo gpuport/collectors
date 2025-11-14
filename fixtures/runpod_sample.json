@@ -1,87 +1,6842 @@
 [
   {
     "provider": "RunPod",
-    "instance_type": "NVIDIA A100 80GB PCIe",
-    "accelerator_name": "A100 80GB",
-    "region": "EU-RO-1",
-    "price": 1.89,
-    "spot_price": 0.79,
-    "availability": "high",
-    "quantity": 10,
-    "v_cpus": 0,
-    "memory_gib": 0,
-    "accelerator_count": 1,
-    "accelerator_mem_gib": 80,
-    "collected_at": 1700000000,
+    "instance_type": "AMD Instinct MI300X OAM",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "MI300X",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 192.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
     "raw_data": {
       "gpu_type": {
-        "id": "NVIDIA A100 80GB PCIe",
-        "displayName": "A100 80GB",
-        "memoryInGb": 80,
-        "cudaCores": 6912
+        "id": "AMD Instinct MI300X OAM",
+        "displayName": "MI300X",
+        "memoryInGb": 192,
+        "cudaCores": 0
       },
       "pricing": {
-        "stockStatus": "High",
-        "uninterruptablePrice": 1.89,
-        "minimumBidPrice": 0.79,
-        "availableGpuCounts": 10
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
       },
-      "datacenter": "EU-RO-1"
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "AMD Instinct MI300X OAM",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "MI300X",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 192.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "AMD Instinct MI300X OAM",
+        "displayName": "MI300X",
+        "memoryInGb": 192,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "AMD Instinct MI300X OAM",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "MI300X",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 192.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "AMD Instinct MI300X OAM",
+        "displayName": "MI300X",
+        "memoryInGb": 192,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "AMD Instinct MI300X OAM",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "MI300X",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 192.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "AMD Instinct MI300X OAM",
+        "displayName": "MI300X",
+        "memoryInGb": 192,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "AMD Instinct MI300X OAM",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "MI300X",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 192.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "AMD Instinct MI300X OAM",
+        "displayName": "MI300X",
+        "memoryInGb": 192,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
     }
   },
   {
     "provider": "RunPod",
     "instance_type": "NVIDIA A100 80GB PCIe",
-    "accelerator_name": "A100 80GB",
-    "region": "US-TX-1",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "A100 PCIe",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 80.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
     "price": 0.0,
     "spot_price": 0.0,
-    "availability": "not_available",
+    "availability": "Not Available",
     "quantity": 0,
-    "v_cpus": 0,
-    "memory_gib": 0,
-    "accelerator_count": 1,
-    "accelerator_mem_gib": 80,
-    "collected_at": 1700000000,
+    "collected_at": 1763128600,
     "raw_data": {
       "gpu_type": {
         "id": "NVIDIA A100 80GB PCIe",
-        "displayName": "A100 80GB",
+        "displayName": "A100 PCIe",
         "memoryInGb": 80,
-        "cudaCores": 6912
+        "cudaCores": 0
       },
-      "pricing": {},
-      "datacenter": "US-TX-1"
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA A100 80GB PCIe",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "A100 PCIe",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 80.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA A100 80GB PCIe",
+        "displayName": "A100 PCIe",
+        "memoryInGb": 80,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA A100 80GB PCIe",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "A100 PCIe",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 80.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA A100 80GB PCIe",
+        "displayName": "A100 PCIe",
+        "memoryInGb": 80,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA A100 80GB PCIe",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "A100 PCIe",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 80.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA A100 80GB PCIe",
+        "displayName": "A100 PCIe",
+        "memoryInGb": 80,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA A100 80GB PCIe",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "A100 PCIe",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 80.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA A100 80GB PCIe",
+        "displayName": "A100 PCIe",
+        "memoryInGb": 80,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA A100-SXM4-80GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "A100 SXM",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 80.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA A100-SXM4-80GB",
+        "displayName": "A100 SXM",
+        "memoryInGb": 80,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA A100-SXM4-80GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "A100 SXM",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 80.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA A100-SXM4-80GB",
+        "displayName": "A100 SXM",
+        "memoryInGb": 80,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA A100-SXM4-80GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "A100 SXM",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 80.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA A100-SXM4-80GB",
+        "displayName": "A100 SXM",
+        "memoryInGb": 80,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA A100-SXM4-80GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "A100 SXM",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 80.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 1.39,
+    "spot_price": 0.79,
+    "availability": "Low",
+    "quantity": 10,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA A100-SXM4-80GB",
+        "displayName": "A100 SXM",
+        "memoryInGb": 80,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": "Low",
+        "uninterruptablePrice": 1.39,
+        "minimumBidPrice": 0.79,
+        "availableGpuCounts": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA A100-SXM4-80GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "A100 SXM",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 80.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 1.39,
+    "spot_price": 0.79,
+    "availability": "Low",
+    "quantity": 11,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA A100-SXM4-80GB",
+        "displayName": "A100 SXM",
+        "memoryInGb": 80,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": "Low",
+        "uninterruptablePrice": 1.39,
+        "minimumBidPrice": 0.79,
+        "availableGpuCounts": [
+          1,
+          2,
+          8
+        ]
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA A40",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "A40",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.35,
+    "spot_price": 0.24,
+    "availability": "High",
+    "quantity": 45,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA A40",
+        "displayName": "A40",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": "High",
+        "uninterruptablePrice": 0.35,
+        "minimumBidPrice": 0.24,
+        "availableGpuCounts": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA A40",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "A40",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA A40",
+        "displayName": "A40",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA A40",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "A40",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA A40",
+        "displayName": "A40",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA A40",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "A40",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA A40",
+        "displayName": "A40",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA A40",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "A40",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA A40",
+        "displayName": "A40",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA B200",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "B200",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 180.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA B200",
+        "displayName": "B200",
+        "memoryInGb": 180,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA B200",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "B200",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 180.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA B200",
+        "displayName": "B200",
+        "memoryInGb": 180,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA B200",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "B200",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 180.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA B200",
+        "displayName": "B200",
+        "memoryInGb": 180,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA B200",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "B200",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 180.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA B200",
+        "displayName": "B200",
+        "memoryInGb": 180,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA B200",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "B200",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 180.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA B200",
+        "displayName": "B200",
+        "memoryInGb": 180,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 3070",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 3070",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 8.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 3070",
+        "displayName": "RTX 3070",
+        "memoryInGb": 8,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 3070",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 3070",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 8.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 3070",
+        "displayName": "RTX 3070",
+        "memoryInGb": 8,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 3070",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 3070",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 8.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 3070",
+        "displayName": "RTX 3070",
+        "memoryInGb": 8,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 3070",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 3070",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 8.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 3070",
+        "displayName": "RTX 3070",
+        "memoryInGb": 8,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 3070",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 3070",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 8.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 3070",
+        "displayName": "RTX 3070",
+        "memoryInGb": 8,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 3080",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 3080",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 10.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 3080",
+        "displayName": "RTX 3080",
+        "memoryInGb": 10,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 3080",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 3080",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 10.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 3080",
+        "displayName": "RTX 3080",
+        "memoryInGb": 10,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 3080",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 3080",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 10.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 3080",
+        "displayName": "RTX 3080",
+        "memoryInGb": 10,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 3080",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 3080",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 10.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 3080",
+        "displayName": "RTX 3080",
+        "memoryInGb": 10,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 3080",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 3080",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 10.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 3080",
+        "displayName": "RTX 3080",
+        "memoryInGb": 10,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 3080 Ti",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 3080 Ti",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 12.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 3080 Ti",
+        "displayName": "RTX 3080 Ti",
+        "memoryInGb": 12,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 3080 Ti",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 3080 Ti",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 12.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 3080 Ti",
+        "displayName": "RTX 3080 Ti",
+        "memoryInGb": 12,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 3080 Ti",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 3080 Ti",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 12.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 3080 Ti",
+        "displayName": "RTX 3080 Ti",
+        "memoryInGb": 12,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 3080 Ti",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 3080 Ti",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 12.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 3080 Ti",
+        "displayName": "RTX 3080 Ti",
+        "memoryInGb": 12,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 3080 Ti",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 3080 Ti",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 12.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 3080 Ti",
+        "displayName": "RTX 3080 Ti",
+        "memoryInGb": 12,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 3090",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 3090",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 24.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 3090",
+        "displayName": "RTX 3090",
+        "memoryInGb": 24,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 3090",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 3090",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 24.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 3090",
+        "displayName": "RTX 3090",
+        "memoryInGb": 24,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 3090",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 3090",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 24.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 3090",
+        "displayName": "RTX 3090",
+        "memoryInGb": 24,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 3090",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 3090",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 24.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 3090",
+        "displayName": "RTX 3090",
+        "memoryInGb": 24,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 3090",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 3090",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 24.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 3090",
+        "displayName": "RTX 3090",
+        "memoryInGb": 24,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 4070 Ti",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4070 Ti",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 12.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 4070 Ti",
+        "displayName": "RTX 4070 Ti",
+        "memoryInGb": 12,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 4070 Ti",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4070 Ti",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 12.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 4070 Ti",
+        "displayName": "RTX 4070 Ti",
+        "memoryInGb": 12,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 4070 Ti",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4070 Ti",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 12.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 4070 Ti",
+        "displayName": "RTX 4070 Ti",
+        "memoryInGb": 12,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 4070 Ti",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4070 Ti",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 12.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 4070 Ti",
+        "displayName": "RTX 4070 Ti",
+        "memoryInGb": 12,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 4070 Ti",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4070 Ti",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 12.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 4070 Ti",
+        "displayName": "RTX 4070 Ti",
+        "memoryInGb": 12,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 4080",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4080",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 4080",
+        "displayName": "RTX 4080",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 4080",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4080",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 4080",
+        "displayName": "RTX 4080",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 4080",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4080",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 4080",
+        "displayName": "RTX 4080",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 4080",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4080",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 4080",
+        "displayName": "RTX 4080",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 4080",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4080",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 4080",
+        "displayName": "RTX 4080",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 4080 SUPER",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4080 SUPER",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 4080 SUPER",
+        "displayName": "RTX 4080 SUPER",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 4080 SUPER",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4080 SUPER",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 4080 SUPER",
+        "displayName": "RTX 4080 SUPER",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 4080 SUPER",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4080 SUPER",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 4080 SUPER",
+        "displayName": "RTX 4080 SUPER",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 4080 SUPER",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4080 SUPER",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 4080 SUPER",
+        "displayName": "RTX 4080 SUPER",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 4080 SUPER",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4080 SUPER",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 4080 SUPER",
+        "displayName": "RTX 4080 SUPER",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 4090",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4090",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 24.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 4090",
+        "displayName": "RTX 4090",
+        "memoryInGb": 24,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 4090",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4090",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 24.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 4090",
+        "displayName": "RTX 4090",
+        "memoryInGb": 24,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 4090",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4090",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 24.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 4090",
+        "displayName": "RTX 4090",
+        "memoryInGb": 24,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 4090",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4090",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 24.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 4090",
+        "displayName": "RTX 4090",
+        "memoryInGb": 24,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 4090",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4090",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 24.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 4090",
+        "displayName": "RTX 4090",
+        "memoryInGb": 24,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 5080",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 5080",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 5080",
+        "displayName": "RTX 5080",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 5080",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 5080",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 5080",
+        "displayName": "RTX 5080",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 5080",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 5080",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 5080",
+        "displayName": "RTX 5080",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 5080",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 5080",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 5080",
+        "displayName": "RTX 5080",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 5080",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 5080",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 5080",
+        "displayName": "RTX 5080",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 5090",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 5090",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 32.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 5090",
+        "displayName": "RTX 5090",
+        "memoryInGb": 32,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 5090",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 5090",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 32.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 5090",
+        "displayName": "RTX 5090",
+        "memoryInGb": 32,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 5090",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 5090",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 32.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 5090",
+        "displayName": "RTX 5090",
+        "memoryInGb": 32,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 5090",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 5090",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 32.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 5090",
+        "displayName": "RTX 5090",
+        "memoryInGb": 32,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA GeForce RTX 5090",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 5090",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 32.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA GeForce RTX 5090",
+        "displayName": "RTX 5090",
+        "memoryInGb": 32,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
     }
   },
   {
     "provider": "RunPod",
     "instance_type": "NVIDIA H100 80GB HBM3",
-    "accelerator_name": "H100 80GB",
-    "region": "EU-RO-1",
-    "price": 2.89,
-    "spot_price": 1.29,
-    "availability": "medium",
-    "quantity": 3,
-    "v_cpus": 0,
-    "memory_gib": 0,
-    "accelerator_count": 1,
-    "accelerator_mem_gib": 80,
-    "collected_at": 1700000000,
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "H100 SXM",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 80.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 2.69,
+    "spot_price": 1.5,
+    "availability": "Low",
+    "quantity": 28,
+    "collected_at": 1763128600,
     "raw_data": {
       "gpu_type": {
         "id": "NVIDIA H100 80GB HBM3",
-        "displayName": "H100 80GB",
+        "displayName": "H100 SXM",
         "memoryInGb": 80,
-        "cudaCores": 14592
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": "Low",
+        "uninterruptablePrice": 2.69,
+        "minimumBidPrice": 1.5,
+        "availableGpuCounts": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H100 80GB HBM3",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "H100 SXM",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 80.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H100 80GB HBM3",
+        "displayName": "H100 SXM",
+        "memoryInGb": 80,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H100 80GB HBM3",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "H100 SXM",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 80.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 2.69,
+    "spot_price": 1.5,
+    "availability": "Medium",
+    "quantity": 21,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H100 80GB HBM3",
+        "displayName": "H100 SXM",
+        "memoryInGb": 80,
+        "cudaCores": 0
       },
       "pricing": {
         "stockStatus": "Medium",
-        "uninterruptablePrice": 2.89,
-        "minimumBidPrice": 1.29,
-        "availableGpuCounts": 3
+        "uninterruptablePrice": 2.69,
+        "minimumBidPrice": 1.5,
+        "availableGpuCounts": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
       },
-      "datacenter": "EU-RO-1"
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H100 80GB HBM3",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "H100 SXM",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 80.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H100 80GB HBM3",
+        "displayName": "H100 SXM",
+        "memoryInGb": 80,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H100 80GB HBM3",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "H100 SXM",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 80.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H100 80GB HBM3",
+        "displayName": "H100 SXM",
+        "memoryInGb": 80,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H100 NVL",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "H100 NVL",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 94.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H100 NVL",
+        "displayName": "H100 NVL",
+        "memoryInGb": 94,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H100 NVL",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "H100 NVL",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 94.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H100 NVL",
+        "displayName": "H100 NVL",
+        "memoryInGb": 94,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H100 NVL",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "H100 NVL",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 94.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H100 NVL",
+        "displayName": "H100 NVL",
+        "memoryInGb": 94,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H100 NVL",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "H100 NVL",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 94.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 2.59,
+    "spot_price": 1.4,
+    "availability": "Low",
+    "quantity": 15,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H100 NVL",
+        "displayName": "H100 NVL",
+        "memoryInGb": 94,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": "Low",
+        "uninterruptablePrice": 2.59,
+        "minimumBidPrice": 1.4,
+        "availableGpuCounts": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H100 NVL",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "H100 NVL",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 94.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H100 NVL",
+        "displayName": "H100 NVL",
+        "memoryInGb": 94,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H100 PCIe",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "H100 PCIe",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 80.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H100 PCIe",
+        "displayName": "H100 PCIe",
+        "memoryInGb": 80,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H100 PCIe",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "H100 PCIe",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 80.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H100 PCIe",
+        "displayName": "H100 PCIe",
+        "memoryInGb": 80,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H100 PCIe",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "H100 PCIe",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 80.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H100 PCIe",
+        "displayName": "H100 PCIe",
+        "memoryInGb": 80,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H100 PCIe",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "H100 PCIe",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 80.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 1.99,
+    "spot_price": 1.35,
+    "availability": "Low",
+    "quantity": 3,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H100 PCIe",
+        "displayName": "H100 PCIe",
+        "memoryInGb": 80,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": "Low",
+        "uninterruptablePrice": 1.99,
+        "minimumBidPrice": 1.35,
+        "availableGpuCounts": [
+          1,
+          2
+        ]
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H100 PCIe",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "H100 PCIe",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 80.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H100 PCIe",
+        "displayName": "H100 PCIe",
+        "memoryInGb": 80,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H200",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "H200 SXM",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 141.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H200",
+        "displayName": "H200 SXM",
+        "memoryInGb": 141,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H200",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "H200 SXM",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 141.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 8,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H200",
+        "displayName": "H200 SXM",
+        "memoryInGb": 141,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": [
+          8
+        ]
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H200",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "H200 SXM",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 141.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H200",
+        "displayName": "H200 SXM",
+        "memoryInGb": 141,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H200",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "H200 SXM",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 141.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H200",
+        "displayName": "H200 SXM",
+        "memoryInGb": 141,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H200",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "H200 SXM",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 141.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H200",
+        "displayName": "H200 SXM",
+        "memoryInGb": 141,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H200 NVL",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "NVIDIA H200 NVL",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 143.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H200 NVL",
+        "displayName": "NVIDIA H200 NVL",
+        "memoryInGb": 143,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H200 NVL",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "NVIDIA H200 NVL",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 143.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H200 NVL",
+        "displayName": "NVIDIA H200 NVL",
+        "memoryInGb": 143,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H200 NVL",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "NVIDIA H200 NVL",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 143.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H200 NVL",
+        "displayName": "NVIDIA H200 NVL",
+        "memoryInGb": 143,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H200 NVL",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "NVIDIA H200 NVL",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 143.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H200 NVL",
+        "displayName": "NVIDIA H200 NVL",
+        "memoryInGb": 143,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA H200 NVL",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "NVIDIA H200 NVL",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 143.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA H200 NVL",
+        "displayName": "NVIDIA H200 NVL",
+        "memoryInGb": 143,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA L4",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "L4",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 24.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA L4",
+        "displayName": "L4",
+        "memoryInGb": 24,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA L4",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "L4",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 24.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA L4",
+        "displayName": "L4",
+        "memoryInGb": 24,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA L4",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "L4",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 24.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA L4",
+        "displayName": "L4",
+        "memoryInGb": 24,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA L4",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "L4",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 24.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA L4",
+        "displayName": "L4",
+        "memoryInGb": 24,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA L4",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "L4",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 24.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA L4",
+        "displayName": "L4",
+        "memoryInGb": 24,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA L40",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "L40",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA L40",
+        "displayName": "L40",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA L40",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "L40",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA L40",
+        "displayName": "L40",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA L40",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "L40",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA L40",
+        "displayName": "L40",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA L40",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "L40",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.69,
+    "spot_price": 0.0,
+    "availability": "Low",
+    "quantity": 28,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA L40",
+        "displayName": "L40",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": "Low",
+        "uninterruptablePrice": 0.69,
+        "minimumBidPrice": null,
+        "availableGpuCounts": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA L40",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "L40",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA L40",
+        "displayName": "L40",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA L40S",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "L40S",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA L40S",
+        "displayName": "L40S",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA L40S",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "L40S",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA L40S",
+        "displayName": "L40S",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA L40S",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "L40S",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA L40S",
+        "displayName": "L40S",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA L40S",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "L40S",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA L40S",
+        "displayName": "L40S",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA L40S",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "L40S",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA L40S",
+        "displayName": "L40S",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 2000 Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 2000 Ada",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 2000 Ada Generation",
+        "displayName": "RTX 2000 Ada",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 2000 Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 2000 Ada",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 2000 Ada Generation",
+        "displayName": "RTX 2000 Ada",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 2000 Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 2000 Ada",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 2000 Ada Generation",
+        "displayName": "RTX 2000 Ada",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 2000 Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 2000 Ada",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 2000 Ada Generation",
+        "displayName": "RTX 2000 Ada",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 2000 Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 2000 Ada",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 2000 Ada Generation",
+        "displayName": "RTX 2000 Ada",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 4000 Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4000 Ada",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 20.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 4000 Ada Generation",
+        "displayName": "RTX 4000 Ada",
+        "memoryInGb": 20,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 4000 Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4000 Ada",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 20.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 4000 Ada Generation",
+        "displayName": "RTX 4000 Ada",
+        "memoryInGb": 20,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 4000 Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4000 Ada",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 20.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 4000 Ada Generation",
+        "displayName": "RTX 4000 Ada",
+        "memoryInGb": 20,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 4000 Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4000 Ada",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 20.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 4000 Ada Generation",
+        "displayName": "RTX 4000 Ada",
+        "memoryInGb": 20,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 4000 Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4000 Ada",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 20.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 4000 Ada Generation",
+        "displayName": "RTX 4000 Ada",
+        "memoryInGb": 20,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 4000 SFF Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4000 Ada SFF",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 20.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 4000 SFF Ada Generation",
+        "displayName": "RTX 4000 Ada SFF",
+        "memoryInGb": 20,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 4000 SFF Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4000 Ada SFF",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 20.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 4000 SFF Ada Generation",
+        "displayName": "RTX 4000 Ada SFF",
+        "memoryInGb": 20,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 4000 SFF Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4000 Ada SFF",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 20.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 4000 SFF Ada Generation",
+        "displayName": "RTX 4000 Ada SFF",
+        "memoryInGb": 20,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 4000 SFF Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4000 Ada SFF",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 20.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 4000 SFF Ada Generation",
+        "displayName": "RTX 4000 Ada SFF",
+        "memoryInGb": 20,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 4000 SFF Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 4000 Ada SFF",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 20.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 4000 SFF Ada Generation",
+        "displayName": "RTX 4000 Ada SFF",
+        "memoryInGb": 20,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 5000 Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 5000 Ada",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 32.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 5000 Ada Generation",
+        "displayName": "RTX 5000 Ada",
+        "memoryInGb": 32,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 5000 Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 5000 Ada",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 32.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 5000 Ada Generation",
+        "displayName": "RTX 5000 Ada",
+        "memoryInGb": 32,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 5000 Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 5000 Ada",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 32.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 5000 Ada Generation",
+        "displayName": "RTX 5000 Ada",
+        "memoryInGb": 32,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 5000 Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 5000 Ada",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 32.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 5000 Ada Generation",
+        "displayName": "RTX 5000 Ada",
+        "memoryInGb": 32,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 5000 Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 5000 Ada",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 32.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 5000 Ada Generation",
+        "displayName": "RTX 5000 Ada",
+        "memoryInGb": 32,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 6000 Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 6000 Ada",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 6000 Ada Generation",
+        "displayName": "RTX 6000 Ada",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 6000 Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 6000 Ada",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 6000 Ada Generation",
+        "displayName": "RTX 6000 Ada",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 6000 Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 6000 Ada",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 6000 Ada Generation",
+        "displayName": "RTX 6000 Ada",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 6000 Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 6000 Ada",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.74,
+    "spot_price": 0.4,
+    "availability": "Low",
+    "quantity": 15,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 6000 Ada Generation",
+        "displayName": "RTX 6000 Ada",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": "Low",
+        "uninterruptablePrice": 0.74,
+        "minimumBidPrice": 0.4,
+        "availableGpuCounts": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX 6000 Ada Generation",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX 6000 Ada",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX 6000 Ada Generation",
+        "displayName": "RTX 6000 Ada",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A2000",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A2000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 6.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A2000",
+        "displayName": "RTX A2000",
+        "memoryInGb": 6,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A2000",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A2000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 6.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A2000",
+        "displayName": "RTX A2000",
+        "memoryInGb": 6,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A2000",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A2000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 6.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A2000",
+        "displayName": "RTX A2000",
+        "memoryInGb": 6,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A2000",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A2000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 6.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A2000",
+        "displayName": "RTX A2000",
+        "memoryInGb": 6,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A2000",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A2000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 6.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A2000",
+        "displayName": "RTX A2000",
+        "memoryInGb": 6,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A4000",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A4000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A4000",
+        "displayName": "RTX A4000",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A4000",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A4000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A4000",
+        "displayName": "RTX A4000",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A4000",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A4000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A4000",
+        "displayName": "RTX A4000",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A4000",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A4000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A4000",
+        "displayName": "RTX A4000",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A4000",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A4000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A4000",
+        "displayName": "RTX A4000",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A4500",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A4500",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 20.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A4500",
+        "displayName": "RTX A4500",
+        "memoryInGb": 20,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A4500",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A4500",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 20.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A4500",
+        "displayName": "RTX A4500",
+        "memoryInGb": 20,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A4500",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A4500",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 20.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A4500",
+        "displayName": "RTX A4500",
+        "memoryInGb": 20,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A4500",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A4500",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 20.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A4500",
+        "displayName": "RTX A4500",
+        "memoryInGb": 20,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A4500",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A4500",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 20.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A4500",
+        "displayName": "RTX A4500",
+        "memoryInGb": 20,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A5000",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A5000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 24.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.16,
+    "spot_price": 0.11,
+    "availability": "Medium",
+    "quantity": 36,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A5000",
+        "displayName": "RTX A5000",
+        "memoryInGb": 24,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": "Medium",
+        "uninterruptablePrice": 0.16,
+        "minimumBidPrice": 0.11,
+        "availableGpuCounts": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A5000",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A5000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 24.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A5000",
+        "displayName": "RTX A5000",
+        "memoryInGb": 24,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A5000",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A5000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 24.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A5000",
+        "displayName": "RTX A5000",
+        "memoryInGb": 24,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A5000",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A5000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 24.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A5000",
+        "displayName": "RTX A5000",
+        "memoryInGb": 24,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A5000",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A5000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 24.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A5000",
+        "displayName": "RTX A5000",
+        "memoryInGb": 24,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A6000",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A6000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A6000",
+        "displayName": "RTX A6000",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A6000",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A6000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A6000",
+        "displayName": "RTX A6000",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A6000",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A6000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A6000",
+        "displayName": "RTX A6000",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A6000",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A6000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.33,
+    "spot_price": 0.25,
+    "availability": "Low",
+    "quantity": 10,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A6000",
+        "displayName": "RTX A6000",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": "Low",
+        "uninterruptablePrice": 0.33,
+        "minimumBidPrice": 0.25,
+        "availableGpuCounts": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX A6000",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX A6000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 48.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX A6000",
+        "displayName": "RTX A6000",
+        "memoryInGb": 48,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX PRO 6000 MaxQ",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 96.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+        "displayName": "RTX PRO 6000 MaxQ",
+        "memoryInGb": 96,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX PRO 6000 MaxQ",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 96.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+        "displayName": "RTX PRO 6000 MaxQ",
+        "memoryInGb": 96,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX PRO 6000 MaxQ",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 96.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+        "displayName": "RTX PRO 6000 MaxQ",
+        "memoryInGb": 96,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX PRO 6000 MaxQ",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 96.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+        "displayName": "RTX PRO 6000 MaxQ",
+        "memoryInGb": 96,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX PRO 6000 MaxQ",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 96.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+        "displayName": "RTX PRO 6000 MaxQ",
+        "memoryInGb": 96,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX PRO 6000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 96.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+        "displayName": "RTX PRO 6000",
+        "memoryInGb": 96,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX PRO 6000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 96.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+        "displayName": "RTX PRO 6000",
+        "memoryInGb": 96,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX PRO 6000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 96.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+        "displayName": "RTX PRO 6000",
+        "memoryInGb": 96,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX PRO 6000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 96.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 1.7,
+    "spot_price": 0.0,
+    "availability": "Low",
+    "quantity": 1,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+        "displayName": "RTX PRO 6000",
+        "memoryInGb": 96,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": "Low",
+        "uninterruptablePrice": 1.7,
+        "minimumBidPrice": null,
+        "availableGpuCounts": [
+          1
+        ]
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX PRO 6000",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 96.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+        "displayName": "RTX PRO 6000",
+        "memoryInGb": 96,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX PRO 6000 WK",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 96.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+        "displayName": "RTX PRO 6000 WK",
+        "memoryInGb": 96,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX PRO 6000 WK",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 96.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+        "displayName": "RTX PRO 6000 WK",
+        "memoryInGb": 96,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX PRO 6000 WK",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 96.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+        "displayName": "RTX PRO 6000 WK",
+        "memoryInGb": 96,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX PRO 6000 WK",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 96.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+        "displayName": "RTX PRO 6000 WK",
+        "memoryInGb": 96,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "RTX PRO 6000 WK",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 96.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+        "displayName": "RTX PRO 6000 WK",
+        "memoryInGb": 96,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "Tesla V100-FHHL-16GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "V100 FHHL",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "Tesla V100-FHHL-16GB",
+        "displayName": "V100 FHHL",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "Tesla V100-FHHL-16GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "V100 FHHL",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "Tesla V100-FHHL-16GB",
+        "displayName": "V100 FHHL",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "Tesla V100-FHHL-16GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "V100 FHHL",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "Tesla V100-FHHL-16GB",
+        "displayName": "V100 FHHL",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "Tesla V100-FHHL-16GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "V100 FHHL",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "Tesla V100-FHHL-16GB",
+        "displayName": "V100 FHHL",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "Tesla V100-FHHL-16GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "V100 FHHL",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "Tesla V100-FHHL-16GB",
+        "displayName": "V100 FHHL",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "Tesla V100-PCIE-16GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "Tesla V100",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "Tesla V100-PCIE-16GB",
+        "displayName": "Tesla V100",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "Tesla V100-PCIE-16GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "Tesla V100",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "Tesla V100-PCIE-16GB",
+        "displayName": "Tesla V100",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "Tesla V100-PCIE-16GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "Tesla V100",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "Tesla V100-PCIE-16GB",
+        "displayName": "Tesla V100",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "Tesla V100-PCIE-16GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "Tesla V100",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "Tesla V100-PCIE-16GB",
+        "displayName": "Tesla V100",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "Tesla V100-PCIE-16GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "Tesla V100",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "Tesla V100-PCIE-16GB",
+        "displayName": "Tesla V100",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "Tesla V100-SXM2-16GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "V100 SXM2",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "Tesla V100-SXM2-16GB",
+        "displayName": "V100 SXM2",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "Tesla V100-SXM2-16GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "V100 SXM2",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "Tesla V100-SXM2-16GB",
+        "displayName": "V100 SXM2",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "Tesla V100-SXM2-16GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "V100 SXM2",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "Tesla V100-SXM2-16GB",
+        "displayName": "V100 SXM2",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "Tesla V100-SXM2-16GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "V100 SXM2",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "Tesla V100-SXM2-16GB",
+        "displayName": "V100 SXM2",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "Tesla V100-SXM2-16GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "V100 SXM2",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 16.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "Tesla V100-SXM2-16GB",
+        "displayName": "V100 SXM2",
+        "memoryInGb": 16,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "Tesla V100-SXM2-32GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "V100 SXM2 32GB",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 32.0,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "Tesla V100-SXM2-32GB",
+        "displayName": "V100 SXM2 32GB",
+        "memoryInGb": 32,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "Tesla V100-SXM2-32GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "V100 SXM2 32GB",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 32.0,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "Tesla V100-SXM2-32GB",
+        "displayName": "V100 SXM2 32GB",
+        "memoryInGb": 32,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "Tesla V100-SXM2-32GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "V100 SXM2 32GB",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 32.0,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "Tesla V100-SXM2-32GB",
+        "displayName": "V100 SXM2 32GB",
+        "memoryInGb": 32,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "Tesla V100-SXM2-32GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "V100 SXM2 32GB",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 32.0,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "Tesla V100-SXM2-32GB",
+        "displayName": "V100 SXM2 32GB",
+        "memoryInGb": 32,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "Tesla V100-SXM2-32GB",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "V100 SXM2 32GB",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": 32.0,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "Tesla V100-SXM2-32GB",
+        "displayName": "V100 SXM2 32GB",
+        "memoryInGb": 32,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "unknown",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "unknown",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": null,
+    "gpu_info": null,
+    "region": "CA-MTL-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "unknown",
+        "displayName": "unknown",
+        "memoryInGb": 0,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-1"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "unknown",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "unknown",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": null,
+    "gpu_info": null,
+    "region": "CA-MTL-4",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "unknown",
+        "displayName": "unknown",
+        "memoryInGb": 0,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "CA-MTL-4"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "unknown",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "unknown",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": null,
+    "gpu_info": null,
+    "region": "EUR-IS-3",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "unknown",
+        "displayName": "unknown",
+        "memoryInGb": 0,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "EUR-IS-3"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "unknown",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "unknown",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": null,
+    "gpu_info": null,
+    "region": "US-KS-2",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "unknown",
+        "displayName": "unknown",
+        "memoryInGb": 0,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-KS-2"
+    }
+  },
+  {
+    "provider": "RunPod",
+    "instance_type": "unknown",
+    "v_cpus": null,
+    "memory_gib": null,
+    "arch": null,
+    "accelerator_name": "unknown",
+    "accelerator_count": 1.0,
+    "accelerator_mem_gib": null,
+    "gpu_info": null,
+    "region": "US-MO-1",
+    "availability_zone": null,
+    "price": 0.0,
+    "spot_price": 0.0,
+    "availability": "Not Available",
+    "quantity": 0,
+    "collected_at": 1763128600,
+    "raw_data": {
+      "gpu_type": {
+        "id": "unknown",
+        "displayName": "unknown",
+        "memoryInGb": 0,
+        "cudaCores": 0
+      },
+      "pricing": {
+        "stockStatus": null,
+        "uninterruptablePrice": null,
+        "minimumBidPrice": null,
+        "availableGpuCounts": []
+      },
+      "datacenter": "US-MO-1"
     }
   }
 ]

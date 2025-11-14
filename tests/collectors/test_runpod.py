@@ -36,11 +36,18 @@ def sample_datacenter_response():
         "gpuTypes": [
             {
                 "id": "NVIDIA A100 80GB PCIe",
-                "nodeGroupDatacenters": ["EU-RO-1", "US-TX-1", "US-CA-1"],
+                "nodeGroupDatacenters": [
+                    {"id": "EU-RO-1", "name": "EU-RO-1"},
+                    {"id": "US-TX-1", "name": "US-TX-1"},
+                    {"id": "US-CA-1", "name": "US-CA-1"},
+                ],
             },
             {
                 "id": "NVIDIA H100 80GB HBM3",
-                "nodeGroupDatacenters": ["EU-RO-1", "US-TX-1"],
+                "nodeGroupDatacenters": [
+                    {"id": "EU-RO-1", "name": "EU-RO-1"},
+                    {"id": "US-TX-1", "name": "US-TX-1"},
+                ],
             },
         ]
     }
