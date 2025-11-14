@@ -6,11 +6,7 @@ from unittest.mock import Mock, patch
 import pytest
 
 from gpuport_collectors.config import ObservabilityConfig
-from gpuport_collectors.observability import (
-    ObservabilityManager,
-    StructuredLogger,
-    get_observability_manager,
-)
+import gpuport_collectors.observability
 
 
 class TestStructuredLogger:
@@ -19,7 +15,7 @@ class TestStructuredLogger:
     def test_logger_initialization(self):
         """Test that logger is properly initialized."""
         config = ObservabilityConfig(log_level="DEBUG")
-        logger = StructuredLogger("test_logger", config)
+        logger = gpuport_collectors.observability.StructuredLogger("test_logger", config)
 
         assert logger.logger.level == logging.DEBUG
         assert logger.config == config
@@ -27,7 +23,7 @@ class TestStructuredLogger:
     def test_format_message_basic(self):
         """Test basic message formatting."""
         config = ObservabilityConfig()
-        logger = StructuredLogger("test", config)
+        logger = gpuport_collectors.observability.StructuredLogger("test", config)
 
         msg = logger._format_message("test message", key1="value1", key2="value2")
 
@@ -228,7 +224,7 @@ class TestObservabilityManager:
     def test_trace_operation_with_exception(self, mock_get_tracer):
         """Test trace_operation records exceptions."""
         config = ObservabilityConfig(enabled=True, honeycomb_api_key="test-key")
-        manager = ObservabilityManager(config)
+        manager = gpuport_collectors.observability.ObservabilityManager(config)
 
         mock_span = Mock()
         mock_context = Mock()
@@ -265,8 +261,8 @@ class TestGetObservabilityManager:
         gpuport_collectors.observability._observability_manager = None
 
         config = ObservabilityConfig(enabled=False)
-        manager1 = get_observability_manager(config)
-        manager2 = get_observability_manager()
+        manager1 = gpuport_collectors.observability.get_observability_manager(config)
+        manager2 = gpuport_collectors.observability.get_observability_manager()
 
         assert manager1 is manager2
 
@@ -276,7 +272,7 @@ class TestGetObservabilityManager:
 
         gpuport_collectors.observability._observability_manager = None
 
-        manager = get_observability_manager()
+        manager = gpuport_collectors.observability.get_observability_manager()
 
-        assert isinstance(manager, ObservabilityManager)
+        assert isinstance(manager, gpuport_collectors.observability.ObservabilityManager)
         assert manager.config is not None
