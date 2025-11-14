@@ -128,4 +128,5 @@ class TestCollectorConfig:
             "timeout": 60,
             "max_retries": 5,
             "backoff_factor": 1.5,
+            "base_delay": 5.0,
         }
