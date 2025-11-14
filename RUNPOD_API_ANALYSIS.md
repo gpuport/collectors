@@ -77,13 +77,15 @@ gpuTypes {
 - GPUs with actual pricing: 16 GPUs
 - Waste: API returns placeholder data for unavailable combos
 
-## Optimal Strategy
+## Implemented Strategy
 
-### Current Implementation (Already Optimal!)
+### Actual Implementation (Per-GPU-Type Queries)
 
-**Two Query Approach:**
+**IMPORTANT**: After discovering that `nodeGroupDatacenters` is unreliable (see RUNPOD_NODEGROUPDATACENTERS_BUG.md), we implemented a different strategy that queries all datacenters.
 
-1. **Discovery Query** - Get GPU-to-datacenter mapping:
+**Three-Phase Approach:**
+
+1. **GPU Discovery** - Get all GPU types:
 ```graphql
 query {
   gpuTypes {
@@ -91,47 +93,61 @@ query {
     displayName
     memoryInGb
     cudaCores
-    nodeGroupDatacenters {
-      id
-      name
-    }
   }
 }
 ```
-- Tells us which GPUs are available in which datacenters
-- Reveals that 38/41 GPUs have zero availability
+- Returns all 41 GPU types
+- No reliance on nodeGroupDatacenters
 
-2. **Pricing Query** - Only query datacenters with availability:
+2. **Datacenter Discovery** - Get all datacenters:
 ```graphql
 query {
-  gpuTypes {
+  dataCenters {
+    id
+    name
+  }
+}
+```
+- Returns all 39 datacenters
+- Complete coverage
+
+3. **Pricing Queries** - One query per GPU type:
+```graphql
+query {
+  gpuTypes(input: { id: "NVIDIA A100 80GB SXM" }) {
     id
     displayName
     memoryInGb
     cudaCores
-    eu_ro_1: lowestPrice(...) { ... }  # Only if this DC has any GPU
-    us_tx_1: lowestPrice(...) { ... }  # Only if this DC has any GPU
-    # Only include DCs that appeared in nodeGroupDatacenters
+    eu_ro_1: lowestPrice(input: { dataCenterId: "EU-RO-1", gpuCount: 1 }) { ... }
+    us_tx_1: lowestPrice(input: { dataCenterId: "US-TX-1", gpuCount: 1 }) { ... }
+    # ... all 39 datacenters
   }
 }
 ```
+- 41 queries (one per GPU type)
+- Each query has 39 datacenter aliases
+- Max 3 concurrent via asyncio.Semaphore
+- Filter client-side based on stockStatus
 
-### Why This Is Optimal
+### Why This Approach
 
-**Without optimization (query all 39 DCs):**
-- 41 GPUs × 39 DCs = 1,599 pricing queries
-- Most return null/unavailable
+**Initial optimization idea (using nodeGroupDatacenters):**
+- 41 GPUs × 5 active DCs = 205 pricing queries
+- Seems efficient (87% reduction)
 
-**With optimization (query only active DCs):**
-- Discovery shows only 5 DCs have any GPUs
-- 41 GPUs × 5 DCs = 205 pricing queries
-- Reduction: 1,599 → 205 (87% fewer queries)
+**Problem discovered:**
+- nodeGroupDatacenters returns empty arrays for available GPUs
+- RTX 4090 showed `nodeGroupDatacenters: []` but was available in 7 datacenters
+- Would hide available inventory
 
-**Further optimization (only query relevant GPU-DC pairs):**
-- Parse nodeGroupDatacenters to see which GPUs are where
-- Only create instances for GPU-DC combinations that exist
-- At query time: Only 5 actual combinations existed
-- Result: Create only 5 instances instead of 205
+**Final implementation:**
+- 43 total queries (2 discovery + 41 pricing)
+- Rate limited to 3 concurrent requests
+- Complete coverage of all GPU-datacenter combinations
+- Client-side filtering ensures we only create instances for available GPUs
+- Execution time: ~6.3 seconds
+- Result: 78 instances across 25 GPU types (vs 3 types with nodeGroupDatacenters approach)
 
 ## Answers to Your Questions
 
@@ -199,17 +215,22 @@ Only include datacenter aliases that appeared in `nodeGroupDatacenters`.
 
 ## Conclusion
 
-**Your current implementation is actually CORRECT and OPTIMAL!**
+**The actual implementation prioritizes completeness over optimization.**
 
-The two-step approach:
-1. Get `nodeGroupDatacenters` to find GPU-datacenter mapping
-2. Query pricing only for datacenters with availability
-3. Create instances only for combinations in the mapping
+Due to the `nodeGroupDatacenters` bug (documented in RUNPOD_NODEGROUPDATACENTERS_BUG.md), the implemented approach:
 
-This achieves 99.7% efficiency (from 1,599 down to 5 instances created).
+1. Queries ALL datacenters for ALL GPU types (complete coverage)
+2. Uses per-GPU-type queries with rate limiting (manageable complexity)
+3. Filters client-side based on actual pricing responses (reliable)
 
-The only consideration is whether to:
-- Query ALL 39 datacenters and filter client-side (simpler)
-- Query ONLY active datacenters based on mapping (more efficient)
+**Trade-offs:**
+- **Completeness**: Finds all available GPUs (25 types vs 3 with nodeGroupDatacenters)
+- **Performance**: ~6.3 seconds for 43 queries (acceptable)
+- **Reliability**: No reliance on unreliable metadata
+- **Simplicity**: Straightforward logic, easy to understand
 
-Current implementation does the latter, which is optimal.
+**Alternative considered but rejected:**
+- Use `nodeGroupDatacenters` for filtering: More efficient but unreliable
+- Result: Would hide RTX 4090 and other available inventory
+
+The current implementation chooses correctness over optimization.
