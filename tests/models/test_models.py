@@ -1,6 +1,7 @@
 """Tests for GPUInstance and related models."""
 
 from time import time
+from typing import Any
 
 import pytest
 from pydantic import ValidationError
@@ -570,7 +571,9 @@ class TestGPUInstance:
         assert data["accelerator_count"] == 1.0
         assert data["region"] == "US"
         assert data["price"] == 0.79
-        assert data["availability"] == AvailabilityStatus.HIGH
+        # model_dump() serializes enum to its string value
+        assert data["availability"] == AvailabilityStatus.HIGH.value
+        assert data["availability"] == "High"
         assert data["collected_at"] == collected_time
 
     def test_model_dump_json(self):
@@ -594,7 +597,7 @@ class TestGPUInstance:
 
     def test_model_from_dict(self):
         """Test creating model from dict."""
-        data = {
+        data: dict[str, Any] = {
             "provider": "RunPod",
             "instance_type": "RTX 4090",
             "v_cpus": 8.0,

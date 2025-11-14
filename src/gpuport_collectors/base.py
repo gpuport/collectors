@@ -100,10 +100,12 @@ class BaseCollector(ABC):
         """Initialize the collector with optional configuration.
 
         Args:
-            config: Optional configuration override. If not provided, uses default
-                   configuration from defaults.yaml
+            config: Optional configuration override. If not provided, uses a
+                   per-instance copy of the default configuration from defaults.yaml
         """
-        self.config = config or default_config
+        # Use a per-instance copy when no custom config is provided
+        # to avoid shared mutable state across collectors
+        self.config = config or default_config.model_copy(deep=True)
 
     @property
     @abstractmethod

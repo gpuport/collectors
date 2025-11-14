@@ -199,6 +199,39 @@ class TestBaseCollector:
         # Verify it's a property
         assert isinstance(type(collector).provider_name, property)
 
+    def test_default_config_not_shared_across_instances(self):
+        """Test that collectors without explicit config get independent config instances.
+
+        This verifies that mutating one collector's config doesn't affect others.
+        """
+
+        class ConcreteCollector(BaseCollector):
+            @property
+            def provider_name(self) -> str:
+                return "TestProvider"
+
+            async def fetch_instances(self) -> list[GPUInstance]:
+                return []
+
+        # Create two collectors without providing config
+        collector1 = ConcreteCollector()
+        collector2 = ConcreteCollector()
+
+        # Store original values
+        original_max_retries = collector1.config.max_retries
+        original_backoff_factor = collector1.config.backoff_factor
+
+        # Mutate collector1's config
+        collector1.config.max_retries = 999
+        collector1.config.backoff_factor = 10.0
+
+        # Verify collector2's config is unchanged
+        assert collector2.config.max_retries == original_max_retries
+        assert collector2.config.backoff_factor == original_backoff_factor
+
+        # Verify the configs are different objects
+        assert collector1.config is not collector2.config
+
 
 class TestRetryDecorator:
     """Tests for with_retry decorator."""
@@ -309,9 +342,9 @@ class TestRetryDecorator:
                 await collector.fetch_instances()
 
             # Verify exponential backoff: base_delay * (backoff_factor ** attempt)
-            # base_delay = 3
-            # Retry 1 (attempt 0): 3 * (2.0 ** 0) = 3.0
-            # Retry 2 (attempt 1): 3 * (2.0 ** 1) = 10.0
+            # base_delay = 5
+            # Retry 1 (attempt 0): 5 * (2.0 ** 0) = 5.0
+            # Retry 2 (attempt 1): 5 * (2.0 ** 1) = 10.0
             # Retry 3 (attempt 2): 5 * (2.0 ** 2) = 20.0
             assert sleep_mock.call_count == 3
             calls = [call.args[0] for call in sleep_mock.call_args_list]
