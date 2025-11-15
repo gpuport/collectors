@@ -101,7 +101,8 @@ class TestBasicS3Upload:
 
     def test_upload_with_trailing_slash_prefix(self, mock_s3_client: tuple[Any, Any, Any]) -> None:
         """Test that trailing slash in prefix is handled correctly."""
-        _mock_boto3, _mock_client, _mock_exceptions = mock_s3_client
+        # Unpack tuple - values unused in this test
+        _ = mock_s3_client
 
         config = S3OutputConfig(
             bucket="test-bucket",
@@ -119,7 +120,8 @@ class TestFilenamePatterns:
 
     def test_date_time_patterns(self, mock_s3_client: tuple[Any, Any, Any]) -> None:
         """Test filename pattern with date/time placeholders."""
-        _mock_boto3, _mock_client, _mock_exceptions = mock_s3_client
+        # Unpack only to satisfy type checker - values unused in this test
+        _ = mock_s3_client
 
         config = S3OutputConfig(
             bucket="test-bucket",

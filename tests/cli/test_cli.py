@@ -127,11 +127,11 @@ class TestRunPodCommand:
         mock_execute.return_value = [
             PipelineResult(
                 pipeline_name="test-export",
-                success=True,
+                enabled=True,
                 input_count=1,
                 filtered_count=1,
-                successful_outputs=1,
-                failed_outputs=0,
+                output_count=1,
+                outputs=[{"success": True}],
             )
         ]
 
@@ -239,12 +239,12 @@ class TestExportCommand:
         mock_execute.return_value = [
             PipelineResult(
                 pipeline_name="test-export",
-                success=False,
+                enabled=True,
                 error="Failed to write output",
                 input_count=0,
                 filtered_count=0,
-                successful_outputs=0,
-                failed_outputs=1,
+                output_count=1,
+                outputs=[{"success": False}],
             )
         ]
 
