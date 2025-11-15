@@ -6,7 +6,7 @@ and export GPU instance data.
 
 from typing import Any, Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 
 # Filter Configuration
@@ -87,6 +87,13 @@ class MetricConfig(BaseModel):
         default=None, description="Field to aggregate (required for non-count metrics)"
     )
     group_by: str | None = Field(default=None, description="Field to group by")
+
+    @model_validator(mode="after")
+    def validate_field_required(self) -> "MetricConfig":
+        """Validate that field is provided for non-count metric types."""
+        if self.type != "count" and self.field is None:
+            raise ValueError(f"Metric type '{self.type}' requires 'field' parameter")
+        return self
 
 
 class MetricsTransformerConfig(BaseModel):

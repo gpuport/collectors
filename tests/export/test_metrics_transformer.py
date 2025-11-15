@@ -359,11 +359,11 @@ class TestErrorHandling:
 
     def test_missing_field_for_avg(self, sample_instances: list[GPUInstance]) -> None:
         """Test error when field is missing for avg metric."""
-        config = MetricsTransformerConfig(
-            metrics=[MetricConfig(name="avg_price", type="avg", field=None)]
-        )
-        with pytest.raises(TransformerError, match="requires 'field' parameter"):
-            transform_to_metrics(sample_instances, config)
+        from pydantic import ValidationError
+
+        # Field validation now happens at model creation time
+        with pytest.raises(ValidationError, match="requires 'field' parameter"):
+            MetricsTransformerConfig(metrics=[MetricConfig(name="avg_price", type="avg", field=None)])
 
     def test_all_null_values(self) -> None:
         """Test metric with all null values."""

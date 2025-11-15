@@ -192,15 +192,23 @@ pipelines:
         create_dirs: true
 
 # Usage:
-# 1. Set environment variables:
-#    export RUNPOD_API_KEY=your_runpod_key
+# 1. Set environment variables for credentials:
+#    # For AWS S3 output (used by s3-archive, s3-encrypted pipelines)
 #    export AWS_ACCESS_KEY_ID=your_aws_key
 #    export AWS_SECRET_ACCESS_KEY=your_aws_secret
+#
+#    # For HTTPS webhook outputs (used by webhook-main, webhook-backup pipelines)
 #    export API_TOKEN=your_webhook_token
 #    export METRICS_TOKEN=your_metrics_token
 #
-# 2. Run the export:
+#    # For data collection (separate from export - used by 'run runpod' command)
+#    export RUNPOD_API_KEY=your_runpod_key
+#
+# 2. Collect GPU instance data (requires RUNPOD_API_KEY):
+#    gpuport-collectors run runpod --export-config export-advanced.yaml
+#
+# 3. Or export existing data without collection:
 #    gpuport-collectors export --config export-advanced.yaml
 #
-# 3. Or validate first:
+# 4. Validate configuration before running:
 #    gpuport-collectors validate --config export-advanced.yaml

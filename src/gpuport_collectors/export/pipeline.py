@@ -265,7 +265,7 @@ def execute_pipeline(instances: list[GPUInstance], config: PipelineConfig) -> Pi
 
         # Log pipeline completion
         successful = sum(1 for o in output_results if o.get("success", False))
-        failed = sum(1 for o in output_results if not o.get("success", True))
+        failed = sum(1 for o in output_results if not o.get("success", False))
         logger.info(
             f"Completed pipeline '{config.name}'",
             pipeline=config.name,
