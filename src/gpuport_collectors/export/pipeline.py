@@ -73,7 +73,7 @@ class PipelineResult:
     @property
     def failed_outputs(self) -> int:
         """Count of failed outputs."""
-        return sum(1 for output in self.outputs if not output.get("success", True))
+        return sum(1 for output in self.outputs if not output.get("success", False))
 
     def to_dict(self) -> dict[str, Any]:
         """Convert result to dictionary."""
