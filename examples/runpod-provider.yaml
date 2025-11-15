@@ -1,0 +1,36 @@
+# RunPod Provider Configuration Example
+#
+# Provider-specific configuration for RunPod GPU data collection.
+# Use this with: gpuport-collectors run runpod --config runpod-provider.yaml
+
+# HTTP Client Settings
+http_client:
+  timeout: 30
+  max_retries: 3
+  backoff_factor: 2.0
+
+# RunPod-specific configuration
+collectors:
+  runpod:
+    enabled: true
+    # API key should be set via RUNPOD_API_KEY environment variable
+    # Never commit API keys to version control!
+
+# Observability (optional - useful for debugging)
+observability:
+  enabled: false
+  log_level: "INFO"
+  service_name: "runpod-collector"
+  environment: "production"
+
+# Usage:
+# 1. Set your API key:
+#    export RUNPOD_API_KEY=your_api_key_here
+#
+# 2. Run the collector:
+#    gpuport-collectors run runpod --config runpod-provider.yaml
+#
+# 3. Or run with export pipeline:
+#    gpuport-collectors run runpod \
+#      --config runpod-provider.yaml \
+#      --export-config export-pipeline.yaml

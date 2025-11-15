@@ -1,0 +1,206 @@
+# Advanced Export Pipeline Example
+#
+# Demonstrates multiple pipelines with filtering, transformations,
+# and various output destinations (local, S3, HTTPS).
+
+pipelines:
+  # Pipeline 1: High-availability GPUs to S3
+  - name: production-export
+    enabled: true
+    description: "Export high-availability GPUs to production S3 bucket"
+
+    filters:
+      # Only HIGH and MEDIUM availability
+      - field: availability
+        operator: in
+        values: [HIGH, MEDIUM]
+
+      # Price under $10/hour
+      - field: price
+        operator: lt
+        value: 10.0
+
+    transformer:
+      format: json
+      fields:
+        provider: Provider
+        instance_type: InstanceType
+        accelerator_name: GPU
+        accelerator_count: GPUCount
+        region: Region
+        price: PricePerHour
+        availability: Status
+      pretty_print: true
+
+    outputs:
+      # Primary: S3 bucket
+      - type: s3
+        bucket: "gpu-data-prod"
+        prefix: "high-availability/"
+        region: "us-east-1"
+        filename_pattern: "{date}/gpus_{time}.json.gz"
+        compression: "gzip"
+        credentials:
+          access_key_env: AWS_ACCESS_KEY_ID
+          secret_key_env: AWS_SECRET_ACCESS_KEY
+
+      # Backup: Local file
+      - type: local
+        path: "./backups"
+        filename_pattern: "backup_{timestamp}.json"
+        create_dirs: true
+
+  # Pipeline 2: Budget GPUs (< $2/hr) to webhook
+  - name: budget-gpus
+    enabled: true
+    description: "Track budget-friendly GPUs"
+
+    filters:
+      - field: price
+        operator: between
+        min: 0.1
+        max: 2.0
+
+      - field: availability
+        operator: ne
+        value: NOT_AVAILABLE
+
+    transformer:
+      format: json
+      fields:
+        provider: provider
+        instance_type: instance
+        accelerator_name: gpu
+        region: region
+        price: price_usd
+
+    outputs:
+      # Send to webhook
+      - type: https
+        url: "https://api.example.com/webhooks/budget-gpus"
+        method: POST
+        headers:
+          Authorization: "Bearer ${API_TOKEN}"
+          Content-Type: "application/json"
+        batch_size: 50
+        retry_attempts: 3
+
+      # Also save locally
+      - type: local
+        path: "./data/budget"
+        filename_pattern: "budget_{date}.json"
+
+  # Pipeline 3: EU region GPUs to CSV
+  - name: eu-regions
+    enabled: true
+
+    filters:
+      - field: region
+        operator: regex
+        value: "^eu-.*"
+
+    transformer:
+      format: csv
+      fields:
+        provider: "Provider"
+        instance_type: "Instance"
+        accelerator_name: "GPU"
+        region: "Datacenter"
+        price: "Price"
+        availability: "Status"
+      include_headers: true
+
+    outputs:
+      - type: local
+        path: "./reports/eu"
+        filename_pattern: "eu-gpus_{date}.csv"
+        create_dirs: true
+
+  # Pipeline 4: Daily metrics
+  - name: daily-metrics
+    enabled: true
+    description: "Aggregate metrics for monitoring"
+
+    # No filters - process all instances
+
+    transformer:
+      format: metrics
+      metrics:
+        - name: total_instances
+          type: count
+
+        - name: instances_by_provider
+          type: count
+          group_by: provider
+
+        - name: instances_by_availability
+          type: count
+          group_by: availability
+
+        - name: avg_price
+          type: avg
+          field: price
+
+        - name: min_price
+          type: min
+          field: price
+
+        - name: max_price
+          type: max
+          field: price
+
+        - name: unique_gpus
+          type: unique
+          field: accelerator_name
+
+      include_timestamp: true
+      include_collection_info: true
+
+    outputs:
+      # Send to monitoring system
+      - type: https
+        url: "https://metrics.example.com/api/gpu-stats"
+        method: POST
+        headers:
+          Authorization: "Bearer ${METRICS_TOKEN}"
+        retry_attempts: 3
+
+      # Archive locally
+      - type: local
+        path: "./metrics"
+        filename_pattern: "metrics_{timestamp}.json"
+        create_dirs: true
+
+  # Pipeline 5: Provider-specific exports
+  - name: runpod-only
+    enabled: false  # Disabled by default
+
+    filters:
+      - field: provider
+        operator: eq
+        value: RunPod
+
+    transformer:
+      format: json
+      include_raw_data: true  # Include API raw data
+      pretty_print: true
+
+    outputs:
+      - type: local
+        path: "./data/providers/runpod"
+        filename_pattern: "runpod_{date}.json"
+        create_dirs: true
+
+# Usage:
+# 1. Set environment variables:
+#    export RUNPOD_API_KEY=your_runpod_key
+#    export AWS_ACCESS_KEY_ID=your_aws_key
+#    export AWS_SECRET_ACCESS_KEY=your_aws_secret
+#    export API_TOKEN=your_webhook_token
+#    export METRICS_TOKEN=your_metrics_token
+#
+# 2. Run the export:
+#    gpuport-collectors export --config export-advanced.yaml
+#
+# 3. Or validate first:
+#    gpuport-collectors validate --config export-advanced.yaml

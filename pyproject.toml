@@ -10,6 +10,7 @@ authors = [
 ]
 dependencies = [
     "aiohttp>=3.13.2",
+    "click>=8.3.0",
     "httpx>=0.28.1",
     "opentelemetry-api>=1.38.0",
     "opentelemetry-exporter-otlp-proto-http>=1.38.0",
@@ -18,6 +19,9 @@ dependencies = [
     "pydantic-yaml>=1.6.0",
     "pyyaml>=6.0.0",
 ]
+
+[project.scripts]
+gpuport-collectors = "gpuport_collectors.cli:cli"
 
 [project.optional-dependencies]
 dev = [

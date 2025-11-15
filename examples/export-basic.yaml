@@ -1,0 +1,51 @@
+# Basic Export Pipeline Example
+#
+# A simple example showing how to export GPU data to local files.
+# Use this with: gpuport-collectors export --config export-basic.yaml
+
+pipelines:
+  # Export all data to JSON
+  - name: full-export
+    enabled: true
+
+    # No filters = export all instances
+
+    transformer:
+      format: json
+      pretty_print: true
+
+    outputs:
+      - type: local
+        path: ./data/exports
+        filename_pattern: "gpu-instances_{date}_{timestamp}.json"
+        create_dirs: true
+        overwrite: false
+
+  # Export available GPUs to CSV
+  - name: available-only
+    enabled: true
+
+    filters:
+      - field: availability
+        operator: ne
+        value: NOT_AVAILABLE
+
+    transformer:
+      format: csv
+      fields:
+        provider: "Provider"
+        instance_type: "Instance Type"
+        accelerator_name: "GPU"
+        region: "Region"
+        price: "Price ($/hr)"
+        availability: "Status"
+      include_headers: true
+
+    outputs:
+      - type: local
+        path: ./data/reports
+        filename_pattern: "available-gpus_{date}_{timestamp}.csv"
+        create_dirs: true
+
+# Usage:
+# gpuport-collectors export --config export-basic.yaml

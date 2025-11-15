@@ -4,6 +4,7 @@ This module provides structured logging and distributed tracing capabilities
 using OpenTelemetry with Honeycomb.io as the backend.
 """
 
+import json
 import logging
 import os
 import threading
@@ -55,44 +56,63 @@ class StructuredLogger:
         """
         self.logger = logging.getLogger(name)
         self.logger.setLevel(getattr(logging, config.log_level, logging.INFO))
+        self.logger.propagate = False  # Don't propagate to root logger to avoid duplicate output
         self.config = config
 
         # Add console handler for local output
         if not self.logger.handlers:
             console_handler = logging.StreamHandler()
             console_handler.setLevel(getattr(logging, config.log_level, logging.INFO))
+            console_handler.setFormatter(
+                logging.Formatter("%(message)s")
+            )  # Only show the message (already formatted as JSON)
             self.logger.addHandler(console_handler)
 
         # Add Honeycomb handler if provided and not already attached
         if honeycomb_handler and honeycomb_handler not in self.logger.handlers:
             self.logger.addHandler(honeycomb_handler)
 
-    def _format_message(self, message: str, **context: Any) -> str:
-        """Format log message with structured context.
+    def _format_message(self, message: str, level: str = "INFO", **context: Any) -> str:
+        """Format log message as colored JSON.
 
         Args:
             message: Base log message
+            level: Log level (INFO, DEBUG, WARNING, ERROR)
             **context: Additional context fields
 
         Returns:
-            Formatted log message with context
+            Formatted JSON log message with ANSI color codes
         """
-        timestamp = datetime.now(UTC).isoformat()
-        parts = [f"timestamp={timestamp}"]
+        log_data = {
+            "timestamp": datetime.now(UTC).isoformat(),
+            "level": level,
+            "message": message,
+        }
 
-        # Extract provider_name if present (without mutating context)
-        provider_name = context.get("provider_name")
-        if provider_name:
-            parts.append(f"provider={provider_name}")
+        # Add provider_name if present
+        if "provider_name" in context:
+            log_data["provider"] = context["provider_name"]
 
-        parts.append(f"msg={message}")
-
-        # Add remaining context fields (excluding provider_name)
+        # Add all other context fields
         for key, value in context.items():
             if key != "provider_name":
-                parts.append(f"{key}={value}")
+                log_data[key] = value
 
-        return " ".join(parts)
+        # Color codes for different log levels
+        colors = {
+            "DEBUG": "\033[36m",  # Cyan
+            "INFO": "\033[32m",  # Green
+            "WARNING": "\033[33m",  # Yellow
+            "ERROR": "\033[31m",  # Red
+            "RESET": "\033[0m",  # Reset
+        }
+
+        color = colors.get(level, colors["RESET"])
+        reset = colors["RESET"]
+
+        # Format as pretty-printed JSON with color
+        json_str = json.dumps(log_data, indent=2, ensure_ascii=False)
+        return f"{color}{json_str}{reset}"
 
     def info(self, message: str, **context: Any) -> None:
         """Log info message with structured context.
@@ -101,7 +121,7 @@ class StructuredLogger:
             message: Log message
             **context: Additional context fields
         """
-        self.logger.info(self._format_message(message, **context))
+        self.logger.info(self._format_message(message, level="INFO", **context))
 
     def warning(self, message: str, **context: Any) -> None:
         """Log warning message with structured context.
@@ -110,7 +130,7 @@ class StructuredLogger:
             message: Log message
             **context: Additional context fields
         """
-        self.logger.warning(self._format_message(message, **context))
+        self.logger.warning(self._format_message(message, level="WARNING", **context))
 
     def error(
         self,
@@ -132,7 +152,7 @@ class StructuredLogger:
                 traceback.format_exception(type(error), error, error.__traceback__)
             )
 
-        self.logger.error(self._format_message(message, **context))
+        self.logger.error(self._format_message(message, level="ERROR", **context))
 
     def debug(self, message: str, **context: Any) -> None:
         """Log debug message with structured context.
@@ -141,7 +161,7 @@ class StructuredLogger:
             message: Log message
             **context: Additional context fields
         """
-        self.logger.debug(self._format_message(message, **context))
+        self.logger.debug(self._format_message(message, level="DEBUG", **context))
 
 
 class ObservabilityManager:
@@ -174,7 +194,7 @@ class ObservabilityManager:
         - Batch processors for traces and logs
         """
         if not self.config.enabled:
-            logger.info("Observability is disabled")
+            # Observability (Honeycomb tracing) is disabled, but structured logging still works
             return
 
         if self._initialized:

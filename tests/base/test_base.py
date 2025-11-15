@@ -5,7 +5,7 @@ from unittest.mock import AsyncMock, patch
 import pytest
 
 from gpuport_collectors.base import BaseCollector, with_retry
-from gpuport_collectors.config import CollectorConfig
+from gpuport_collectors.config import CollectorConfig, HttpClientConfig
 from gpuport_collectors.models import AvailabilityStatus, GPUInstance
 
 
@@ -68,9 +68,7 @@ class TestBaseCollector:
                 return []
 
         custom_config = CollectorConfig(
-            timeout=60,
-            max_retries=5,
-            backoff_factor=1.5,
+            http_client=HttpClientConfig(timeout=60, max_retries=5, backoff_factor=1.5),
         )
         collector = ConcreteCollector(config=custom_config)
         assert collector.provider_name == "TestProvider"
@@ -221,9 +219,9 @@ class TestBaseCollector:
         original_max_retries = collector1.config.max_retries
         original_backoff_factor = collector1.config.backoff_factor
 
-        # Mutate collector1's config
-        collector1.config.max_retries = 999
-        collector1.config.backoff_factor = 10.0
+        # Mutate collector1's config (now via http_client)
+        collector1.config.http_client.max_retries = 999
+        collector1.config.http_client.backoff_factor = 10.0
 
         # Verify collector2's config is unchanged
         assert collector2.config.max_retries == original_max_retries
@@ -285,7 +283,9 @@ class TestRetryDecorator:
                 return []
 
         # Use config with faster retries for testing
-        config = CollectorConfig(timeout=30, max_retries=3, backoff_factor=1.1)
+        config = CollectorConfig(
+            http_client=HttpClientConfig(timeout=30, max_retries=3, backoff_factor=1.1)
+        )
         collector = RetryCollector(config=config)
 
         with patch("asyncio.sleep", new_callable=AsyncMock):
@@ -311,7 +311,9 @@ class TestRetryDecorator:
                 msg = "Always fails"
                 raise RuntimeError(msg)
 
-        config = CollectorConfig(timeout=30, max_retries=2, backoff_factor=1.1)
+        config = CollectorConfig(
+            http_client=HttpClientConfig(timeout=30, max_retries=2, backoff_factor=1.1)
+        )
         collector = FailingCollector(config=config)
 
         with patch("asyncio.sleep", new_callable=AsyncMock):
@@ -333,7 +335,9 @@ class TestRetryDecorator:
                 msg = "Always fails"
                 raise RuntimeError(msg)
 
-        config = CollectorConfig(timeout=30, max_retries=3, backoff_factor=2.0)
+        config = CollectorConfig(
+            http_client=HttpClientConfig(timeout=30, max_retries=3, backoff_factor=2.0)
+        )
         collector = FailingCollector(config=config)
 
         sleep_mock = AsyncMock()
@@ -365,7 +369,9 @@ class TestRetryDecorator:
                 msg = "Always fails"
                 raise RuntimeError(msg)
 
-        config = CollectorConfig(timeout=30, max_retries=3, backoff_factor=5.0)
+        config = CollectorConfig(
+            http_client=HttpClientConfig(timeout=30, max_retries=3, backoff_factor=5.0)
+        )
         collector = FailingCollector(config=config)
 
         sleep_mock = AsyncMock()
@@ -397,7 +403,9 @@ class TestRetryDecorator:
                 msg = "Always fails"
                 raise RuntimeError(msg)
 
-        config = CollectorConfig(timeout=30, max_retries=3, backoff_factor=3.0)
+        config = CollectorConfig(
+            http_client=HttpClientConfig(timeout=30, max_retries=3, backoff_factor=3.0)
+        )
         collector = FailingCollector(config=config)
 
         sleep_mock = AsyncMock()
@@ -439,7 +447,9 @@ class TestRetryDecorator:
                     raise TimeoutError(msg)
                 return []
 
-        config = CollectorConfig(timeout=30, max_retries=3, backoff_factor=1.1)
+        config = CollectorConfig(
+            http_client=HttpClientConfig(timeout=30, max_retries=3, backoff_factor=1.1)
+        )
         collector = MultiErrorCollector(config=config)
 
         with patch("asyncio.sleep", new_callable=AsyncMock):
@@ -467,7 +477,9 @@ class TestRetryDecorator:
                     raise RuntimeError(msg)
                 return []
 
-        config = CollectorConfig(timeout=30, max_retries=5, backoff_factor=1.1)
+        config = CollectorConfig(
+            http_client=HttpClientConfig(timeout=30, max_retries=5, backoff_factor=1.1)
+        )
         collector = EventualSuccessCollector(config=config)
 
         with patch("asyncio.sleep", new_callable=AsyncMock) as sleep_mock:
@@ -496,7 +508,9 @@ class TestRetryDecorator:
                 msg = "Always fails"
                 raise RuntimeError(msg)
 
-        config = CollectorConfig(timeout=30, max_retries=0, backoff_factor=2.0)
+        config = CollectorConfig(
+            http_client=HttpClientConfig(timeout=30, max_retries=0, backoff_factor=2.0)
+        )
         collector = FailingCollector(config=config)
 
         with patch("asyncio.sleep", new_callable=AsyncMock) as sleep_mock:
