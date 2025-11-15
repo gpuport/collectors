@@ -16,7 +16,12 @@ from gpuport_collectors.export.loader import (
     load_export_config,
     validate_config,
 )
-from gpuport_collectors.export.outputs import OutputError, write_to_local, write_to_s3
+from gpuport_collectors.export.outputs import (
+    OutputError,
+    write_to_https,
+    write_to_local,
+    write_to_s3,
+)
 from gpuport_collectors.export.transformers import (
     TransformerError,
     transform_to_csv,
@@ -39,6 +44,7 @@ __all__ = [
     "transform_to_json",
     "transform_to_metrics",
     "validate_config",
+    "write_to_https",
     "write_to_local",
     "write_to_s3",
 ]
