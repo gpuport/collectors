@@ -4,6 +4,7 @@ import pytest
 
 from gpuport_collectors.base import BaseCollector, with_retry
 from gpuport_collectors.config import CollectorConfig, HttpClientConfig
+from gpuport_collectors.models import GPUInstance
 
 
 class TestWithRetryDecorator:
@@ -24,7 +25,7 @@ class TestWithRetryDecorator:
                 self.call_count = 0
 
             @with_retry
-            async def fetch_instances(self) -> list:  # type: ignore[override]
+            async def fetch_instances(self) -> list[GPUInstance]:  # type: ignore[override]
                 self.call_count += 1
                 return ["success"]
 
@@ -49,11 +50,11 @@ class TestWithRetryDecorator:
                 self.call_count = 0
 
             @with_retry
-            async def fetch_instances(self) -> list:  # type: ignore[override]
+            async def fetch_instances(self) -> list[GPUInstance]:  # type: ignore[override]
                 self.call_count += 1
                 if self.call_count < 3:
                     raise RuntimeError(f"Attempt {self.call_count} failed")
-                return ["success"]
+                return ["success"]  # type: ignore[return-value]
 
         collector = TestCollector(config)
         result = await collector.fetch_instances()
@@ -76,7 +77,7 @@ class TestWithRetryDecorator:
                 self.call_count = 0
 
             @with_retry
-            async def fetch_instances(self) -> list:  # type: ignore[override]
+            async def fetch_instances(self) -> list[GPUInstance]:  # type: ignore[override]
                 self.call_count += 1
                 raise RuntimeError("Always fails")
 
@@ -107,7 +108,7 @@ class TestWithRetryDecorator:
                 self.call_times: list[float] = []
 
             @with_retry
-            async def fetch_instances(self) -> list:  # type: ignore[override]
+            async def fetch_instances(self) -> list[GPUInstance]:  # type: ignore[override]
                 self.call_times.append(time.time())
                 raise RuntimeError("Test error")
 
@@ -140,7 +141,7 @@ class TestBaseCollector:
             def provider_name(self) -> str:
                 return "test"
 
-            async def fetch_instances(self) -> list:  # type: ignore[override]
+            async def fetch_instances(self) -> list[GPUInstance]:  # type: ignore[override]
                 return []
 
         collector = TestCollector(config=config)
@@ -157,7 +158,7 @@ class TestBaseCollector:
             def provider_name(self) -> str:
                 return "test"
 
-            async def fetch_instances(self) -> list:  # type: ignore[override]
+            async def fetch_instances(self) -> list[GPUInstance]:  # type: ignore[override]
                 return []
 
         collector = TestCollector()
@@ -173,7 +174,7 @@ class TestBaseCollector:
             def provider_name(self) -> str:
                 return "test"
 
-            async def fetch_instances(self) -> list:  # type: ignore[override]
+            async def fetch_instances(self) -> list[GPUInstance]:  # type: ignore[override]
                 return []
 
         collector = TestCollector()
@@ -197,7 +198,7 @@ class TestBaseCollector:
             def provider_name(self) -> str:
                 return "test"
 
-            async def fetch_instances(self) -> list:  # type: ignore[override]
+            async def fetch_instances(self) -> list[GPUInstance]:  # type: ignore[override]
                 return []
 
         collector = TestCollector(config=config)
@@ -213,7 +214,7 @@ class TestBaseCollector:
             def provider_name(self) -> str:
                 return "test"
 
-            async def fetch_instances(self) -> list:  # type: ignore[override]
+            async def fetch_instances(self) -> list[GPUInstance]:  # type: ignore[override]
                 return []
 
         collector = TestCollector(config=config)

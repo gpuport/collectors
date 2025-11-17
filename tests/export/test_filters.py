@@ -399,22 +399,27 @@ class TestFilterErrors:
     """Tests for filter error conditions."""
 
     def test_missing_value_parameter(self, sample_instance: GPUInstance) -> None:
-        """Test that missing required value parameter raises FilterError."""
-        filter_config = FilterConfig(field="price", operator="eq", value=None)
-        with pytest.raises(FilterError, match="requires 'value' parameter"):
-            apply_filter(sample_instance, filter_config)
+        """Test that missing required value parameter raises ValidationError."""
+        from pydantic import ValidationError
+
+        with pytest.raises(ValidationError, match="Operator 'eq' requires 'value' field"):
+            FilterConfig(field="price", operator="eq", value=None)
 
     def test_missing_values_parameter(self, sample_instance: GPUInstance) -> None:
-        """Test that missing required values parameter raises FilterError."""
-        filter_config = FilterConfig(field="availability", operator="in", values=None)
-        with pytest.raises(FilterError, match="requires 'values' parameter"):
-            apply_filter(sample_instance, filter_config)
+        """Test that missing required values parameter raises ValidationError."""
+        from pydantic import ValidationError
+
+        with pytest.raises(ValidationError, match="Operator 'in' requires 'values' field"):
+            FilterConfig(field="availability", operator="in", values=None)
 
     def test_missing_min_max_parameters(self, sample_instance: GPUInstance) -> None:
-        """Test that missing min/max parameters raises FilterError."""
-        filter_config = FilterConfig(field="price", operator="between", min=None, max=None)
-        with pytest.raises(FilterError, match="requires 'min' and 'max' parameters"):
-            apply_filter(sample_instance, filter_config)
+        """Test that missing min/max parameters raises ValidationError."""
+        from pydantic import ValidationError
+
+        with pytest.raises(
+            ValidationError, match="Operator 'between' requires both 'min' and 'max' fields"
+        ):
+            FilterConfig(field="price", operator="between", min=None, max=None)
 
     def test_unknown_operator(self, sample_instance: GPUInstance) -> None:
         """Test that unknown operator raises FilterError."""

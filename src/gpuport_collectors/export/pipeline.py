@@ -43,6 +43,8 @@ class PipelineResult:
         output_count: int,
         outputs: list[dict[str, Any]],
         error: str | None = None,
+        *,
+        success: bool | None = None,
         duration_seconds: float | None = None,
         filter_duration: float | None = None,
         transform_duration: float | None = None,
@@ -55,6 +57,7 @@ class PipelineResult:
         self.output_count = output_count
         self.outputs = outputs
         self.error = error
+        self._explicit_success = success
         self.duration_seconds = duration_seconds
         self.filter_duration = filter_duration
         self.transform_duration = transform_duration
@@ -63,6 +66,8 @@ class PipelineResult:
     @property
     def success(self) -> bool:
         """Check if pipeline execution was successful."""
+        if self._explicit_success is not None:
+            return self._explicit_success
         return self.error is None
 
     @property

@@ -388,7 +388,7 @@ class TestTransformToMetrics:
 
         metrics = json.loads(result)
         # Just verify it doesn't crash and returns valid JSON
-        assert isinstance(metrics, (dict, list))
+        assert isinstance(metrics, dict | list)
 
     def test_metrics_avg(self, sample_instances: list[GPUInstance]) -> None:
         """Test metrics average aggregation."""
@@ -403,7 +403,7 @@ class TestTransformToMetrics:
         result = transform_to_metrics(sample_instances, config)
 
         metrics = json.loads(result)
-        assert isinstance(metrics, (dict, list))
+        assert isinstance(metrics, dict | list)
 
     def test_metrics_min_max(self, sample_instances: list[GPUInstance]) -> None:
         """Test metrics min and max aggregations."""
@@ -420,7 +420,7 @@ class TestTransformToMetrics:
         result = transform_to_metrics(sample_instances, config)
 
         metrics = json.loads(result)
-        assert isinstance(metrics, (dict, list))
+        assert isinstance(metrics, dict | list)
 
     def test_metrics_unique(self, sample_instances: list[GPUInstance]) -> None:
         """Test metrics unique aggregation."""
@@ -435,7 +435,7 @@ class TestTransformToMetrics:
         result = transform_to_metrics(sample_instances, config)
 
         metrics = json.loads(result)
-        assert isinstance(metrics, (dict, list))
+        assert isinstance(metrics, dict | list)
 
     def test_metrics_include_timestamp(self, sample_instances: list[GPUInstance]) -> None:
         """Test metrics with timestamp included."""
@@ -449,7 +449,7 @@ class TestTransformToMetrics:
 
         metrics = json.loads(result)
         # Verify valid JSON output
-        assert isinstance(metrics, (dict, list))
+        assert isinstance(metrics, dict | list)
 
     def test_metrics_without_timestamp(self, sample_instances: list[GPUInstance]) -> None:
         """Test metrics without timestamp."""
@@ -462,7 +462,7 @@ class TestTransformToMetrics:
         result = transform_to_metrics(sample_instances, config)
 
         metrics = json.loads(result)
-        assert isinstance(metrics, (dict, list))
+        assert isinstance(metrics, dict | list)
 
     def test_metrics_empty_instances(self) -> None:
         """Test metrics with empty instance list."""
@@ -477,7 +477,7 @@ class TestTransformToMetrics:
         result = transform_to_metrics([], config)
 
         metrics = json.loads(result)
-        assert isinstance(metrics, (dict, list))
+        assert isinstance(metrics, dict | list)
 
     def test_metrics_multiple_aggregations_same_field(
         self, sample_instances: list[GPUInstance]
@@ -496,4 +496,4 @@ class TestTransformToMetrics:
         result = transform_to_metrics(sample_instances, config)
 
         metrics = json.loads(result)
-        assert isinstance(metrics, (dict, list))
+        assert isinstance(metrics, dict | list)

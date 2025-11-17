@@ -225,7 +225,7 @@ def write_to_s3(data: str, config: S3OutputConfig, metadata: dict[str, Any] | No
 
             buffer = io.BytesIO()
             with gzip.open(buffer, "wt", encoding="utf-8") as f:
-                f.write(data)
+                f.write(data)  # type: ignore[arg-type]  # gzip text mode typing issue
             upload_data = buffer.getvalue()
         else:
             upload_data = data.encode("utf-8")

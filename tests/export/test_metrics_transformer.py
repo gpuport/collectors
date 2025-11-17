@@ -363,7 +363,9 @@ class TestErrorHandling:
 
         # Field validation now happens at model creation time
         with pytest.raises(ValidationError, match="requires 'field' parameter"):
-            MetricsTransformerConfig(metrics=[MetricConfig(name="avg_price", type="avg", field=None)])
+            MetricsTransformerConfig(
+                metrics=[MetricConfig(name="avg_price", type="avg", field=None)]
+            )
 
     def test_all_null_values(self) -> None:
         """Test metric with all null values."""

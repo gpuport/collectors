@@ -100,7 +100,7 @@ def load_export_config(config_path: str | Path) -> ExportConfig:
         processed_yaml = yaml.dump(processed_data)
 
         # Parse and validate with Pydantic
-        return parse_yaml_raw_as(ExportConfig, processed_yaml)
+        return parse_yaml_raw_as(ExportConfig, processed_yaml)  # type: ignore[no-any-return]  # pydantic_yaml lacks types
 
     except yaml.YAMLError as e:
         raise ConfigLoadError(f"Invalid YAML syntax in {config_path}: {e}") from e

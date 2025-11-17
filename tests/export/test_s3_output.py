@@ -138,7 +138,7 @@ class TestFilenamePatterns:
 
     def test_metadata_substitution(self, mock_s3_client: tuple[Any, Any, Any]) -> None:
         """Test filename pattern with metadata substitution."""
-        _mock_boto3, _mock_client, _mock_exceptions = mock_s3_client
+        _ = mock_s3_client
 
         config = S3OutputConfig(
             bucket="test-bucket",
@@ -178,7 +178,7 @@ class TestCompression:
 
     def test_gzip_preserves_extension(self, mock_s3_client: tuple[Any, Any, Any]) -> None:
         """Test that .gz extension is not duplicated."""
-        _mock_boto3, _mock_client, _mock_exceptions = mock_s3_client
+        _ = mock_s3_client
 
         config = S3OutputConfig(
             bucket="test-bucket",
@@ -197,7 +197,7 @@ class TestCredentials:
 
     def test_default_credentials(self, mock_s3_client: tuple[Any, Any, Any]) -> None:
         """Test using default AWS credentials."""
-        _mock_boto3, _mock_client, _mock_exceptions = mock_s3_client
+        _ = mock_s3_client
 
         config = S3OutputConfig(
             bucket="test-bucket",
@@ -214,7 +214,7 @@ class TestCredentials:
 
     def test_env_credentials(self, mock_s3_client: tuple[Any, Any, Any]) -> None:
         """Test loading credentials from environment variables."""
-        _mock_boto3, _mock_client, _mock_exceptions = mock_s3_client
+        _ = mock_s3_client
 
         config = S3OutputConfig(
             bucket="test-bucket",

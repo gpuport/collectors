@@ -25,36 +25,36 @@ def print_summary(message: str) -> None:
     print(message)  # noqa: T201
 
 
-@click.group()
+@click.group()  # type: ignore[misc]  # click lacks type stubs
 def cli() -> None:
     """GPU data collection and export CLI."""
 
 
-@cli.group()
+@cli.group()  # type: ignore[misc]  # click lacks type stubs
 def run() -> None:
     """Run data collection from GPU providers."""
 
 
-@run.command()
-@click.option(
+@run.command()  # type: ignore[misc]  # click lacks type stubs
+@click.option(  # type: ignore[misc]  # click lacks type stubs
     "--config",
     "-c",
     type=click.Path(exists=True, path_type=Path),
     help="Path to collector configuration YAML file",
 )
-@click.option(
+@click.option(  # type: ignore[misc]  # click lacks type stubs
     "--export-config",
     "-e",
     type=click.Path(exists=True, path_type=Path),
     help="Path to export pipeline configuration YAML file",
 )
-@click.option(
+@click.option(  # type: ignore[misc]  # click lacks type stubs
     "--api-key",
     "-k",
     envvar="RUNPOD_API_KEY",
     help="RunPod API key (or set RUNPOD_API_KEY env var)",
 )
-@click.option(
+@click.option(  # type: ignore[misc]  # click lacks type stubs
     "--verbose",
     "-v",
     is_flag=True,
@@ -195,33 +195,33 @@ def runpod(
             logger.info(f"  ... and {len(instances) - 10} more")
 
 
-@cli.command()
-@click.option(
+@cli.command()  # type: ignore[misc]  # click lacks type stubs
+@click.option(  # type: ignore[misc]  # click lacks type stubs
     "--config",
     "-c",
     type=click.Path(exists=True, path_type=Path),
     required=True,
     help="Path to export configuration YAML file",
 )
-@click.option(
+@click.option(  # type: ignore[misc]  # click lacks type stubs
     "--provider",
     "-p",
     type=click.Choice(["runpod"], case_sensitive=False),
     default="runpod",
     help="GPU provider to collect from (default: runpod)",
 )
-@click.option(
+@click.option(  # type: ignore[misc]  # click lacks type stubs
     "--api-key",
     "-k",
     envvar="RUNPOD_API_KEY",
     help="Provider API key (or set RUNPOD_API_KEY env var)",
 )
-@click.option(
+@click.option(  # type: ignore[misc]  # click lacks type stubs
     "--validate-only",
     is_flag=True,
     help="Only validate configuration without executing pipelines",
 )
-@click.option(
+@click.option(  # type: ignore[misc]  # click lacks type stubs
     "--verbose",
     "-v",
     is_flag=True,
@@ -366,11 +366,11 @@ def export(
         sys.exit(1)
 
 
-@cli.command()
-@click.option(
+@cli.command()  # type: ignore[misc]  # click lacks type stubs
+@click.option(  # type: ignore[misc]  # click lacks type stubs
     "--config",
     "-c",
-    type=click.Path(exists=True, path_type=Path),
+    type=click.Path(path_type=Path),
     required=True,
     help="Path to export configuration YAML file",
 )
@@ -387,6 +387,11 @@ def validate(config: Path) -> None:
         gpuport-collectors validate --config export.yaml
     """
     logger.info(f"Validating configuration: {config}")
+
+    # Check if config file exists first
+    if not config.exists():
+        logger.error(f"Configuration file not found: {config}")
+        sys.exit(1)
 
     try:
         # Load configuration

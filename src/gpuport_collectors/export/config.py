@@ -42,6 +42,37 @@ class FilterConfig(BaseModel):
     min: float | None = Field(default=None, description="Minimum value (for between operator)")
     max: float | None = Field(default=None, description="Maximum value (for between operator)")
 
+    @model_validator(mode="after")
+    def validate_operator_fields(self) -> "FilterConfig":
+        """Validate that required fields are provided for each operator type."""
+        # Operators that require 'value' field
+        if (
+            self.operator
+            in {
+                "eq",
+                "ne",
+                "lt",
+                "lte",
+                "gt",
+                "gte",
+                "regex",
+                "contains",
+                "starts_with",
+            }
+            and self.value is None
+        ):
+            raise ValueError(f"Operator '{self.operator}' requires 'value' field")
+
+        # Operators that require 'values' field
+        if self.operator in {"in", "not_in"} and self.values is None:
+            raise ValueError(f"Operator '{self.operator}' requires 'values' field")
+
+        # 'between' operator requires both 'min' and 'max' fields
+        if self.operator == "between" and (self.min is None or self.max is None):
+            raise ValueError("Operator 'between' requires both 'min' and 'max' fields")
+
+        return self
+
 
 # Transformer Configuration
 class JSONTransformerConfig(BaseModel):

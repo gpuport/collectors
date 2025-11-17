@@ -122,6 +122,7 @@ strict_equality = true
 show_error_codes = true
 show_column_numbers = true
 pretty = true
+exclude = ["examples/"]
 
 [[tool.mypy.overrides]]
 module = "tests.*"
@@ -137,6 +138,18 @@ warn_unused_ignores = false
 
 [[tool.mypy.overrides]]
 module = "aiohttp"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "click"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "httpx"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "pydantic_yaml"
 ignore_missing_imports = true
 
 # Pytest configuration
