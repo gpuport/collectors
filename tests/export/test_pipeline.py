@@ -308,10 +308,12 @@ class TestExecutePipeline:
 
         result = execute_pipeline(sample_instances, config)
 
-        # Pipeline succeeds but output fails
-        assert result.success is True
+        # Pipeline fails because all outputs failed
+        assert result.success is False
         assert result.output_count == 1
         assert result.outputs[0]["success"] is False
+        assert result.failed_outputs == 1
+        assert result.successful_outputs == 0
 
 
 class TestExecutePipelines:
@@ -445,9 +447,11 @@ class TestExecutePipelines:
 
         assert len(results) == 3
         assert results[0].success is True
-        # Middle pipeline succeeds overall but has failed output
-        assert results[1].success is True
+        # Middle pipeline fails because all outputs failed
+        assert results[1].success is False
         assert results[1].outputs[0]["success"] is False
+        assert results[1].failed_outputs == 1
+        assert results[1].successful_outputs == 0
         assert results[2].success is True
 
         # Good pipelines should create outputs

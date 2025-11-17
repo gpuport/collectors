@@ -9,6 +9,7 @@ import re
 from pathlib import Path
 from typing import Any
 
+import yaml
 from pydantic import ValidationError
 from pydantic_yaml import parse_yaml_raw_as
 
@@ -85,16 +86,10 @@ def load_export_config(config_path: str | Path) -> ExportConfig:
         yaml_content = config_path.read_text(encoding="utf-8")
 
         # Parse YAML into Python data structure (without validation yet)
-        import yaml
-
         raw_data = yaml.safe_load(yaml_content)
 
         # Substitute environment variables
-        try:
-            processed_data = substitute_env_vars(raw_data)
-        except ConfigLoadError:
-            # Re-raise with file context
-            raise
+        processed_data = substitute_env_vars(raw_data)
 
         # Convert back to YAML string for pydantic-yaml
         processed_yaml = yaml.dump(processed_data)
@@ -102,6 +97,10 @@ def load_export_config(config_path: str | Path) -> ExportConfig:
         # Parse and validate with Pydantic
         config: ExportConfig = parse_yaml_raw_as(ExportConfig, processed_yaml)
         return config
+
+    except ConfigLoadError:
+        # Re-raise ConfigLoadError (e.g., from substitute_env_vars) without wrapping
+        raise
 
     except yaml.YAMLError as e:
         raise ConfigLoadError(f"Invalid YAML syntax in {config_path}: {e}") from e

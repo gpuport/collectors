@@ -355,8 +355,11 @@ def export(
             sys.exit(1)
 
     except Exception as e:
-        # Pass exception to logger when verbose, enabling stack trace logging
-        logger.error("Export failed", error=e if verbose else None)
+        # Always show error message, but only include stack trace when verbose
+        if verbose:
+            logger.error("Export failed", error=e)
+        else:
+            logger.error(f"Export failed: {e}")
         sys.exit(1)
 
 

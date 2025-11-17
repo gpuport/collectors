@@ -65,10 +65,22 @@ class PipelineResult:
 
     @property
     def success(self) -> bool:
-        """Check if pipeline execution was successful."""
+        """Check if pipeline execution was successful.
+
+        A pipeline is considered successful if:
+        - No pipeline-level error occurred AND
+        - At least one output succeeded (if there are outputs configured)
+        """
         if self._explicit_success is not None:
             return self._explicit_success
-        return self.error is None
+
+        # Pipeline-level error means failure
+        if self.error is not None:
+            return False
+
+        # If outputs were configured but all failed, mark as failure
+        # Return True only if no outputs configured OR at least one output succeeded
+        return not (self.outputs and self.successful_outputs == 0)
 
     @property
     def successful_outputs(self) -> int:
@@ -145,6 +157,11 @@ def execute_pipeline(instances: list[GPUInstance], config: PipelineConfig) -> Pi
             output_count=0,
             outputs=[],
         )
+
+    # Initialize timing variables to prevent uninitialized variable errors
+    filter_duration = 0.0
+    transform_duration = 0.0
+    output_duration = 0.0
 
     try:
         # Step 1: Filter instances
