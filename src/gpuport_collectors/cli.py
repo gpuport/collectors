@@ -39,7 +39,7 @@ def run() -> None:
 @click.option(
     "--export-config",
     "-e",
-    type=click.Path(exists=True, path_type=Path),
+    type=click.Path(exists=True),
     help="Path to export pipeline configuration YAML file",
 )
 @click.option(
@@ -55,7 +55,7 @@ def run() -> None:
     help="Enable verbose logging",
 )
 def runpod(
-    export_config: Path | None,
+    export_config: str | None,
     api_key: str | None,
     verbose: bool,
 ) -> None:
@@ -188,7 +188,7 @@ def runpod(
 @click.option(
     "--config",
     "-c",
-    type=click.Path(exists=True, path_type=Path),
+    type=click.Path(exists=True),
     required=True,
     help="Path to export configuration YAML file",
 )
@@ -217,7 +217,7 @@ def runpod(
     help="Enable verbose logging",
 )
 def export(
-    config: Path,
+    config: str,
     provider: str,
     api_key: str | None,
     validate_only: bool,
@@ -364,11 +364,11 @@ def export(
 @click.option(
     "--config",
     "-c",
-    type=click.Path(exists=True, path_type=Path),
+    type=click.Path(exists=True),
     required=True,
     help="Path to export configuration YAML file",
 )
-def validate(config: Path) -> None:
+def validate(config: str) -> None:
     """Validate an export configuration file.
 
     Checks the configuration for:
@@ -380,7 +380,9 @@ def validate(config: Path) -> None:
     Example:
         gpuport-collectors validate --config export.yaml
     """
-    logger.info(f"Validating configuration: {config}")
+    # Convert string path to Path object for internal use
+    config_path = Path(config)
+    logger.info(f"Validating configuration: {config_path}")
 
     try:
         # Load configuration
