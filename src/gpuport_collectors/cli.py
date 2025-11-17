@@ -250,12 +250,16 @@ def export(
         warnings = validate_config(export_config)
         if warnings:
             logger.warning("Configuration validation warnings:")
+            click.echo("Configuration validation warnings:", err=True)
             for warning in warnings:
                 logger.warning(f"  • {warning}")
+                click.echo(f"  • {warning}", err=True)
 
         if validate_only:
             logger.info("Configuration validation complete (--validate-only mode)")
             logger.info("✓ Configuration is valid")
+            click.echo("Configuration validation complete (--validate-only mode)")
+            click.echo("✓ Configuration is valid")
             sys.exit(0)
 
         # Create collector instance

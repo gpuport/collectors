@@ -194,6 +194,11 @@ class TestExportCommand:
 
             # Should succeed with valid config
             assert result.exit_code == 0
+            # Validation messages may appear in stdout or stderr
+            assert (
+                "Configuration validation complete" in result.output
+                or "✓ Configuration is valid" in result.output
+            )
 
     @patch("gpuport_collectors.cli.load_export_config")
     @patch("gpuport_collectors.cli.validate_config")
@@ -216,6 +221,12 @@ class TestExportCommand:
 
             # Should succeed even with warnings (warnings don't cause failure)
             assert result.exit_code == 0
+            # Warning messages may appear in stdout or stderr
+            # Check that warning messages are displayed (logged output)
+            assert (
+                "Configuration validation complete" in result.output
+                or "validation warnings" in result.output.lower()
+            )
 
     @patch("gpuport_collectors.cli.asyncio.run")
     @patch("gpuport_collectors.cli.RunPodCollector")
