@@ -50,6 +50,8 @@ class TestRunPodCommand:
 
         # Should exit with error code when API key is missing
         assert result.exit_code == 1
+        # Error message should appear in command output
+        assert "RunPod API key required" in result.output
 
     def test_runpod_verbose_flag_enables_debug(self):
         """Test --verbose flag enables debug logging."""

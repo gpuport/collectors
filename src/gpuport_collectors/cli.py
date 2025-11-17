@@ -77,7 +77,9 @@ def runpod(
 
     # Validate API key
     if not api_key:
-        logger.error("RunPod API key required. Set RUNPOD_API_KEY or use --api-key")
+        error_msg = "RunPod API key required. Set RUNPOD_API_KEY or use --api-key"
+        logger.error(error_msg)
+        click.echo(f"Error: {error_msg}", err=True)
         sys.exit(1)
 
     # Set API key in environment for RunPodCollector
