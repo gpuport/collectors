@@ -364,7 +364,7 @@ def export(
 @click.option(
     "--config",
     "-c",
-    type=click.Path(path_type=Path),
+    type=click.Path(exists=True, path_type=Path),
     required=True,
     help="Path to export configuration YAML file",
 )
@@ -381,11 +381,6 @@ def validate(config: Path) -> None:
         gpuport-collectors validate --config export.yaml
     """
     logger.info(f"Validating configuration: {config}")
-
-    # Check if config file exists first
-    if not config.exists():
-        logger.error(f"Configuration file not found: {config}")
-        sys.exit(1)
 
     try:
         # Load configuration

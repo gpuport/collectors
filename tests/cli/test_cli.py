@@ -330,8 +330,10 @@ class TestValidateCommand:
         runner = CliRunner()
         result = runner.invoke(cli, ["validate", "--config", "nonexistent.yaml"])
 
-        # Should fail with error
-        assert result.exit_code == 1
+        # Click returns exit code 2 for argument parsing/validation errors
+        assert result.exit_code == 2
+        # Verify Click's file-not-found error message is present
+        assert "does not exist" in result.output
 
     @patch("gpuport_collectors.cli.load_export_config")
     @patch("gpuport_collectors.cli.validate_config")
