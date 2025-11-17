@@ -367,7 +367,7 @@ class TestTransformToMetrics:
         from gpuport_collectors.export.config import MetricConfig
 
         config = MetricsTransformerConfig(
-            metrics=[MetricConfig(name="provider_count", type="count", field="provider")]
+            metrics=[MetricConfig(name="provider_count", type="count")]
         )
         result = transform_to_metrics(sample_instances, config)
 
@@ -442,7 +442,7 @@ class TestTransformToMetrics:
         from gpuport_collectors.export.config import MetricConfig
 
         config = MetricsTransformerConfig(
-            metrics=[MetricConfig(name="count", type="count", field="provider")],
+            metrics=[MetricConfig(name="count", type="count")],
             include_timestamp=True,
         )
         result = transform_to_metrics(sample_instances, config)
@@ -456,7 +456,7 @@ class TestTransformToMetrics:
         from gpuport_collectors.export.config import MetricConfig
 
         config = MetricsTransformerConfig(
-            metrics=[MetricConfig(name="count", type="count", field="provider")],
+            metrics=[MetricConfig(name="count", type="count")],
             include_timestamp=False,
         )
         result = transform_to_metrics(sample_instances, config)
@@ -471,7 +471,7 @@ class TestTransformToMetrics:
         config = MetricsTransformerConfig(
             metrics=[
                 MetricConfig(name="total_price", type="sum", field="price"),
-                MetricConfig(name="count", type="count", field="provider"),
+                MetricConfig(name="count", type="count"),
             ]
         )
         result = transform_to_metrics([], config)

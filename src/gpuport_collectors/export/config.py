@@ -64,12 +64,20 @@ class FilterConfig(BaseModel):
             raise ValueError(f"Operator '{self.operator}' requires 'value' field")
 
         # Operators that require 'values' field
-        if self.operator in {"in", "not_in"} and self.values is None:
-            raise ValueError(f"Operator '{self.operator}' requires 'values' field")
+        if self.operator in {"in", "not_in"}:
+            if self.values is None:
+                raise ValueError(f"Operator '{self.operator}' requires 'values' field")
+            if not self.values:
+                raise ValueError(f"Operator '{self.operator}' requires non-empty 'values' list")
 
         # 'between' operator requires both 'min' and 'max' fields
-        if self.operator == "between" and (self.min is None or self.max is None):
-            raise ValueError("Operator 'between' requires both 'min' and 'max' fields")
+        if self.operator == "between":
+            if self.min is None or self.max is None:
+                raise ValueError("Operator 'between' requires both 'min' and 'max' fields")
+            if self.min > self.max:
+                raise ValueError(
+                    f"Operator 'between' requires min <= max (got min={self.min}, max={self.max})"
+                )
 
         return self
 
@@ -121,9 +129,15 @@ class MetricConfig(BaseModel):
 
     @model_validator(mode="after")
     def validate_field_required(self) -> "MetricConfig":
-        """Validate that field is provided for non-count metric types."""
-        if self.type != "count" and self.field is None:
-            raise ValueError(f"Metric type '{self.type}' requires 'field' parameter")
+        """Validate that field is provided for non-count metric types and not for count."""
+        if self.type == "count":
+            if self.field is not None:
+                raise ValueError(
+                    "Metric type 'count' does not use 'field' parameter (should be None)"
+                )
+        else:
+            if self.field is None:
+                raise ValueError(f"Metric type '{self.type}' requires 'field' parameter")
         return self
 
 
