@@ -7,7 +7,7 @@ with support for environment variable substitution and comprehensive error repor
 import os
 import re
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 from pydantic import ValidationError
 from pydantic_yaml import parse_yaml_raw_as
@@ -100,7 +100,7 @@ def load_export_config(config_path: str | Path) -> ExportConfig:
         processed_yaml = yaml.dump(processed_data)
 
         # Parse and validate with Pydantic
-        return parse_yaml_raw_as(ExportConfig, processed_yaml)  # type: ignore[no-any-return]  # pydantic_yaml lacks types
+        return cast(ExportConfig, parse_yaml_raw_as(ExportConfig, processed_yaml))
 
     except yaml.YAMLError as e:
         raise ConfigLoadError(f"Invalid YAML syntax in {config_path}: {e}") from e

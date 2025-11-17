@@ -11,7 +11,7 @@ from gpuport_collectors.cli import cli, print_summary
 class TestPrintSummary:
     """Tests for the print_summary helper function."""
 
-    def test_print_summary_outputs_to_stdout(self, capsys):  # type: ignore[no-untyped-def]
+    def test_print_summary_outputs_to_stdout(self, capsys):
         """Test that print_summary outputs plain text to stdout."""
         message = "Test summary message"
         print_summary(message)
@@ -20,7 +20,7 @@ class TestPrintSummary:
         assert captured.out == f"{message}\n"
         assert captured.err == ""
 
-    def test_print_summary_not_json_formatted(self, capsys):  # type: ignore[no-untyped-def]
+    def test_print_summary_not_json_formatted(self, capsys):
         """Test that print_summary does NOT output JSON format."""
         message = "Pipeline execution complete"
         print_summary(message)
@@ -31,7 +31,7 @@ class TestPrintSummary:
         assert "level" not in captured.out
         assert captured.out == f"{message}\n"
 
-    def test_print_summary_with_special_characters(self, capsys):  # type: ignore[no-untyped-def]
+    def test_print_summary_with_special_characters(self, capsys):
         """Test print_summary handles special characters correctly."""
         message = "✓ SUCCESS: 100% complete"
         print_summary(message)
@@ -68,7 +68,7 @@ class TestRunPodCommand:
 
     @patch("gpuport_collectors.cli.asyncio.run")
     @patch("gpuport_collectors.cli.RunPodCollector")
-    def test_runpod_displays_collected_instances(self, mock_collector, mock_asyncio_run):  # type: ignore[no-untyped-def]
+    def test_runpod_displays_collected_instances(self, mock_collector, mock_asyncio_run):
         """Test runpod command displays collected instances in summary."""
         # Mock collected instances
         mock_asyncio_run.return_value = []  # Empty list for simplicity
@@ -85,7 +85,7 @@ class TestRunPodCommand:
     @patch("gpuport_collectors.cli.load_export_config")
     def test_runpod_with_export_config(
         self, mock_load_config, mock_execute, mock_collector, mock_asyncio_run
-    ):  # type: ignore[no-untyped-def]
+    ):
         """Test runpod command with export configuration."""
         from gpuport_collectors.export.config import (
             ExportConfig,
@@ -103,9 +103,9 @@ class TestRunPodCommand:
                 instance_type="GPU-1X-A100",
                 accelerator_name="NVIDIA A100",
                 accelerator_count=1,
-                accelerator_memory_gb=80,
-                cpu_count=8,
-                ram_gb=64,
+                accelerator_mem_gib=80,
+                v_cpus=8,
+                memory_gib=64,
                 price=1.50,
                 availability=AvailabilityStatus.HIGH,
                 region="US-NY-1",
@@ -176,7 +176,7 @@ class TestExportCommand:
 
     @patch("gpuport_collectors.cli.load_export_config")
     @patch("gpuport_collectors.cli.validate_config")
-    def test_export_validate_only_mode(self, mock_validate, mock_load_config):  # type: ignore[no-untyped-def]
+    def test_export_validate_only_mode(self, mock_validate, mock_load_config):
         """Test export --validate-only mode."""
         from gpuport_collectors.export.config import ExportConfig
 
@@ -195,7 +195,7 @@ class TestExportCommand:
 
     @patch("gpuport_collectors.cli.load_export_config")
     @patch("gpuport_collectors.cli.validate_config")
-    def test_export_displays_validation_warnings(self, mock_validate, mock_load_config):  # type: ignore[no-untyped-def]
+    def test_export_displays_validation_warnings(self, mock_validate, mock_load_config):
         """Test export command displays validation warnings."""
         from gpuport_collectors.export.config import ExportConfig
 
@@ -221,7 +221,7 @@ class TestExportCommand:
     @patch("gpuport_collectors.cli.load_export_config")
     def test_export_pipeline_failure_exit_code(
         self, mock_load_config, mock_execute, mock_collector, mock_asyncio_run
-    ):  # type: ignore[no-untyped-def]
+    ):
         """Test export command exits with code 1 when pipelines fail."""
         from gpuport_collectors.export.config import ExportConfig
         from gpuport_collectors.export.pipeline import PipelineResult
@@ -260,7 +260,7 @@ class TestValidateCommand:
 
     @patch("gpuport_collectors.cli.load_export_config")
     @patch("gpuport_collectors.cli.validate_config")
-    def test_validate_success(self, mock_validate, mock_load_config):  # type: ignore[no-untyped-def]
+    def test_validate_success(self, mock_validate, mock_load_config):
         """Test validate command with valid configuration."""
         from gpuport_collectors.export.config import (
             ExportConfig,
@@ -295,7 +295,7 @@ class TestValidateCommand:
 
     @patch("gpuport_collectors.cli.load_export_config")
     @patch("gpuport_collectors.cli.validate_config")
-    def test_validate_with_warnings(self, mock_validate, mock_load_config):  # type: ignore[no-untyped-def]
+    def test_validate_with_warnings(self, mock_validate, mock_load_config):
         """Test validate command displays warnings."""
         from gpuport_collectors.export.config import ExportConfig
 
@@ -322,7 +322,7 @@ class TestValidateCommand:
 
     @patch("gpuport_collectors.cli.load_export_config")
     @patch("gpuport_collectors.cli.validate_config")
-    def test_validate_pipeline_summary(self, mock_validate, mock_load_config):  # type: ignore[no-untyped-def]
+    def test_validate_pipeline_summary(self, mock_validate, mock_load_config):
         """Test validate command displays pipeline summary."""
         from gpuport_collectors.export.config import (
             CSVTransformerConfig,

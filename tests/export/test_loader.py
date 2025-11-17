@@ -16,34 +16,34 @@ from gpuport_collectors.export.loader import (
 class TestSubstituteEnvVars:
     """Tests for environment variable substitution."""
 
-    def test_substitute_simple_string(self, monkeypatch: pytest.MonkeyPatch):  # type: ignore[no-untyped-def]
+    def test_substitute_simple_string(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """Test simple environment variable substitution."""
         monkeypatch.setenv("API_KEY", "secret123")
         result = substitute_env_vars("Bearer ${API_KEY}")
         assert result == "Bearer secret123"
 
-    def test_substitute_multiple_vars(self, monkeypatch: pytest.MonkeyPatch):  # type: ignore[no-untyped-def]
+    def test_substitute_multiple_vars(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """Test multiple environment variables in one string."""
         monkeypatch.setenv("HOST", "example.com")
         monkeypatch.setenv("PORT", "8080")
         result = substitute_env_vars("https://${HOST}:${PORT}/api")
         assert result == "https://example.com:8080/api"
 
-    def test_substitute_in_dict(self, monkeypatch: pytest.MonkeyPatch):  # type: ignore[no-untyped-def]
+    def test_substitute_in_dict(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """Test substitution in dictionary values."""
         monkeypatch.setenv("TOKEN", "abc123")
         data = {"authorization": "Bearer ${TOKEN}", "accept": "application/json"}
         result = substitute_env_vars(data)
         assert result == {"authorization": "Bearer abc123", "accept": "application/json"}
 
-    def test_substitute_in_nested_dict(self, monkeypatch: pytest.MonkeyPatch):  # type: ignore[no-untyped-def]
+    def test_substitute_in_nested_dict(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """Test substitution in nested dictionaries."""
         monkeypatch.setenv("KEY", "value")
         data = {"outer": {"inner": "${KEY}"}}
         result = substitute_env_vars(data)
         assert result == {"outer": {"inner": "value"}}
 
-    def test_substitute_in_list(self, monkeypatch: pytest.MonkeyPatch):  # type: ignore[no-untyped-def]
+    def test_substitute_in_list(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """Test substitution in list items."""
         monkeypatch.setenv("ITEM", "test")
         data = ["${ITEM}", "other"]
@@ -71,7 +71,7 @@ class TestSubstituteEnvVars:
 class TestLoadExportConfig:
     """Tests for loading and validating export configuration."""
 
-    def test_load_valid_minimal_config(self, tmp_path: Path):  # type: ignore[no-untyped-def]
+    def test_load_valid_minimal_config(self, tmp_path: Path) -> None:
         """Test loading a minimal valid configuration."""
         config_file = tmp_path / "config.yaml"
         config_file.write_text(
@@ -92,7 +92,9 @@ class TestLoadExportConfig:
         assert len(config.pipelines) == 1
         assert config.pipelines[0].name == "test_pipeline"
 
-    def test_load_config_with_env_vars(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch):  # type: ignore[no-untyped-def]
+    def test_load_config_with_env_vars(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
         """Test loading configuration with environment variables."""
         monkeypatch.setenv("API_TOKEN", "secret123")
         config_file = tmp_path / "config.yaml"
@@ -117,7 +119,7 @@ class TestLoadExportConfig:
         assert output.headers is not None
         assert output.headers["Authorization"] == "Bearer secret123"
 
-    def test_load_config_missing_env_var_raises(self, tmp_path: Path):  # type: ignore[no-untyped-def]
+    def test_load_config_missing_env_var_raises(self, tmp_path: Path) -> None:
         """Test that missing environment variable raises ConfigLoadError."""
         config_file = tmp_path / "config.yaml"
         config_file.write_text(
@@ -138,18 +140,18 @@ class TestLoadExportConfig:
         with pytest.raises(ConfigLoadError, match=r"MISSING_VAR.*not defined"):
             load_export_config(config_file)
 
-    def test_load_config_file_not_found(self, tmp_path: Path):  # type: ignore[no-untyped-def]
+    def test_load_config_file_not_found(self, tmp_path: Path) -> None:
         """Test that missing file raises ConfigLoadError."""
         config_file = tmp_path / "nonexistent.yaml"
         with pytest.raises(ConfigLoadError, match="not found"):
             load_export_config(config_file)
 
-    def test_load_config_path_is_directory(self, tmp_path: Path):  # type: ignore[no-untyped-def]
+    def test_load_config_path_is_directory(self, tmp_path: Path) -> None:
         """Test that directory path raises ConfigLoadError."""
         with pytest.raises(ConfigLoadError, match="not a file"):
             load_export_config(tmp_path)
 
-    def test_load_config_invalid_yaml(self, tmp_path: Path):  # type: ignore[no-untyped-def]
+    def test_load_config_invalid_yaml(self, tmp_path: Path) -> None:
         """Test that invalid YAML syntax raises ConfigLoadError."""
         config_file = tmp_path / "config.yaml"
         config_file.write_text("invalid: yaml: syntax:")
@@ -157,7 +159,7 @@ class TestLoadExportConfig:
         with pytest.raises(ConfigLoadError, match="Invalid YAML syntax"):
             load_export_config(config_file)
 
-    def test_load_config_validation_error(self, tmp_path: Path):  # type: ignore[no-untyped-def]
+    def test_load_config_validation_error(self, tmp_path: Path) -> None:
         """Test that Pydantic validation errors are formatted nicely."""
         config_file = tmp_path / "config.yaml"
         config_file.write_text(

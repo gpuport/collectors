@@ -197,7 +197,7 @@ class HTTPSOutputConfig(BaseModel):
         default=None, description="Custom headers (supports ${VAR} substitution)"
     )
     batch_size: int | None = Field(
-        default=None, description="Number of instances per request (None = all at once)"
+        default=None, gt=0, description="Number of instances per request (None = all at once)"
     )
     batch_delay: float = Field(default=0.0, description="Delay between batches in seconds")
     timeout: int = Field(default=30, description="Request timeout in seconds")

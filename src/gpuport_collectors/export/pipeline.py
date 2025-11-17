@@ -146,6 +146,11 @@ def execute_pipeline(instances: list[GPUInstance], config: PipelineConfig) -> Pi
             outputs=[],
         )
 
+    # Initialize timing variables before try block
+    filter_duration = 0.0
+    transform_duration = 0.0
+    output_duration = 0.0
+
     try:
         # Step 1: Filter instances
         filter_start = time.time()

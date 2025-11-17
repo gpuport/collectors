@@ -234,7 +234,7 @@ class TestCredentials:
 
     def test_session_token(self, mock_s3_client: tuple[Any, Any, Any]) -> None:
         """Test loading session token from environment."""
-        _mock_boto3, _mock_client, _mock_exceptions = mock_s3_client
+        _ = mock_s3_client
 
         config = S3OutputConfig(
             bucket="test-bucket",
@@ -265,7 +265,7 @@ class TestS3Configuration:
 
     def test_region_configuration(self, mock_s3_client: tuple[Any, Any, Any]) -> None:
         """Test S3 region configuration."""
-        _mock_boto3, _mock_client, _mock_exceptions = mock_s3_client
+        _ = mock_s3_client
 
         config = S3OutputConfig(
             bucket="test-bucket",
@@ -280,7 +280,7 @@ class TestS3Configuration:
 
     def test_custom_endpoint(self, mock_s3_client: tuple[Any, Any, Any]) -> None:
         """Test custom endpoint URL (for S3-compatible storage)."""
-        _mock_boto3, _mock_client, _mock_exceptions = mock_s3_client
+        _ = mock_s3_client
 
         config = S3OutputConfig(
             bucket="test-bucket",

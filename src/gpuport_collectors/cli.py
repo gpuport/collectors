@@ -25,43 +25,36 @@ def print_summary(message: str) -> None:
     print(message)  # noqa: T201
 
 
-@click.group()  # type: ignore[misc]  # click lacks type stubs
+@click.group()
 def cli() -> None:
     """GPU data collection and export CLI."""
 
 
-@cli.group()  # type: ignore[misc]  # click lacks type stubs
+@cli.group()
 def run() -> None:
     """Run data collection from GPU providers."""
 
 
-@run.command()  # type: ignore[misc]  # click lacks type stubs
-@click.option(  # type: ignore[misc]  # click lacks type stubs
-    "--config",
-    "-c",
-    type=click.Path(exists=True, path_type=Path),
-    help="Path to collector configuration YAML file",
-)
-@click.option(  # type: ignore[misc]  # click lacks type stubs
+@run.command()
+@click.option(
     "--export-config",
     "-e",
     type=click.Path(exists=True, path_type=Path),
     help="Path to export pipeline configuration YAML file",
 )
-@click.option(  # type: ignore[misc]  # click lacks type stubs
+@click.option(
     "--api-key",
     "-k",
     envvar="RUNPOD_API_KEY",
     help="RunPod API key (or set RUNPOD_API_KEY env var)",
 )
-@click.option(  # type: ignore[misc]  # click lacks type stubs
+@click.option(
     "--verbose",
     "-v",
     is_flag=True,
     help="Enable verbose logging",
 )
 def runpod(
-    config: Path | None,
     export_config: Path | None,
     api_key: str | None,
     verbose: bool,
@@ -73,9 +66,9 @@ def runpod(
     2. Optionally exports data using configured pipelines
 
     Example:
-        gpuport-collectors run runpod --config examples/runpod-provider.yaml
+        gpuport-collectors run runpod --api-key YOUR_KEY
         gpuport-collectors run runpod --export-config examples/export-basic.yaml
-        gpuport-collectors run runpod --config provider.yaml --export-config export.yaml
+        gpuport-collectors run runpod --export-config export.yaml --api-key YOUR_KEY
     """
     # Configure logging level
     if verbose:
@@ -95,13 +88,7 @@ def runpod(
     # Load collector configuration
     from gpuport_collectors.config import CollectorConfig
 
-    if config:
-        logger.debug(f"Loading collector configuration from {config}")
-        # TODO: Implement config file loading for CollectorConfig
-        # For now, use default config
-        collector_config = CollectorConfig()
-    else:
-        collector_config = CollectorConfig()
+    collector_config = CollectorConfig()
 
     # Create collector instance
     collector = RunPodCollector(config=collector_config)
@@ -195,33 +182,33 @@ def runpod(
             logger.info(f"  ... and {len(instances) - 10} more")
 
 
-@cli.command()  # type: ignore[misc]  # click lacks type stubs
-@click.option(  # type: ignore[misc]  # click lacks type stubs
+@cli.command()
+@click.option(
     "--config",
     "-c",
     type=click.Path(exists=True, path_type=Path),
     required=True,
     help="Path to export configuration YAML file",
 )
-@click.option(  # type: ignore[misc]  # click lacks type stubs
+@click.option(
     "--provider",
     "-p",
     type=click.Choice(["runpod"], case_sensitive=False),
     default="runpod",
     help="GPU provider to collect from (default: runpod)",
 )
-@click.option(  # type: ignore[misc]  # click lacks type stubs
+@click.option(
     "--api-key",
     "-k",
     envvar="RUNPOD_API_KEY",
     help="Provider API key (or set RUNPOD_API_KEY env var)",
 )
-@click.option(  # type: ignore[misc]  # click lacks type stubs
+@click.option(
     "--validate-only",
     is_flag=True,
     help="Only validate configuration without executing pipelines",
 )
-@click.option(  # type: ignore[misc]  # click lacks type stubs
+@click.option(
     "--verbose",
     "-v",
     is_flag=True,
@@ -366,8 +353,8 @@ def export(
         sys.exit(1)
 
 
-@cli.command()  # type: ignore[misc]  # click lacks type stubs
-@click.option(  # type: ignore[misc]  # click lacks type stubs
+@cli.command()
+@click.option(
     "--config",
     "-c",
     type=click.Path(path_type=Path),
