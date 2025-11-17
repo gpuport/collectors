@@ -370,17 +370,30 @@ class TestErrorHandling:
 
         data = json.dumps([{"test": "data"}])
 
-        # Mock ImportError when trying to import httpx
+        # Remove httpx from sys.modules and mock import to raise ImportError
+        # The autouse fixture adds it, so we need to temporarily remove it
+        httpx_module = sys.modules.pop("httpx", None)
+
+        # Mock builtins.__import__ to raise ImportError for httpx
+        import builtins
+
+        original_import = builtins.__import__
+
         def mock_import(name: str, *args: Any, **kwargs: Any) -> Any:
             if name == "httpx":
                 raise ImportError("No module named 'httpx'")
-            return __builtins__.__import__(name, *args, **kwargs)
+            return original_import(name, *args, **kwargs)
 
-        with (
-            patch("builtins.__import__", side_effect=mock_import),
-            pytest.raises(OutputError, match="httpx is required"),
-        ):
-            write_to_https(data, config)
+        try:
+            with (
+                patch("builtins.__import__", side_effect=mock_import),
+                pytest.raises(OutputError, match="httpx is required"),
+            ):
+                write_to_https(data, config)
+        finally:
+            # Restore httpx to sys.modules for other tests
+            if httpx_module is not None:
+                sys.modules["httpx"] = httpx_module
 
     def test_invalid_json_raises(self, mock_httpx_client: Any) -> None:
         """Test that invalid JSON raises error."""
