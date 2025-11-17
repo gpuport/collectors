@@ -326,6 +326,15 @@ def write_to_https(data: str, config: HTTPSOutputConfig) -> dict[str, Any]:
         successful_requests = 0
         failed_requests = 0
 
+        # Short-circuit if no items to send (avoid batch_size=0 error)
+        if total_items == 0:
+            return {
+                "total_requests": 0,
+                "successful_requests": 0,
+                "failed_requests": 0,
+                "total_items": 0,
+            }
+
         # Prepare headers with environment variable substitution
         headers = {}
         if config.headers:
@@ -402,11 +411,17 @@ def write_to_https(data: str, config: HTTPSOutputConfig) -> dict[str, Any]:
 
                     except httpx.HTTPStatusError as e:
                         last_error = OutputError(f"HTTP error: {e}")
-                        if attempt < config.retry_attempts:
+                        # Only retry if status code is in retry_on_status list
+                        if (
+                            e.response.status_code in config.retry_on_status
+                            and attempt < config.retry_attempts
+                        ):
                             delay = config.retry_delay * (config.retry_backoff**attempt)
                             time.sleep(delay)
                         else:
+                            # Non-retryable status or retries exhausted
                             failed_requests += 1
+                            break
 
                     except httpx.RequestError as e:
                         last_error = OutputError(f"Request error: {e}")
