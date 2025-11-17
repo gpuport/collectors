@@ -25,7 +25,7 @@ def unicode_instances() -> list[GPUInstance]:
             accelerator_name="NVIDIA T4 Tensor Core",
             accelerator_count=1,
             accelerator_mem_gib=16.0,
-            region="华北2（北京）",  # North China 2 (Beijing)
+            region="华北2(北京)",  # North China 2 (Beijing)
             availability=AvailabilityStatus.HIGH,
             quantity=10,
             price=1.5,
@@ -87,7 +87,7 @@ class TestUnicodeInJSON:
 
         # Check Chinese characters
         assert data[0]["provider"] == "阿里云"
-        assert data[0]["region"] == "华北2（北京）"
+        assert data[0]["region"] == "华北2(北京)"
 
         # Check Russian characters
         assert data[1]["provider"] == "Яндекс.Облако"
@@ -128,8 +128,6 @@ class TestUnicodeInCSV:
             }
         )
         result = transform_to_csv(unicode_instances, config)
-
-        lines = result.strip().split("\n")
 
         # Check that Unicode appears in output
         assert "阿里云" in result
@@ -177,7 +175,7 @@ class TestUnicodeInFileOutput:
         )
 
         # Read file back and verify Unicode
-        with open(file_path, encoding="utf-8") as f:
+        with Path(file_path).open(encoding="utf-8") as f:
             content = f.read()
             parsed = json.loads(content)
 
@@ -204,13 +202,13 @@ class TestUnicodeInFileOutput:
         )
 
         # Read file back and verify Unicode
-        with open(file_path, encoding="utf-8") as f:
+        with Path(file_path).open(encoding="utf-8") as f:
             content = f.read()
 
         # Verify Unicode preserved
         assert "阿里云" in content
         assert "Яндекс.Облако" in content
-        assert "华北2（北京）" in content
+        assert "华北2(北京)" in content
 
 
 class TestEdgeCaseCharacters:

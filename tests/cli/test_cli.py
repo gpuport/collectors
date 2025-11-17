@@ -55,15 +55,17 @@ class TestRunPodCommand:
     def test_runpod_verbose_flag_enables_debug(self):
         """Test --verbose flag enables debug logging."""
         runner = CliRunner()
-        with patch("gpuport_collectors.cli.RunPodCollector") as mock_collector:
-            with patch("gpuport_collectors.cli.asyncio.run") as mock_run:
-                # Mock the collector to return empty instances
-                mock_run.return_value = []
+        with (
+            patch("gpuport_collectors.cli.RunPodCollector"),
+            patch("gpuport_collectors.cli.asyncio.run") as mock_run,
+        ):
+            # Mock the collector to return empty instances
+            mock_run.return_value = []
 
-                result = runner.invoke(cli, ["run", "runpod", "--api-key", "test-key", "--verbose"])
+            result = runner.invoke(cli, ["run", "runpod", "--api-key", "test-key", "--verbose"])
 
-                # Should succeed
-                assert result.exit_code == 0
+            # Should succeed
+            assert result.exit_code == 0
 
     @patch("gpuport_collectors.cli.asyncio.run")
     @patch("gpuport_collectors.cli.RunPodCollector")
