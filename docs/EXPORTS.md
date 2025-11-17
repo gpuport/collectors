@@ -37,7 +37,7 @@ uv run gpuport-collectors export --config export.yaml --api-key YOUR_KEY
 
 ## Architecture
 
-```
+```text
 GPU Instances → Filter → Transform → Output
 ```
 
