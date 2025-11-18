@@ -3,21 +3,21 @@
 # This file defines default settings for timeouts, retries, and other global configuration
 # values used across all provider collectors.
 
-# HTTP Request Settings
-# Default timeout for HTTP requests in seconds
-timeout: 30
+# HTTP Client Settings
+http_client:
+  # Request timeout in seconds
+  timeout: 30
 
-# Retry Settings
-# Maximum number of retry attempts for failed requests
-max_retries: 3
+  # Maximum number of retry attempts for failed requests
+  max_retries: 3
 
-# Exponential backoff factor for retry delays
-# Delay between retries = base_delay * (backoff_factor ^ retry_number)
-# Example: with base_delay=5 and backoff_factor=2, delays will be 5s, 10s, 20s
-backoff_factor: 2.0
+  # Exponential backoff factor for retry delays
+  # Delay between retries = base_delay * (backoff_factor ^ retry_number)
+  # Example: with base_delay=5 and backoff_factor=2, delays will be 5s, 10s, 20s
+  backoff_factor: 2.0
 
-# Initial delay for retry backoff in seconds
-base_delay: 5.0
+  # Initial delay for retry backoff in seconds
+  base_delay: 5.0
 
 # Observability Settings
 observability:
@@ -49,3 +49,21 @@ collectors:
     enabled: true
     # API key (use RUNPOD_API_KEY environment variable)
     api_key: null
+
+# Export Pipeline Configuration
+pipelines:
+  # Export all data to JSON
+  - name: full-export
+    enabled: true
+
+    # No filters = export all instances
+
+    transformer:
+      format: json
+      pretty_print: true
+
+    outputs:
+      - type: local
+        path: ./data/exports
+        filename_pattern: "gpu-instances_{date}.json"
+        create_dirs: true

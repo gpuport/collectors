@@ -14,6 +14,22 @@ Data collectors for the GPUPort platform.
 - **Automatic Retry Logic**: Exponential backoff with configurable retry attempts
 - **Type-Safe Configuration**: Pydantic-based configuration with validation
 - **Observability**: Built-in logging and distributed tracing (OpenTelemetry) with Honeycomb.io integration
+- **Export Pipelines**: Configurable YAML-based pipelines for filtering, transforming, and exporting collected data to local files, S3, or HTTPS endpoints
+
+## Quick Start
+
+```bash
+# Activate virtual environment
+source .venv/bin/activate
+
+# Set your API key
+export RUNPOD_API_KEY=your_api_key
+
+# Collect and export data
+gpuport-collectors run runpod --export-config examples/export-basic.yaml
+```
+
+See [`examples/`](examples/) for more configuration examples and [`docs/EXPORTS.md`](docs/EXPORTS.md) for complete documentation.
 
 ## Development Setup
 

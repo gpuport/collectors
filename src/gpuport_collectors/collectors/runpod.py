@@ -93,7 +93,7 @@ class RunPodCollector(BaseCollector):
         Returns:
             List of all datacenter IDs (39 total)
         """
-        self._logger.info(
+        self._logger.debug(
             "Fetching all datacenters",
             provider_name=self.provider_name,
         )
@@ -112,7 +112,7 @@ class RunPodCollector(BaseCollector):
 
         dc_ids = [dc["id"] for dc in datacenters]
 
-        self._logger.info(
+        self._logger.debug(
             "Fetched datacenters",
             provider_name=self.provider_name,
             datacenter_count=len(dc_ids),
@@ -267,7 +267,7 @@ class RunPodCollector(BaseCollector):
         Returns:
             List of GPU type dictionaries with id, displayName, memoryInGb, cudaCores
         """
-        self._logger.info(
+        self._logger.debug(
             "Fetching all GPU types",
             provider_name=self.provider_name,
         )
@@ -286,7 +286,7 @@ class RunPodCollector(BaseCollector):
         data = await self._execute_graphql(query)
         gpu_types = data.get("gpuTypes", [])
 
-        self._logger.info(
+        self._logger.debug(
             "Fetched GPU types",
             provider_name=self.provider_name,
             gpu_type_count=len(gpu_types),
@@ -372,7 +372,7 @@ class RunPodCollector(BaseCollector):
             return []
 
         # Step 3: Query pricing for each GPU type across all datacenters
-        self._logger.info(
+        self._logger.debug(
             "Fetching GPU pricing data",
             provider_name=self.provider_name,
             gpu_type_count=len(gpu_types),

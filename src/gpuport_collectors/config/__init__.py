@@ -54,15 +54,14 @@ class ObservabilityConfig(BaseModel):
     )
 
 
-class CollectorConfig(BaseModel):
-    """Default configuration settings for GPUPort collectors.
+class HttpClientConfig(BaseModel):
+    """HTTP client configuration for requests.
 
     Attributes:
         timeout: HTTP request timeout in seconds
         max_retries: Maximum number of retry attempts for failed requests
         backoff_factor: Exponential backoff multiplier for retry delays
         base_delay: Initial delay in seconds for retry backoff
-        observability: Observability configuration
     """
 
     timeout: int = Field(
@@ -85,10 +84,6 @@ class CollectorConfig(BaseModel):
         gt=0,
         description="Initial delay in seconds for retry backoff",
     )
-    observability: ObservabilityConfig = Field(
-        default_factory=ObservabilityConfig,
-        description="Observability configuration",
-    )
 
     @field_validator("timeout")
     @classmethod
@@ -107,6 +102,47 @@ class CollectorConfig(BaseModel):
             msg = "max_retries cannot exceed 10"
             raise ValueError(msg)
         return v
+
+
+class CollectorConfig(BaseModel):
+    """Default configuration settings for GPUPort collectors.
+
+    Attributes:
+        http_client: HTTP client configuration
+        observability: Observability configuration
+    """
+
+    model_config = {"extra": "ignore"}  # Ignore extra fields like collectors, pipelines from YAML
+
+    http_client: HttpClientConfig = Field(
+        default_factory=HttpClientConfig,
+        description="HTTP client configuration",
+    )
+    observability: ObservabilityConfig = Field(
+        default_factory=ObservabilityConfig,
+        description="Observability configuration",
+    )
+
+    # Convenience properties for accessing nested config
+    @property
+    def timeout(self) -> int:
+        """Get timeout from http_client config."""
+        return self.http_client.timeout
+
+    @property
+    def max_retries(self) -> int:
+        """Get max_retries from http_client config."""
+        return self.http_client.max_retries
+
+    @property
+    def backoff_factor(self) -> float:
+        """Get backoff_factor from http_client config."""
+        return self.http_client.backoff_factor
+
+    @property
+    def base_delay(self) -> float:
+        """Get base_delay from http_client config."""
+        return self.http_client.base_delay
 
     @classmethod
     def from_yaml(cls, path: Path) -> Self:
@@ -146,4 +182,4 @@ class CollectorConfig(BaseModel):
 # Create a global instance with default settings
 default_config = CollectorConfig.load_defaults()
 
-__all__ = ["CollectorConfig", "ObservabilityConfig", "default_config"]
+__all__ = ["CollectorConfig", "HttpClientConfig", "ObservabilityConfig", "default_config"]

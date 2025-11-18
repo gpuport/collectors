@@ -1,0 +1,35 @@
+# GPUPort Collector Configuration Example
+#
+# This file shows how to configure collector behavior including timeouts,
+# retries, and observability settings.
+
+# HTTP Client Settings
+http_client:
+  timeout: 30                  # Request timeout in seconds
+  max_retries: 3               # Maximum retry attempts
+  backoff_factor: 2.0          # Exponential backoff multiplier
+  base_delay: 5.0              # Initial retry delay in seconds
+
+# Observability Settings (optional)
+observability:
+  enabled: false               # Enable telemetry and structured logging
+  service_name: "gpuport-collectors"
+  environment: "production"    # production, staging, development
+  log_level: "INFO"            # DEBUG, INFO, WARNING, ERROR, CRITICAL
+
+  # Honeycomb.io configuration (optional)
+  # honeycomb_api_key: null    # Or use HONEYCOMB_API_KEY env var
+  # exporter_protocol: "http/protobuf"
+  # exporter_endpoint: "https://api.honeycomb.io:443"
+
+# Provider-Specific Settings
+collectors:
+  # RunPod collector
+  runpod:
+    enabled: true
+    # api_key: null            # Use RUNPOD_API_KEY env var instead
+
+  # Add other providers here as they are implemented
+  # lambda:
+  #   enabled: true
+  #   api_key: null

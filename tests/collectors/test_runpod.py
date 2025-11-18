@@ -10,7 +10,7 @@ import aiohttp
 import pytest
 
 from gpuport_collectors.collectors.runpod import RunPodCollector
-from gpuport_collectors.config import CollectorConfig, ObservabilityConfig
+from gpuport_collectors.config import CollectorConfig, HttpClientConfig, ObservabilityConfig
 from gpuport_collectors.models import AvailabilityStatus
 
 
@@ -18,8 +18,7 @@ from gpuport_collectors.models import AvailabilityStatus
 def collector_config():
     """Create collector configuration for testing."""
     return CollectorConfig(
-        timeout=30,
-        max_retries=3,
+        http_client=HttpClientConfig(timeout=30, max_retries=3),
         observability=ObservabilityConfig(enabled=False),
     )
 
@@ -390,8 +389,7 @@ class TestErrorHandling:
     def no_retry_collector(self):
         """Create RunPod collector with no retries for faster error testing."""
         config = CollectorConfig(
-            timeout=30,
-            max_retries=0,  # No retries for faster tests
+            http_client=HttpClientConfig(timeout=30, max_retries=0),  # No retries for faster tests
             observability=ObservabilityConfig(enabled=False),
         )
         with patch.dict(os.environ, {"RUNPOD_API_KEY": "test-api-key"}):
