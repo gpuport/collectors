@@ -438,7 +438,7 @@ dependencies = [
     { name = "aiohttp" },
     { name = "click" },
     { name = "httpx" },
-    { name = "novita-sdk" },
+    { name = "novita-sdk-python" },
     { name = "opentelemetry-api" },
     { name = "opentelemetry-exporter-otlp-proto-http" },
     { name = "opentelemetry-sdk" },
@@ -477,7 +477,7 @@ requires-dist = [
     { name = "click", specifier = ">=8.3.0" },
     { name = "httpx", specifier = ">=0.28.1" },
     { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.13.0" },
-    { name = "novita-sdk", specifier = "==0.4.0" },
+    { name = "novita-sdk-python", git = "ssh://git@github.com/php-workx/novita-sdk-python.git?rev=feat%2Fcustom-impl" },
     { name = "opentelemetry-api", specifier = ">=1.38.0" },
     { name = "opentelemetry-exporter-otlp-proto-http", specifier = ">=1.38.0" },
     { name = "opentelemetry-sdk", specifier = ">=1.38.0" },
@@ -732,16 +732,12 @@ wheels = [
 ]
 
 [[package]]
-name = "novita-sdk"
-version = "0.4.0"
-source = { registry = "https://pypi.org/simple" }
+name = "novita-sdk-python"
+version = "0.1.0"
+source = { git = "ssh://git@github.com/php-workx/novita-sdk-python.git?rev=feat%2Fcustom-impl#e1f0a18d9bc5d933838dc258c1b14458c9012db8" }
 dependencies = [
     { name = "httpx" },
     { name = "pydantic" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/14/95/453bfac7969f3a6babe88b44b6fd48d54704da1a180cf5f608560bed41a0/novita_sdk-0.4.0.tar.gz", hash = "sha256:20a35e50ab1e0a11ff9abc65eddfb80b70d8a727fec19bef08daba6c55189145", size = 27239, upload-time = "2025-12-15T16:39:57.822Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/53/d8/63f5ddb2bb48aca1350fae694b9ed04a1785661faae6c0d0ae41cea1b798/novita_sdk-0.4.0-py3-none-any.whl", hash = "sha256:3aa2b8c7c9e6916e03875b857413f0c5e7442f245ae4e7cc02e9cf268058a65e", size = 32252, upload-time = "2025-12-15T16:39:56.72Z" },
 ]
 
 [[package]]
