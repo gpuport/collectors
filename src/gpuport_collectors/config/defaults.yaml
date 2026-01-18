@@ -50,6 +50,12 @@ collectors:
     # API key (use RUNPOD_API_KEY environment variable)
     api_key: null
 
+  # Lambda Labs collector configuration
+  lambdalabs:
+    enabled: true
+    # API key (use LAMBDA_API_KEY environment variable)
+    api_key: null
+
 # Export Pipeline Configuration
 pipelines:
   # Export all data to JSON

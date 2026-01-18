@@ -1,0 +1,63 @@
+name: Collect RunPod Data
+
+on:
+  # Run every hour
+  schedule:
+    - cron: '0 * * * *'
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+env:
+  PYTHON_VERSION: '3.12'
+
+jobs:
+  collect:
+    name: Collect RunPod GPU Data
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Install dependencies
+        run: |
+          cd collectors
+          uv sync
+
+      - name: Collect RunPod GPU data
+        env:
+          RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          BACKEND_API_URL: ${{ secrets.BACKEND_API_URL }}
+          BACKEND_API_KEY: ${{ secrets.BACKEND_API_KEY }}
+        run: |
+          cd collectors
+          uv run gpuport-collectors run runpod \
+            --export-config .github/export-cfg.yaml
+
+      - name: Upload artifacts on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: runpod-logs-${{ github.run_id }}
+          path: |
+            collectors/data/
+            collectors/*.log
+          retention-days: 7
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "::error::RunPod GPU data collection failed"
+          # Add notification logic here (Slack, Discord, email, etc.)

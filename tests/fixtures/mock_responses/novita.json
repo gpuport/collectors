@@ -1,0 +1,1570 @@
+{
+  "products": [
+    {
+      "id": "26",
+      "name": "RTX 4090 24GB",
+      "cpu_per_gpu": 16,
+      "memory_per_gpu": 125,
+      "disk_per_gpu": 1016,
+      "available_deploy": true,
+      "min_root_fs": 10,
+      "max_root_fs": 1568,
+      "min_local_storage": 1,
+      "max_local_storage": 1016,
+      "regions": [
+        "US-01 (Dallas)"
+      ],
+      "price": 67000,
+      "monthly_price": [
+        {
+          "price": 43416000,
+          "month": 1
+        },
+        {
+          "price": 43416000,
+          "month": 2
+        },
+        {
+          "price": 43416000,
+          "month": 3
+        },
+        {
+          "price": 43416000,
+          "month": 4
+        },
+        {
+          "price": 43416000,
+          "month": 5
+        },
+        {
+          "price": 41004000,
+          "month": 6
+        },
+        {
+          "price": 41004000,
+          "month": 7
+        },
+        {
+          "price": 41004000,
+          "month": 8
+        },
+        {
+          "price": 41004000,
+          "month": 9
+        },
+        {
+          "price": 41004000,
+          "month": 10
+        },
+        {
+          "price": 41004000,
+          "month": 11
+        },
+        {
+          "price": 41004000,
+          "month": 12
+        }
+      ],
+      "billing_methods": [
+        "onDemand",
+        "monthly"
+      ],
+      "spot_price": "0"
+    },
+    {
+      "id": "3090.16c92g",
+      "name": "RTX 3090 24GB",
+      "cpu_per_gpu": 16,
+      "memory_per_gpu": 92,
+      "disk_per_gpu": 1288,
+      "available_deploy": true,
+      "min_root_fs": 10,
+      "max_root_fs": 109,
+      "min_local_storage": 1,
+      "max_local_storage": 1288,
+      "regions": [
+        "US-CA-03 (California)",
+        "AF-ZA-01 (South Africa)",
+        "AS-AE-01 (UAE)",
+        "AS-IN-01 (India)",
+        "cn-south-1",
+        "CN-HK-01 (Hong Kong)",
+        "EU-GER-02 (Germany)",
+        "EU-GB-01 (United Kingdom)",
+        "JP-TYO-02 (Japan)",
+        "OC-AU-01 (Australia)",
+        "SA-BR-01 (Brazil)",
+        "US-CA-06 (California)"
+      ],
+      "price": 21000,
+      "monthly_price": [
+        {
+          "price": 13608000,
+          "month": 1
+        },
+        {
+          "price": 13608000,
+          "month": 2
+        },
+        {
+          "price": 13608000,
+          "month": 3
+        },
+        {
+          "price": 13608000,
+          "month": 4
+        },
+        {
+          "price": 13608000,
+          "month": 5
+        },
+        {
+          "price": 12852000,
+          "month": 6
+        },
+        {
+          "price": 12852000,
+          "month": 7
+        },
+        {
+          "price": 12852000,
+          "month": 8
+        },
+        {
+          "price": 12852000,
+          "month": 9
+        },
+        {
+          "price": 12852000,
+          "month": 10
+        },
+        {
+          "price": 12852000,
+          "month": 11
+        },
+        {
+          "price": 11340000,
+          "month": 12
+        }
+      ],
+      "billing_methods": [
+        "onDemand",
+        "monthly"
+      ],
+      "spot_price": "0"
+    },
+    {
+      "id": "4090.16c125g",
+      "name": "RTX 4090 24GB",
+      "cpu_per_gpu": 16,
+      "memory_per_gpu": 125,
+      "disk_per_gpu": 2673,
+      "available_deploy": true,
+      "min_root_fs": 10,
+      "max_root_fs": 3420,
+      "min_local_storage": 1,
+      "max_local_storage": 2673,
+      "regions": [
+        "AS-SGP-01 (Singapore)",
+        "EU-GER-01 (Germany)",
+        "AS-SGP-02 (Singapore)",
+        "US-CA-06 (California)",
+        "AF-ZA-01 (South Africa)",
+        "AS-AE-01 (UAE)",
+        "AS-IN-01 (India)",
+        "CN-HK-01 (Hong Kong)",
+        "cn-south-1",
+        "EU-GER-02 (Germany)",
+        "JP-TYO-02 (Japan)",
+        "OC-AU-01 (Australia)",
+        "SA-BR-01 (Brazil)"
+      ],
+      "price": 35000,
+      "monthly_price": [
+        {
+          "price": 22680000,
+          "month": 1
+        },
+        {
+          "price": 22680000,
+          "month": 2
+        },
+        {
+          "price": 22680000,
+          "month": 3
+        },
+        {
+          "price": 22680000,
+          "month": 4
+        },
+        {
+          "price": 22680000,
+          "month": 5
+        },
+        {
+          "price": 20664000,
+          "month": 6
+        },
+        {
+          "price": 20664000,
+          "month": 7
+        },
+        {
+          "price": 20664000,
+          "month": 8
+        },
+        {
+          "price": 20664000,
+          "month": 9
+        },
+        {
+          "price": 20664000,
+          "month": 10
+        },
+        {
+          "price": 20664000,
+          "month": 11
+        },
+        {
+          "price": 18900000,
+          "month": 12
+        }
+      ],
+      "billing_methods": [
+        "onDemand",
+        "monthly"
+      ],
+      "spot_price": "0"
+    },
+    {
+      "id": "4090.16c125g.nas",
+      "name": "RTX 4090 24GB",
+      "cpu_per_gpu": 16,
+      "memory_per_gpu": 125,
+      "disk_per_gpu": 1788,
+      "available_deploy": true,
+      "min_root_fs": 10,
+      "max_root_fs": 567,
+      "min_local_storage": 1,
+      "max_local_storage": 1788,
+      "regions": [
+        "US-01 (Dallas)"
+      ],
+      "price": 67000,
+      "monthly_price": [
+        {
+          "price": 43416000,
+          "month": 1
+        },
+        {
+          "price": 43416000,
+          "month": 2
+        },
+        {
+          "price": 43416000,
+          "month": 3
+        },
+        {
+          "price": 43416000,
+          "month": 4
+        },
+        {
+          "price": 43416000,
+          "month": 5
+        },
+        {
+          "price": 41004000,
+          "month": 6
+        },
+        {
+          "price": 41004000,
+          "month": 7
+        },
+        {
+          "price": 41004000,
+          "month": 8
+        },
+        {
+          "price": 41004000,
+          "month": 9
+        },
+        {
+          "price": 41004000,
+          "month": 10
+        },
+        {
+          "price": 41004000,
+          "month": 11
+        },
+        {
+          "price": 41004000,
+          "month": 12
+        }
+      ],
+      "billing_methods": [
+        "onDemand",
+        "monthly"
+      ],
+      "spot_price": "0"
+    },
+    {
+      "id": "4090.16c62g",
+      "name": "RTX 4090 24GB",
+      "cpu_per_gpu": 16,
+      "memory_per_gpu": 62,
+      "disk_per_gpu": 2673,
+      "available_deploy": true,
+      "min_root_fs": 10,
+      "max_root_fs": 3420,
+      "min_local_storage": 1,
+      "max_local_storage": 2673,
+      "regions": [
+        "EU-GER-02 (Germany)",
+        "JP-TYO-02 (Japan)",
+        "US-CA-06 (California)",
+        "US-CA-NAS-01 (California)",
+        "AF-ZA-01 (South Africa)",
+        "AS-AE-01 (UAE)",
+        "AS-IN-01 (India)",
+        "AS-SGP-02 (Singapore)",
+        "CN-HK-01 (Hong Kong)",
+        "cn-south-1",
+        "SA-BR-01 (Brazil)",
+        "OC-AU-01 (Australia)"
+      ],
+      "price": 35000,
+      "monthly_price": [
+        {
+          "price": 22680000,
+          "month": 1
+        },
+        {
+          "price": 22680000,
+          "month": 2
+        },
+        {
+          "price": 22680000,
+          "month": 3
+        },
+        {
+          "price": 22680000,
+          "month": 4
+        },
+        {
+          "price": 22680000,
+          "month": 5
+        },
+        {
+          "price": 20664000,
+          "month": 6
+        },
+        {
+          "price": 20664000,
+          "month": 7
+        },
+        {
+          "price": 20664000,
+          "month": 8
+        },
+        {
+          "price": 20664000,
+          "month": 9
+        },
+        {
+          "price": 20664000,
+          "month": 10
+        },
+        {
+          "price": 20664000,
+          "month": 11
+        },
+        {
+          "price": 18900000,
+          "month": 12
+        }
+      ],
+      "billing_methods": [
+        "onDemand",
+        "spot",
+        "monthly"
+      ],
+      "spot_price": "18000"
+    },
+    {
+      "id": "4090.16c62g.os",
+      "name": "RTX 4090 24GB",
+      "cpu_per_gpu": 16,
+      "memory_per_gpu": 62,
+      "disk_per_gpu": 3178,
+      "available_deploy": true,
+      "min_root_fs": 10,
+      "max_root_fs": 1825,
+      "min_local_storage": 1,
+      "max_local_storage": 3178,
+      "regions": [
+        "AS-AE-01 (UAE)",
+        "AS-IN-01 (India)",
+        "EU-GB-01 (United Kingdom)",
+        "SA-BR-01 (Brazil)",
+        "AS-SGP-02 (Singapore)",
+        "EU-GER-02 (Germany)",
+        "JP-TYO-02 (Japan)",
+        "US-CA-06 (California)",
+        "CN-HK-01 (Hong Kong)",
+        "AF-ZA-01 (South Africa)",
+        "OC-AU-01 (Australia)"
+      ],
+      "price": 35000,
+      "monthly_price": [
+        {
+          "price": 22680000,
+          "month": 1
+        },
+        {
+          "price": 22680000,
+          "month": 2
+        },
+        {
+          "price": 22680000,
+          "month": 3
+        },
+        {
+          "price": 22680000,
+          "month": 4
+        },
+        {
+          "price": 22680000,
+          "month": 5
+        },
+        {
+          "price": 20664000,
+          "month": 6
+        },
+        {
+          "price": 20664000,
+          "month": 7
+        },
+        {
+          "price": 20664000,
+          "month": 8
+        },
+        {
+          "price": 20664000,
+          "month": 9
+        },
+        {
+          "price": 20664000,
+          "month": 10
+        },
+        {
+          "price": 20664000,
+          "month": 11
+        },
+        {
+          "price": 18900000,
+          "month": 12
+        }
+      ],
+      "billing_methods": [
+        "onDemand",
+        "spot",
+        "monthly"
+      ],
+      "spot_price": "18000"
+    },
+    {
+      "id": "4090.16c96g.v2",
+      "name": "RTX 4090 24GB",
+      "cpu_per_gpu": 16,
+      "memory_per_gpu": 96,
+      "disk_per_gpu": 3678,
+      "available_deploy": true,
+      "min_root_fs": 10,
+      "max_root_fs": 1335,
+      "min_local_storage": 1,
+      "max_local_storage": 3678,
+      "regions": [
+        "AS-AE-01 (UAE)",
+        "AS-IN-01 (India)",
+        "AS-SGP-02 (Singapore)",
+        "EU-GB-01 (United Kingdom)",
+        "SA-BR-01 (Brazil)",
+        "EU-GER-02 (Germany)",
+        "JP-TYO-02 (Japan)",
+        "OC-AU-01 (Australia)",
+        "AF-ZA-01 (South Africa)",
+        "US-CA-06 (California)",
+        "CN-HK-01 (Hong Kong)",
+        "US-CA-NAS-04 (California)",
+        "US-CA-NAS-02 (California)"
+      ],
+      "price": 35000,
+      "monthly_price": [
+        {
+          "price": 22680000,
+          "month": 1
+        },
+        {
+          "price": 22680000,
+          "month": 2
+        },
+        {
+          "price": 22680000,
+          "month": 3
+        },
+        {
+          "price": 22680000,
+          "month": 4
+        },
+        {
+          "price": 22680000,
+          "month": 5
+        },
+        {
+          "price": 20664000,
+          "month": 6
+        },
+        {
+          "price": 20664000,
+          "month": 7
+        },
+        {
+          "price": 20664000,
+          "month": 8
+        },
+        {
+          "price": 20664000,
+          "month": 9
+        },
+        {
+          "price": 20664000,
+          "month": 10
+        },
+        {
+          "price": 20664000,
+          "month": 11
+        },
+        {
+          "price": 18900000,
+          "month": 12
+        }
+      ],
+      "billing_methods": [
+        "onDemand",
+        "spot",
+        "monthly"
+      ],
+      "spot_price": "18000"
+    },
+    {
+      "id": "4090.hd.16c62g",
+      "name": "RTX 4090 24GB",
+      "cpu_per_gpu": 16,
+      "memory_per_gpu": 62,
+      "disk_per_gpu": 3678,
+      "available_deploy": true,
+      "min_root_fs": 10,
+      "max_root_fs": 1335,
+      "min_local_storage": 1,
+      "max_local_storage": 3678,
+      "regions": [
+        "US-CA-04 (California)",
+        "US-CA-02 (California)",
+        "US-CA-03 (California)",
+        "US-CA-NAS-01 (California)",
+        "JP-TYO-01 (Japan)",
+        "EU-GER-01 (Germany)",
+        "AS-SGP-01 (Singapore)",
+        "AF-ZA-01 (South Africa)",
+        "AS-AE-01 (UAE)",
+        "AS-IN-01 (India)",
+        "AS-SGP-02 (Singapore)",
+        "US-CA-06 (California)",
+        "US-CA-07 (California)",
+        "US-CA-NAS-05 (California)",
+        "US-CA-NAS-02 (California)",
+        "US-CA-NAS-03 (California)",
+        "US-CA-NAS-04 (California)",
+        "US-CA-NAS-A (California)"
+      ],
+      "price": 28000,
+      "monthly_price": [],
+      "billing_methods": [
+        "onDemand"
+      ],
+      "spot_price": "0"
+    },
+    {
+      "id": "4090.hf.20c58g",
+      "name": "RTX 4090 24GB (High frequency)",
+      "cpu_per_gpu": 20,
+      "memory_per_gpu": 58,
+      "disk_per_gpu": 6144,
+      "available_deploy": false,
+      "min_root_fs": 10,
+      "max_root_fs": 6144,
+      "min_local_storage": 1,
+      "max_local_storage": 6144,
+      "regions": [
+        "US-CA-06 (California)"
+      ],
+      "price": 69000,
+      "monthly_price": [
+        {
+          "price": 42228000,
+          "month": 1
+        },
+        {
+          "price": 42228000,
+          "month": 2
+        },
+        {
+          "price": 42228000,
+          "month": 3
+        },
+        {
+          "price": 42228000,
+          "month": 4
+        },
+        {
+          "price": 42228000,
+          "month": 5
+        },
+        {
+          "price": 39744000,
+          "month": 6
+        },
+        {
+          "price": 39744000,
+          "month": 7
+        },
+        {
+          "price": 39744000,
+          "month": 8
+        },
+        {
+          "price": 39744000,
+          "month": 9
+        },
+        {
+          "price": 39744000,
+          "month": 10
+        },
+        {
+          "price": 39744000,
+          "month": 11
+        },
+        {
+          "price": 37260000,
+          "month": 12
+        }
+      ],
+      "billing_methods": [
+        "onDemand",
+        "monthly"
+      ],
+      "spot_price": "0"
+    },
+    {
+      "id": "4090.hf.24c58g",
+      "name": "RTX 4090 24GB (High frequency)",
+      "cpu_per_gpu": 24,
+      "memory_per_gpu": 58,
+      "disk_per_gpu": 0,
+      "available_deploy": true,
+      "min_root_fs": 10,
+      "max_root_fs": 852,
+      "min_local_storage": 1,
+      "max_local_storage": 0,
+      "regions": [
+        "US-CA-06 (California)"
+      ],
+      "price": 69000,
+      "monthly_price": [
+        {
+          "price": 42228000,
+          "month": 1
+        },
+        {
+          "price": 42228000,
+          "month": 2
+        },
+        {
+          "price": 42228000,
+          "month": 3
+        },
+        {
+          "price": 42228000,
+          "month": 4
+        },
+        {
+          "price": 42228000,
+          "month": 5
+        },
+        {
+          "price": 39744000,
+          "month": 6
+        },
+        {
+          "price": 39744000,
+          "month": 7
+        },
+        {
+          "price": 39744000,
+          "month": 8
+        },
+        {
+          "price": 39744000,
+          "month": 9
+        },
+        {
+          "price": 39744000,
+          "month": 10
+        },
+        {
+          "price": 39744000,
+          "month": 11
+        },
+        {
+          "price": 37260000,
+          "month": 12
+        }
+      ],
+      "billing_methods": [
+        "onDemand",
+        "spot",
+        "monthly"
+      ],
+      "spot_price": "35000"
+    },
+    {
+      "id": "5090.16c120g",
+      "name": "RTX 5090 32GB",
+      "cpu_per_gpu": 16,
+      "memory_per_gpu": 120,
+      "disk_per_gpu": 6144,
+      "available_deploy": false,
+      "min_root_fs": 10,
+      "max_root_fs": 6144,
+      "min_local_storage": 1,
+      "max_local_storage": 6144,
+      "regions": [
+        "AS-AE-01 (UAE)",
+        "AS-IN-01 (India)",
+        "AS-SGP-02 (Singapore)",
+        "CN-HK-01 (Hong Kong)",
+        "EU-GER-02 (Germany)",
+        "JP-TYO-02 (Japan)",
+        "EU-GB-01 (United Kingdom)",
+        "SA-BR-01 (Brazil)",
+        "US-CA-06 (California)",
+        "US-CA-NAS-A (California)"
+      ],
+      "price": 50000,
+      "monthly_price": [
+        {
+          "price": 30240000,
+          "month": 1
+        },
+        {
+          "price": 30240000,
+          "month": 2
+        },
+        {
+          "price": 30240000,
+          "month": 3
+        },
+        {
+          "price": 30240000,
+          "month": 4
+        },
+        {
+          "price": 30240000,
+          "month": 5
+        },
+        {
+          "price": 26640000,
+          "month": 6
+        },
+        {
+          "price": 26640000,
+          "month": 7
+        },
+        {
+          "price": 26640000,
+          "month": 8
+        },
+        {
+          "price": 26640000,
+          "month": 9
+        },
+        {
+          "price": 26640000,
+          "month": 10
+        },
+        {
+          "price": 26640000,
+          "month": 11
+        },
+        {
+          "price": 25200000,
+          "month": 12
+        }
+      ],
+      "billing_methods": [
+        "onDemand",
+        "spot",
+        "monthly"
+      ],
+      "spot_price": "25000"
+    },
+    {
+      "id": "5090.16c96g",
+      "name": "RTX 5090 32GB",
+      "cpu_per_gpu": 16,
+      "memory_per_gpu": 96,
+      "disk_per_gpu": 1430,
+      "available_deploy": true,
+      "min_root_fs": 10,
+      "max_root_fs": 4042,
+      "min_local_storage": 1,
+      "max_local_storage": 1430,
+      "regions": [
+        "AS-SGP-01 (Singapore)",
+        "AF-ZA-01 (South Africa)",
+        "AS-AE-01 (UAE)",
+        "AS-IN-01 (India)",
+        "EU-GER-02 (Germany)",
+        "JP-TYO-02 (Japan)",
+        "SA-BR-01 (Brazil)",
+        "US-CA-06 (California)",
+        "cn-east-nas-a",
+        "US-CA-NAS-03 (California)",
+        "US-CA-NAS-02 (California)",
+        "CN-HK-01 (Hong Kong)",
+        "AS-SGP-02 (Singapore)"
+      ],
+      "price": 50000,
+      "monthly_price": [
+        {
+          "price": 30240000,
+          "month": 1
+        },
+        {
+          "price": 30240000,
+          "month": 2
+        },
+        {
+          "price": 30240000,
+          "month": 3
+        },
+        {
+          "price": 30240000,
+          "month": 4
+        },
+        {
+          "price": 30240000,
+          "month": 5
+        },
+        {
+          "price": 26640000,
+          "month": 6
+        },
+        {
+          "price": 26640000,
+          "month": 7
+        },
+        {
+          "price": 26640000,
+          "month": 8
+        },
+        {
+          "price": 26640000,
+          "month": 9
+        },
+        {
+          "price": 26640000,
+          "month": 10
+        },
+        {
+          "price": 26640000,
+          "month": 11
+        },
+        {
+          "price": 25200000,
+          "month": 12
+        }
+      ],
+      "billing_methods": [
+        "onDemand",
+        "spot",
+        "monthly"
+      ],
+      "spot_price": "25000"
+    },
+    {
+      "id": "5090.16c96g.os",
+      "name": "RTX 5090 32GB",
+      "cpu_per_gpu": 16,
+      "memory_per_gpu": 96,
+      "disk_per_gpu": 715,
+      "available_deploy": true,
+      "min_root_fs": 10,
+      "max_root_fs": 1346,
+      "min_local_storage": 1,
+      "max_local_storage": 715,
+      "regions": [
+        "US-Dallas-NAS-02 (Dallas)"
+      ],
+      "price": 63000,
+      "monthly_price": [
+        {
+          "price": 45360000,
+          "month": 1
+        },
+        {
+          "price": 45360000,
+          "month": 2
+        },
+        {
+          "price": 45360000,
+          "month": 3
+        },
+        {
+          "price": 45360000,
+          "month": 4
+        },
+        {
+          "price": 45360000,
+          "month": 5
+        },
+        {
+          "price": 45360000,
+          "month": 6
+        },
+        {
+          "price": 45360000,
+          "month": 7
+        },
+        {
+          "price": 45360000,
+          "month": 8
+        },
+        {
+          "price": 45360000,
+          "month": 9
+        },
+        {
+          "price": 45360000,
+          "month": 10
+        },
+        {
+          "price": 45360000,
+          "month": 11
+        },
+        {
+          "price": 45360000,
+          "month": 12
+        }
+      ],
+      "billing_methods": [
+        "onDemand",
+        "spot",
+        "monthly"
+      ],
+      "spot_price": "32000"
+    },
+    {
+      "id": "5090.24c120g",
+      "name": "RTX 5090 32GB",
+      "cpu_per_gpu": 24,
+      "memory_per_gpu": 120,
+      "disk_per_gpu": 1430,
+      "available_deploy": true,
+      "min_root_fs": 10,
+      "max_root_fs": 2892,
+      "min_local_storage": 1,
+      "max_local_storage": 1430,
+      "regions": [
+        "US-CA-NAS-05 (California)",
+        "cn-north-1",
+        "US-CA-06 (California)"
+      ],
+      "price": 50000,
+      "monthly_price": [
+        {
+          "price": 30240000,
+          "month": 1
+        },
+        {
+          "price": 30240000,
+          "month": 2
+        },
+        {
+          "price": 30240000,
+          "month": 3
+        },
+        {
+          "price": 30240000,
+          "month": 4
+        },
+        {
+          "price": 30240000,
+          "month": 5
+        },
+        {
+          "price": 26640000,
+          "month": 6
+        },
+        {
+          "price": 26640000,
+          "month": 7
+        },
+        {
+          "price": 26640000,
+          "month": 8
+        },
+        {
+          "price": 26640000,
+          "month": 9
+        },
+        {
+          "price": 26640000,
+          "month": 10
+        },
+        {
+          "price": 26640000,
+          "month": 11
+        },
+        {
+          "price": 25200000,
+          "month": 12
+        }
+      ],
+      "billing_methods": [
+        "onDemand",
+        "spot",
+        "monthly"
+      ],
+      "spot_price": "25000"
+    },
+    {
+      "id": "5090.hd.16c96g",
+      "name": "RTX 5090 32GB",
+      "cpu_per_gpu": 16,
+      "memory_per_gpu": 96,
+      "disk_per_gpu": 1430,
+      "available_deploy": true,
+      "min_root_fs": 10,
+      "max_root_fs": 4042,
+      "min_local_storage": 1,
+      "max_local_storage": 1430,
+      "regions": [
+        "AS-SGP-01 (Singapore)",
+        "US-CA-04 (California)",
+        "US-CA-NAS-01 (California)",
+        "JP-TYO-01 (Japan)",
+        "EU-GER-01 (Germany)",
+        "US-CA-02 (California)",
+        "US-CA-03 (California)",
+        "AF-ZA-01 (South Africa)",
+        "AS-AE-01 (UAE)",
+        "AS-SGP-02 (Singapore)",
+        "AS-IN-01 (India)",
+        "US-CA-NAS-05 (California)",
+        "US-CA-06 (California)",
+        "US-CA-07 (California)",
+        "US-CA-NAS-02 (California)",
+        "US-CA-NAS-03 (California)",
+        "US-CA-NAS-04 (California)",
+        "US-CA-NAS-A (California)"
+      ],
+      "price": 40000,
+      "monthly_price": [],
+      "billing_methods": [
+        "onDemand"
+      ],
+      "spot_price": "0"
+    },
+    {
+      "id": "5090.hf.24c58g",
+      "name": "RTX 5090 32GB (High frequency)",
+      "cpu_per_gpu": 24,
+      "memory_per_gpu": 58,
+      "disk_per_gpu": 0,
+      "available_deploy": true,
+      "min_root_fs": 10,
+      "max_root_fs": 852,
+      "min_local_storage": 1,
+      "max_local_storage": 0,
+      "regions": [
+        "AF-ZA-01 (South Africa)",
+        "AS-AE-01 (UAE)",
+        "AS-IN-01 (India)",
+        "AS-SGP-02 (Singapore)",
+        "EU-GER-02 (Germany)",
+        "EU-GB-01 (United Kingdom)",
+        "JP-TYO-02 (Japan)",
+        "OC-AU-01 (Australia)",
+        "SA-BR-01 (Brazil)",
+        "US-CA-06 (California)",
+        "CN-HK-01 (Hong Kong)"
+      ],
+      "price": 72000,
+      "monthly_price": [
+        {
+          "price": 43200000,
+          "month": 1
+        },
+        {
+          "price": 43200000,
+          "month": 2
+        },
+        {
+          "price": 43200000,
+          "month": 3
+        },
+        {
+          "price": 43200000,
+          "month": 4
+        },
+        {
+          "price": 43200000,
+          "month": 5
+        },
+        {
+          "price": 36000000,
+          "month": 6
+        },
+        {
+          "price": 36000000,
+          "month": 7
+        },
+        {
+          "price": 36000000,
+          "month": 8
+        },
+        {
+          "price": 36000000,
+          "month": 9
+        },
+        {
+          "price": 36000000,
+          "month": 10
+        },
+        {
+          "price": 36000000,
+          "month": 11
+        },
+        {
+          "price": 28080000,
+          "month": 12
+        }
+      ],
+      "billing_methods": [
+        "onDemand",
+        "monthly"
+      ],
+      "spot_price": "0"
+    },
+    {
+      "id": "6000ada.22c125g",
+      "name": "RTX 6000 Ada 48GB",
+      "cpu_per_gpu": 22,
+      "memory_per_gpu": 125,
+      "disk_per_gpu": 2033,
+      "available_deploy": true,
+      "min_root_fs": 10,
+      "max_root_fs": 4139,
+      "min_local_storage": 1,
+      "max_local_storage": 2033,
+      "regions": [
+        "US-CA-NAS-01 (California)"
+      ],
+      "price": 70000,
+      "monthly_price": [
+        {
+          "price": 45360000,
+          "month": 1
+        },
+        {
+          "price": 45360000,
+          "month": 2
+        },
+        {
+          "price": 45360000,
+          "month": 3
+        },
+        {
+          "price": 45360000,
+          "month": 4
+        },
+        {
+          "price": 45360000,
+          "month": 5
+        },
+        {
+          "price": 42840000,
+          "month": 6
+        },
+        {
+          "price": 42840000,
+          "month": 7
+        },
+        {
+          "price": 42840000,
+          "month": 8
+        },
+        {
+          "price": 42840000,
+          "month": 9
+        },
+        {
+          "price": 42840000,
+          "month": 10
+        },
+        {
+          "price": 42840000,
+          "month": 11
+        },
+        {
+          "price": 40320000,
+          "month": 12
+        }
+      ],
+      "billing_methods": [
+        "onDemand",
+        "monthly"
+      ],
+      "spot_price": "0"
+    },
+    {
+      "id": "A100-80GB.14c240g",
+      "name": "A100 SXM 80GB",
+      "cpu_per_gpu": 14,
+      "memory_per_gpu": 240,
+      "disk_per_gpu": 0,
+      "available_deploy": true,
+      "min_root_fs": 10,
+      "max_root_fs": 3839,
+      "min_local_storage": 1,
+      "max_local_storage": 0,
+      "regions": [
+        "AS-AE-01 (UAE)",
+        "AS-IN-01 (India)",
+        "AS-SGP-02 (Singapore)",
+        "EU-GB-01 (United Kingdom)",
+        "EU-GER-02 (Germany)",
+        "cn-south-1",
+        "EU-IS-01 (Iceland)",
+        "JP-TYO-02 (Japan)",
+        "OC-AU-01 (Australia)",
+        "SA-BR-01 (Brazil)",
+        "US-CA-06 (California)"
+      ],
+      "price": 160000,
+      "monthly_price": [
+        {
+          "price": 103680000,
+          "month": 1
+        },
+        {
+          "price": 103680000,
+          "month": 2
+        },
+        {
+          "price": 103680000,
+          "month": 3
+        },
+        {
+          "price": 103680000,
+          "month": 4
+        },
+        {
+          "price": 103680000,
+          "month": 5
+        },
+        {
+          "price": 94464000,
+          "month": 6
+        },
+        {
+          "price": 94464000,
+          "month": 7
+        },
+        {
+          "price": 94464000,
+          "month": 8
+        },
+        {
+          "price": 94464000,
+          "month": 9
+        },
+        {
+          "price": 94464000,
+          "month": 10
+        },
+        {
+          "price": 94464000,
+          "month": 11
+        },
+        {
+          "price": 87552000,
+          "month": 12
+        }
+      ],
+      "billing_methods": [
+        "onDemand",
+        "spot",
+        "monthly"
+      ],
+      "spot_price": "80000"
+    },
+    {
+      "id": "H100-80GB.16c128g",
+      "name": "H100 SXM 80GB",
+      "cpu_per_gpu": 16,
+      "memory_per_gpu": 128,
+      "disk_per_gpu": 6115,
+      "available_deploy": true,
+      "min_root_fs": 10,
+      "max_root_fs": 1402,
+      "min_local_storage": 1,
+      "max_local_storage": 6115,
+      "regions": [
+        "EU-GER-02 (Germany)",
+        "JP-TYO-02 (Japan)",
+        "US-CA-06 (California)",
+        "AF-ZA-01 (South Africa)",
+        "AS-AE-01 (UAE)",
+        "AS-IN-01 (India)",
+        "AS-SGP-02 (Singapore)",
+        "cn-south-1",
+        "US-CA-07 (California)",
+        "EU-IS-01 (Iceland)"
+      ],
+      "price": 145000,
+      "monthly_price": [
+        {
+          "price": 97200000,
+          "month": 1
+        },
+        {
+          "price": 97200000,
+          "month": 2
+        },
+        {
+          "price": 97200000,
+          "month": 3
+        },
+        {
+          "price": 97200000,
+          "month": 4
+        },
+        {
+          "price": 97200000,
+          "month": 5
+        },
+        {
+          "price": 86400000,
+          "month": 6
+        },
+        {
+          "price": 86400000,
+          "month": 7
+        },
+        {
+          "price": 86400000,
+          "month": 8
+        },
+        {
+          "price": 86400000,
+          "month": 9
+        },
+        {
+          "price": 86400000,
+          "month": 10
+        },
+        {
+          "price": 86400000,
+          "month": 11
+        },
+        {
+          "price": 86400000,
+          "month": 12
+        }
+      ],
+      "billing_methods": [
+        "onDemand",
+        "spot",
+        "monthly"
+      ],
+      "spot_price": "73000"
+    },
+    {
+      "id": "H100-80GB.22c150g",
+      "name": "H100 SXM 80GB",
+      "cpu_per_gpu": 22,
+      "memory_per_gpu": 150,
+      "disk_per_gpu": 6115,
+      "available_deploy": true,
+      "min_root_fs": 10,
+      "max_root_fs": 1402,
+      "min_local_storage": 1,
+      "max_local_storage": 6115,
+      "regions": [
+        "AS-AE-01 (UAE)",
+        "AS-IN-01 (India)",
+        "EU-GB-01 (United Kingdom)",
+        "SA-BR-01 (Brazil)",
+        "US-CA-06 (California)",
+        "AF-ZA-01 (South Africa)",
+        "OC-AU-01 (Australia)",
+        "CN-HK-01 (Hong Kong)",
+        "cn-south-1",
+        "AS-SGP-02 (Singapore)",
+        "EU-GER-02 (Germany)",
+        "JP-TYO-02 (Japan)"
+      ],
+      "price": 145000,
+      "monthly_price": [
+        {
+          "price": 97200000,
+          "month": 1
+        },
+        {
+          "price": 97200000,
+          "month": 2
+        },
+        {
+          "price": 97200000,
+          "month": 3
+        },
+        {
+          "price": 97200000,
+          "month": 4
+        },
+        {
+          "price": 97200000,
+          "month": 5
+        },
+        {
+          "price": 86400000,
+          "month": 6
+        },
+        {
+          "price": 86400000,
+          "month": 7
+        },
+        {
+          "price": 86400000,
+          "month": 8
+        },
+        {
+          "price": 86400000,
+          "month": 9
+        },
+        {
+          "price": 86400000,
+          "month": 10
+        },
+        {
+          "price": 86400000,
+          "month": 11
+        },
+        {
+          "price": 86400000,
+          "month": 12
+        }
+      ],
+      "billing_methods": [
+        "onDemand",
+        "spot",
+        "monthly"
+      ],
+      "spot_price": "73000"
+    },
+    {
+      "id": "L40S.28c125g",
+      "name": "L40S 48GB",
+      "cpu_per_gpu": 28,
+      "memory_per_gpu": 125,
+      "disk_per_gpu": 6144,
+      "available_deploy": true,
+      "min_root_fs": 10,
+      "max_root_fs": 2870,
+      "min_local_storage": 1,
+      "max_local_storage": 6144,
+      "regions": [
+        "AS-AE-01 (UAE)",
+        "AS-IN-01 (India)",
+        "EU-GB-01 (United Kingdom)",
+        "SA-BR-01 (Brazil)",
+        "AS-SGP-02 (Singapore)",
+        "US-CA-06 (California)",
+        "CN-HK-01 (Hong Kong)",
+        "AF-ZA-01 (South Africa)",
+        "cn-south-1",
+        "EU-GER-02 (Germany)",
+        "JP-TYO-02 (Japan)",
+        "OC-AU-01 (Australia)"
+      ],
+      "price": 55000,
+      "monthly_price": [
+        {
+          "price": 37500000,
+          "month": 1
+        },
+        {
+          "price": 37500000,
+          "month": 2
+        },
+        {
+          "price": 37500000,
+          "month": 3
+        },
+        {
+          "price": 37500000,
+          "month": 4
+        },
+        {
+          "price": 37500000,
+          "month": 5
+        },
+        {
+          "price": 36000000,
+          "month": 6
+        },
+        {
+          "price": 36000000,
+          "month": 7
+        },
+        {
+          "price": 36000000,
+          "month": 8
+        },
+        {
+          "price": 36000000,
+          "month": 9
+        },
+        {
+          "price": 36000000,
+          "month": 10
+        },
+        {
+          "price": 36000000,
+          "month": 11
+        },
+        {
+          "price": 34560000,
+          "month": 12
+        }
+      ],
+      "billing_methods": [
+        "onDemand",
+        "monthly"
+      ],
+      "spot_price": "0"
+    }
+  ]
+}

@@ -17,7 +17,10 @@ dependencies = [
     "opentelemetry-sdk>=1.38.0",
     "pydantic>=2.0.0",
     "pydantic-yaml>=1.6.0",
+    "python-dotenv>=1.0.0",
     "pyyaml>=6.0.0",
+    # Novita SDK from GitHub (team members: just run 'uv sync')
+    "novita-sdk-python @ git+ssh://git@github.com/php-workx/novita-sdk-python.git@feat/custom-impl",
 ]
 
 [project.scripts]
@@ -43,6 +46,9 @@ packages = ["src/gpuport_collectors"]
 
 [tool.hatch.build.targets.wheel.force-include]
 "src/gpuport_collectors/py.typed" = "gpuport_collectors/py.typed"
+
+[tool.hatch.metadata]
+allow-direct-references = true
 
 # Dependency groups for uv
 [dependency-groups]
@@ -158,6 +164,18 @@ module = "httpx"
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
+module = "dotenv"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "novita"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "novita.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
 module = "pydantic_yaml"
 ignore_missing_imports = true
 
@@ -168,15 +186,27 @@ testpaths = ["tests"]
 python_files = ["test_*.py", "*_test.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
+
+# Test markers for categorization
+markers = [
+    "unit: Unit tests (fast, no network, uses mocks)",
+    "integration: Integration tests (slow, requires network/APIs)",
+    "requires_api: Test requires valid API keys to be set",
+    "network: Test requires network access",
+]
+
+# Default options - run unit tests by default (fast CI/CD)
 addopts = [
     "-ra",
     "--strict-markers",
     "--strict-config",
+    "-m", "not integration",  # Skip integration tests by default
     "--cov=gpuport_collectors",
     "--cov-report=term-missing",
     "--cov-report=html",
     "--cov-report=xml",
 ]
+
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
 

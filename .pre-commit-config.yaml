@@ -40,7 +40,7 @@ repos:
       - id: pytest-fast
         name: pytest (fast)
         description: Run unit tests (fast mode, no coverage)
-        entry: bash -c 'uv run python -m pytest tests/ -v --tb=short -x --override-ini="addopts=" || exit 1'
+        entry: bash -c 'uv run python -m pytest tests/unit/ -v --tb=short -x --override-ini="addopts=" || exit 1'
         language: system
         pass_filenames: false
         always_run: true

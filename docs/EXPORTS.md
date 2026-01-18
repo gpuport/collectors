@@ -90,6 +90,62 @@ pipelines:
         filename_pattern: "expensive_{date}.csv"
 ```
 
+## Field Mapping
+
+All GPUInstance model fields are exportable. The pipeline configuration controls:
+- Which fields to include
+- What name to use for each field
+
+### Available Fields
+
+**Instance Details:**
+- `provider` - Provider name (e.g., "RunPod", "Lambda Labs")
+- `instance_type` - Instance identifier
+- `region` - Region/datacenter ID
+- `availability_zone` - Specific availability zone (optional)
+
+**GPU/Accelerator:**
+- `accelerator_name` - GPU model (e.g., "H100", "A100")
+- `accelerator_count` - Number of GPUs
+- `accelerator_mem_gib` - GPU memory in GiB
+- `gpu_info` - Human-readable GPU description
+
+**Compute Resources:**
+- `v_cpus` - Number of vCPUs
+- `memory_gib` - System RAM in GiB
+- `arch` - CPU architecture (e.g., "x86_64", "arm64")
+
+**Pricing & Availability:**
+- `price` - On-demand price (USD/hour)
+- `spot_price` - Spot instance price (USD/hour, optional)
+- `availability` - Availability status ("High", "Medium", "Low", "Not Available")
+- `quantity` - Number of available instances
+
+**Metadata:**
+- `collected_at` - Unix timestamp (seconds) when data was collected
+- `raw_data` - Provider-specific raw response (can be large)
+
+### Example: Custom Field Mapping
+
+```yaml
+transformer:
+  format: json
+  fields:
+    # Rename fields to match your API schema
+    provider: cloud_provider
+    instance_type: instance_id
+    accelerator_name: gpu_model
+    accelerator_count: num_gpus
+    accelerator_mem_gib: gpu_memory_gb
+    region: datacenter
+    price: hourly_price
+    spot_price: spot_hourly_price
+    availability: status
+    v_cpus: cpu_cores
+    memory_gib: ram_gb
+    collected_at: timestamp
+```
+
 ## Filters
 
 ### Operators
@@ -267,6 +323,7 @@ outputs:
     headers:
       Authorization: "Bearer ${API_TOKEN}"
       Content-Type: "application/json"
+      User-Agent: "gpuport-collectors/1.0"
 
     # Batching
     batch_size: 100               # Instances per request (default: all)
@@ -284,6 +341,25 @@ outputs:
     client_key: null              # Client key path
 
     timeout: 30                   # Request timeout (seconds)
+```
+
+Batch Payload Format: The exporter sends instances as a JSON array:
+
+```json
+[
+  {
+    "provider": "RunPod",
+    "gpu_name": "H100",
+    "price_usd_per_hour": 25.50,
+    "timestamp": 1699999999
+  },
+  {
+    "provider": "Lambda Labs",
+    "gpu_name": "A100",
+    "price_usd_per_hour": 1.29,
+    "timestamp": 1699999999
+  }
+]
 ```
 
 ## CLI Usage
@@ -381,52 +457,15 @@ pipelines:
           access_key_env: AWS_ACCESS_KEY_ID
           secret_key_env: AWS_SECRET_ACCESS_KEY
 
+      - type: https
+        url: "${EXPORT_URL}"
+        method: POST
+        batch_size: 100
+        retry_attempts: 3
+
       - type: local
         path: "./backups"
         filename_pattern: "backup_{timestamp}.json"
-
-  # EU regions CSV report
-  - name: eu-regions-report
-    filters:
-      - field: region
-        operator: regex
-        value: "^eu-.*"
-
-    transformer:
-      format: csv
-      fields:
-        provider: Provider
-        instance_type: Instance
-        region: Region
-        price: Price
-      include_headers: true
-
-    outputs:
-      - type: local
-        path: "./reports"
-        filename_pattern: "eu-gpus_{date}.csv"
-
-  # Daily metrics to webhook
-  - name: daily-metrics
-    transformer:
-      format: metrics
-      metrics:
-        - name: total_instances
-          type: count
-        - name: avg_price
-          type: avg
-          field: price
-        - name: providers
-          type: unique
-          field: provider
-      include_timestamp: true
-
-    outputs:
-      - type: https
-        url: "https://metrics.example.com/api/gpu-stats"
-        headers:
-          Authorization: "Bearer ${METRICS_API_TOKEN}"
-        retry_attempts: 3
 ```
 
 ## Best Practices
@@ -435,20 +474,7 @@ pipelines:
 2. **Enable compression for S3** - Reduces storage costs
 3. **Batch HTTPS requests** - Avoid overwhelming endpoints
 4. **Test with `--validate-only`** - Verify config before running
-5. **Use descriptive pipeline names** - Easier debugging and monitoring
-6. **Include timestamps in filenames** - Avoid overwrite conflicts
-7. **Monitor pipeline failures** - Check result.success in production
-
-## Error Handling
-
-- **Individual output failures** don't stop the pipeline
-- **Pipeline failures** are tracked in `PipelineResult.error`
-- **Disabled pipelines** are skipped (enabled=false)
-- **Filtered count** shows how many instances passed filters
-- **Timing metrics** help identify bottlenecks (filter_duration, transform_duration, output_duration)
-
-## See Also
-
-- [Configuration Schema](../src/gpuport_collectors/export/config.py)
-- [Pipeline Implementation](../src/gpuport_collectors/export/pipeline.py)
-- [Integration Tests](../tests/export/test_integration.py)
+5. **Include timestamps in filenames** - Avoid overwrite conflicts
+6. **Pipeline failures** are tracked in `PipelineResult.error`
+7. **Disabled pipelines** are skipped (enabled=false)
+8. **Timing metrics** help identify bottlenecks (filter_duration, transform_duration, output_duration)

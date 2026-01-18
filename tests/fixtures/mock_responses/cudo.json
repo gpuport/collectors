@@ -1,0 +1,344 @@
+{
+  "machineTypes": [
+    {
+      "dataCenterId": "fr-paris-1",
+      "id": "sapphire-rapids-h100",
+      "architecture": "amd64/generic",
+      "cpuCores": 72,
+      "cpuSpeedMhz": 2000,
+      "cpuModel": "Intel Xeon-Platinum 8452Y",
+      "memoryGib": 1024,
+      "disks": 10,
+      "diskSizeGib": 33377,
+      "gpus": 8,
+      "gpuModelId": "nvidia-h100",
+      "prices": [
+        {
+          "dataCenterId": "fr-paris-1",
+          "machineTypeId": "sapphire-rapids-h100",
+          "commitmentTerm": "COMMITMENT_TERM_NONE",
+          "priceHr": {
+            "value": "18.000000"
+          },
+          "ipv4PriceHr": {
+            "value": "0"
+          }
+        },
+        {
+          "dataCenterId": "fr-paris-1",
+          "machineTypeId": "sapphire-rapids-h100",
+          "commitmentTerm": "COMMITMENT_TERM_1_MONTH",
+          "priceHr": {
+            "value": "17.200000"
+          },
+          "ipv4PriceHr": {
+            "value": "0"
+          }
+        },
+        {
+          "dataCenterId": "fr-paris-1",
+          "machineTypeId": "sapphire-rapids-h100",
+          "commitmentTerm": "COMMITMENT_TERM_3_MONTHS",
+          "priceHr": {
+            "value": "16.800000"
+          },
+          "ipv4PriceHr": {
+            "value": "0"
+          }
+        },
+        {
+          "dataCenterId": "fr-paris-1",
+          "machineTypeId": "sapphire-rapids-h100",
+          "commitmentTerm": "COMMITMENT_TERM_6_MONTHS",
+          "priceHr": {
+            "value": "16.400000"
+          },
+          "ipv4PriceHr": {
+            "value": "0"
+          }
+        },
+        {
+          "dataCenterId": "fr-paris-1",
+          "machineTypeId": "sapphire-rapids-h100",
+          "commitmentTerm": "COMMITMENT_TERM_12_MONTHS",
+          "priceHr": {
+            "value": "15.600000"
+          },
+          "ipv4PriceHr": {
+            "value": "0"
+          }
+        },
+        {
+          "dataCenterId": "fr-paris-1",
+          "machineTypeId": "sapphire-rapids-h100",
+          "commitmentTerm": "COMMITMENT_TERM_24_MONTHS",
+          "priceHr": {
+            "value": "14.400000"
+          },
+          "ipv4PriceHr": {
+            "value": "0"
+          }
+        }
+      ],
+      "machinesFree": 25,
+      "networkType": "ETHERNET",
+      "machinesUsed": 1,
+      "machinesOther": 0
+    },
+    {
+      "dataCenterId": "no-kristiansand-1",
+      "id": "epyc-genoa-h100-nvl-pcie",
+      "architecture": "amd64/generic",
+      "cpuCores": 96,
+      "cpuSpeedMhz": 2750,
+      "cpuModel": "AMD EPYC 9454",
+      "memoryGib": 2306,
+      "disks": 8,
+      "diskSizeGib": 25038,
+      "gpus": 8,
+      "gpuModelId": "nvidia-h100-nvl-pcie",
+      "prices": [
+        {
+          "dataCenterId": "no-kristiansand-1",
+          "machineTypeId": "epyc-genoa-h100-nvl-pcie",
+          "commitmentTerm": "COMMITMENT_TERM_NONE",
+          "priceHr": {
+            "value": "14.320000"
+          },
+          "ipv4PriceHr": {
+            "value": "0.003500"
+          }
+        },
+        {
+          "dataCenterId": "no-kristiansand-1",
+          "machineTypeId": "epyc-genoa-h100-nvl-pcie",
+          "commitmentTerm": "COMMITMENT_TERM_1_MONTH",
+          "priceHr": {
+            "value": "14.033600"
+          },
+          "ipv4PriceHr": {
+            "value": "0.003500"
+          }
+        },
+        {
+          "dataCenterId": "no-kristiansand-1",
+          "machineTypeId": "epyc-genoa-h100-nvl-pcie",
+          "commitmentTerm": "COMMITMENT_TERM_3_MONTHS",
+          "priceHr": {
+            "value": "13.604000"
+          },
+          "ipv4PriceHr": {
+            "value": "0.003500"
+          }
+        },
+        {
+          "dataCenterId": "no-kristiansand-1",
+          "machineTypeId": "epyc-genoa-h100-nvl-pcie",
+          "commitmentTerm": "COMMITMENT_TERM_6_MONTHS",
+          "priceHr": {
+            "value": "12.888000"
+          },
+          "ipv4PriceHr": {
+            "value": "0.003500"
+          }
+        },
+        {
+          "dataCenterId": "no-kristiansand-1",
+          "machineTypeId": "epyc-genoa-h100-nvl-pcie",
+          "commitmentTerm": "COMMITMENT_TERM_12_MONTHS",
+          "priceHr": {
+            "value": "12.172000"
+          },
+          "ipv4PriceHr": {
+            "value": "0.003500"
+          }
+        },
+        {
+          "dataCenterId": "no-kristiansand-1",
+          "machineTypeId": "epyc-genoa-h100-nvl-pcie",
+          "commitmentTerm": "COMMITMENT_TERM_24_MONTHS",
+          "priceHr": {
+            "value": "11.456000"
+          },
+          "ipv4PriceHr": {
+            "value": "0.003500"
+          }
+        },
+        {
+          "dataCenterId": "no-kristiansand-1",
+          "machineTypeId": "epyc-genoa-h100-nvl-pcie",
+          "commitmentTerm": "COMMITMENT_TERM_36_MONTHS",
+          "priceHr": {
+            "value": "10.740000"
+          },
+          "ipv4PriceHr": {
+            "value": "0.003500"
+          }
+        }
+      ],
+      "machinesFree": 0,
+      "networkType": "ETHERNET",
+      "machinesUsed": 1,
+      "machinesOther": 0
+    },
+    {
+      "dataCenterId": "no-kristiansand-1",
+      "id": "epyc-genoa-l40s",
+      "architecture": "amd64/generic",
+      "cpuCores": 96,
+      "cpuSpeedMhz": 2750,
+      "cpuModel": "AMD EPYC 9454",
+      "memoryGib": 1538,
+      "disks": 8,
+      "diskSizeGib": 25038,
+      "gpus": 8,
+      "gpuModelId": "nvidia-l40s",
+      "prices": [
+        {
+          "dataCenterId": "no-kristiansand-1",
+          "machineTypeId": "epyc-genoa-l40s",
+          "commitmentTerm": "COMMITMENT_TERM_NONE",
+          "priceHr": {
+            "value": "6.960000"
+          },
+          "ipv4PriceHr": {
+            "value": "0.003500"
+          }
+        }
+      ],
+      "machinesFree": 0,
+      "networkType": "ETHERNET",
+      "machinesUsed": 3,
+      "machinesOther": 0
+    },
+    {
+      "dataCenterId": "no-kristiansand-1",
+      "id": "sapphire-rapids-h100",
+      "architecture": "amd64/generic",
+      "cpuCores": 112,
+      "cpuSpeedMhz": 2000,
+      "cpuModel": "Intel Xeon Platinum 8480+",
+      "memoryGib": 2048,
+      "disks": 8,
+      "diskSizeGib": 25038,
+      "gpus": 8,
+      "gpuModelId": "nvidia-h100",
+      "prices": [
+        {
+          "dataCenterId": "no-kristiansand-1",
+          "machineTypeId": "sapphire-rapids-h100",
+          "commitmentTerm": "COMMITMENT_TERM_NONE",
+          "priceHr": {
+            "value": "14.320000"
+          },
+          "ipv4PriceHr": {
+            "value": "0.003500"
+          }
+        },
+        {
+          "dataCenterId": "no-kristiansand-1",
+          "machineTypeId": "sapphire-rapids-h100",
+          "commitmentTerm": "COMMITMENT_TERM_1_MONTH",
+          "priceHr": {
+            "value": "14.033600"
+          },
+          "ipv4PriceHr": {
+            "value": "0.003500"
+          }
+        },
+        {
+          "dataCenterId": "no-kristiansand-1",
+          "machineTypeId": "sapphire-rapids-h100",
+          "commitmentTerm": "COMMITMENT_TERM_3_MONTHS",
+          "priceHr": {
+            "value": "13.604000"
+          },
+          "ipv4PriceHr": {
+            "value": "0.003500"
+          }
+        },
+        {
+          "dataCenterId": "no-kristiansand-1",
+          "machineTypeId": "sapphire-rapids-h100",
+          "commitmentTerm": "COMMITMENT_TERM_6_MONTHS",
+          "priceHr": {
+            "value": "12.888000"
+          },
+          "ipv4PriceHr": {
+            "value": "0.003500"
+          }
+        },
+        {
+          "dataCenterId": "no-kristiansand-1",
+          "machineTypeId": "sapphire-rapids-h100",
+          "commitmentTerm": "COMMITMENT_TERM_12_MONTHS",
+          "priceHr": {
+            "value": "12.172000"
+          },
+          "ipv4PriceHr": {
+            "value": "0.003500"
+          }
+        },
+        {
+          "dataCenterId": "no-kristiansand-1",
+          "machineTypeId": "sapphire-rapids-h100",
+          "commitmentTerm": "COMMITMENT_TERM_24_MONTHS",
+          "priceHr": {
+            "value": "11.456000"
+          },
+          "ipv4PriceHr": {
+            "value": "0.003500"
+          }
+        },
+        {
+          "dataCenterId": "no-kristiansand-1",
+          "machineTypeId": "sapphire-rapids-h100",
+          "commitmentTerm": "COMMITMENT_TERM_36_MONTHS",
+          "priceHr": {
+            "value": "10.740000"
+          },
+          "ipv4PriceHr": {
+            "value": "0.003500"
+          }
+        }
+      ],
+      "machinesFree": 0,
+      "networkType": "ETHERNET",
+      "machinesUsed": 0,
+      "machinesOther": 0
+    },
+    {
+      "dataCenterId": "se-stockholm-1",
+      "id": "ice-lake-a40",
+      "architecture": "amd64/generic",
+      "cpuCores": 48,
+      "cpuSpeedMhz": 2800,
+      "cpuModel": "Intel Xeon Gold 6342",
+      "memoryGib": 512,
+      "disks": 3,
+      "diskSizeGib": 8181,
+      "gpus": 10,
+      "gpuModelId": "nvidia-a40",
+      "prices": [
+        {
+          "dataCenterId": "se-stockholm-1",
+          "machineTypeId": "ice-lake-a40",
+          "commitmentTerm": "COMMITMENT_TERM_NONE",
+          "priceHr": {
+            "value": "3.500000"
+          },
+          "ipv4PriceHr": {
+            "value": "0.003500"
+          }
+        }
+      ],
+      "machinesFree": 1,
+      "networkType": "ETHERNET",
+      "machinesUsed": 1,
+      "machinesOther": 0
+    }
+  ],
+  "totalCount": 0,
+  "pageNumber": 1,
+  "pageSize": 10
+}
