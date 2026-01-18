@@ -20,7 +20,7 @@ dependencies = [
     "python-dotenv>=1.0.0",
     "pyyaml>=6.0.0",
     # Novita SDK from GitHub (team members: just run 'uv sync')
-    "novita-sdk-python @ git+ssh://git@github.com/php-workx/novita-sdk-python.git@feat/custom-impl",
+    "novita-sdk==0.4.0",
 ]
 
 [project.scripts]
