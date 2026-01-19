@@ -168,7 +168,7 @@ class NovitaCollector(BaseCollector):
         Uses the Novita Python SDK for type-safe async API access:
         1. Get all GPU products via client.gpu.products.list()
         2. For each product, create GPUInstance per region
-        3. Filter to only include products where available_deploy=True
+        3. Filter to only available products by default
 
         Returns:
             List of GPUInstance objects (one per product-region combination)
@@ -216,4 +216,4 @@ class NovitaCollector(BaseCollector):
             unique_regions=len(unique_regions),
         )
 
-        return instances
+        return self._apply_availability_filter(instances)

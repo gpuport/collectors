@@ -2,6 +2,7 @@
 
 import json
 from pathlib import Path
+from typing import cast
 
 import pytest
 
@@ -14,6 +15,7 @@ from gpuport_collectors.export.config import (
     LocalOutputConfig,
     MetricConfig,
     MetricsTransformerConfig,
+    OutputConfig,
     PipelineConfig,
     S3OutputConfig,
 )
@@ -426,7 +428,9 @@ class TestExecutePipeline:
             transformer=JSONTransformerConfig(),
             outputs=[],
         )
-        config.outputs.append(SimpleNamespace(type="custom", name="custom-output"))
+        config.outputs.append(
+            cast(OutputConfig, SimpleNamespace(type="custom", name="custom-output"))
+        )
 
         result = execute_pipeline(sample_instances, config)
 

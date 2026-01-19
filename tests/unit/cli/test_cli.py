@@ -1,12 +1,15 @@
 """Tests for CLI commands and output formatting."""
 
 import os
+from collections.abc import Callable, Coroutine
 from pathlib import Path
+from typing import Any
 from unittest.mock import MagicMock, patch
 
 from click.testing import CliRunner
 
 from gpuport_collectors.cli import cli, print_summary
+from gpuport_collectors.config import CollectorConfig
 from gpuport_collectors.export.pipeline import PipelineResult
 from gpuport_collectors.models import AvailabilityStatus, GPUInstance
 
@@ -30,10 +33,10 @@ def _make_instances(count: int) -> list[GPUInstance]:
     ]
 
 
-def _run_coro_with_result(result):
+def _run_coro_with_result[T](result: T) -> Callable[[Coroutine[Any, Any, Any]], T]:
     """Return a callable that closes the coroutine and returns a fixed result."""
 
-    def _run(coro):
+    def _run(coro: Coroutine[Any, Any, Any]) -> T:
         coro.close()
         return result
 
@@ -427,7 +430,7 @@ class TestExportCommand:
             config_file.write_text("pipelines: []")
 
             class DummyCollector:
-                def __init__(self, config) -> None:
+                def __init__(self, config: CollectorConfig) -> None:
                     self.config = config
 
                 async def fetch_instances(self) -> list[GPUInstance]:

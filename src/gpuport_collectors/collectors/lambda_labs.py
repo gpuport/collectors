@@ -251,4 +251,4 @@ class LambdaLabsCollector(BaseCollector):
             unique_regions=len(unique_regions),
         )
 
-        return instances
+        return self._apply_availability_filter(instances)

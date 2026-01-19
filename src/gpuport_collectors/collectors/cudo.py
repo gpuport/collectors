@@ -270,4 +270,4 @@ class CudoCollector(BaseCollector):
             unique_data_centers=len(unique_data_centers),
         )
 
-        return instances
+        return self._apply_availability_filter(instances)

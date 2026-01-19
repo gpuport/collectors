@@ -56,9 +56,9 @@ class TestRunPodLiveAPI:
             assert instance.accelerator_name, f"Instance missing accelerator_name: {instance}"
             assert instance.accelerator_count > 0, f"Invalid accelerator_count: {instance}"
             assert instance.region, f"Instance missing region: {instance}"
-            assert isinstance(
-                instance.availability, AvailabilityStatus
-            ), f"Invalid availability: {instance}"
+            assert isinstance(instance.availability, AvailabilityStatus), (
+                f"Invalid availability: {instance}"
+            )
             assert instance.price >= 0, f"Invalid price: {instance}"
             assert instance.collected_at > 0, f"Invalid collected_at: {instance}"
 
@@ -91,9 +91,9 @@ class TestRunPodLiveAPI:
 
             # If spot price exists, it should be less than on-demand
             if instance.spot_price:
-                assert (
-                    instance.spot_price < instance.price
-                ), f"Spot price should be less than on-demand: {instance}"
+                assert instance.spot_price < instance.price, (
+                    f"Spot price should be less than on-demand: {instance}"
+                )
 
     @pytest.mark.asyncio
     async def test_availability_states(self, collector: RunPodCollector) -> None:

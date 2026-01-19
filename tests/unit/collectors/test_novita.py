@@ -8,7 +8,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import pytest
 
 from gpuport_collectors.collectors.novita import NovitaCollector
-from gpuport_collectors.config import CollectorConfig
+from gpuport_collectors.config import CollectorConfig, CollectorsConfig
 from gpuport_collectors.models import AvailabilityStatus, GPUInstance
 
 
@@ -310,7 +310,7 @@ class TestNovitaFetchInstances:
 
     @pytest.mark.asyncio
     async def test_fetch_instances_filters_unavailable(self):
-        """Test that unavailable products are still returned with correct status."""
+        """Test that unavailable products are filtered by default."""
         with patch.dict("os.environ", {"NOVITA_API_KEY": "test-key"}):
             collector = NovitaCollector(CollectorConfig())
 
@@ -346,11 +346,52 @@ class TestNovitaFetchInstances:
 
                 instances = await collector.fetch_instances()
 
+                assert len(instances) == 1
+                assert instances[0].availability != AvailabilityStatus.NOT_AVAILABLE
+
+    @pytest.mark.asyncio
+    async def test_fetch_instances_include_unavailable(self):
+        """Test that unavailable products are returned when include_unavailable is enabled."""
+        with patch.dict("os.environ", {"NOVITA_API_KEY": "test-key"}):
+            collector = NovitaCollector(
+                CollectorConfig(collectors=CollectorsConfig(include_unavailable=True))
+            )
+
+            available_product = MagicMock()
+            available_product.id = "available"
+            available_product.name = "Available GPU"
+            available_product.cpu_per_gpu = 16
+            available_product.memory_per_gpu = 64
+            available_product.available_deploy = True
+            available_product.price = 10000
+            available_product.regions = ["region-1"]
+            available_product.model_dump = MagicMock(return_value={})
+
+            unavailable_product = MagicMock()
+            unavailable_product.id = "unavailable"
+            unavailable_product.name = "Unavailable GPU"
+            unavailable_product.cpu_per_gpu = 16
+            unavailable_product.memory_per_gpu = 64
+            unavailable_product.available_deploy = False
+            unavailable_product.price = 10000
+            unavailable_product.regions = ["region-2"]
+            unavailable_product.model_dump = MagicMock(return_value={})
+
+            with patch("gpuport_collectors.collectors.novita.AsyncNovitaClient") as mock_client:
+                mock_client_instance = AsyncMock()
+                mock_client_instance.gpu.products.list = AsyncMock(
+                    return_value=[available_product, unavailable_product]
+                )
+                mock_client.return_value.__aenter__.return_value = mock_client_instance
+                mock_client.return_value.__aexit__.return_value = AsyncMock()
+
+                instances = await collector.fetch_instances()
+
                 assert len(instances) == 2
-                available = [
-                    i for i in instances if i.availability != AvailabilityStatus.NOT_AVAILABLE
-                ]
-                assert len(available) == 1
+                assert any(
+                    instance.availability == AvailabilityStatus.NOT_AVAILABLE
+                    for instance in instances
+                )
 
     @pytest.mark.asyncio
     async def test_fetch_instances_empty_response(self):

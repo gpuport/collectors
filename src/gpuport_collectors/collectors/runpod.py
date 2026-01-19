@@ -181,6 +181,7 @@ class RunPodCollector(BaseCollector):
         self,
         gpu: dict[str, Any],
         datacenters: list[str],
+        include_unavailable: bool = False,
     ) -> list[GPUInstance]:
         """Parse GPU data and create GPUInstance for each datacenter with availability.
 
@@ -193,7 +194,7 @@ class RunPodCollector(BaseCollector):
             datacenters: List of all datacenters queried
 
         Returns:
-            List of GPUInstance objects (one per available region only)
+            List of GPUInstance objects (available only by default)
         """
         instances = []
         collected_at = int(time.time())
@@ -203,22 +204,21 @@ class RunPodCollector(BaseCollector):
             # Convert datacenter ID to alias format
             alias = dc.lower().replace("-", "_")
             pricing = gpu.get(alias)
+            stock_status = pricing.get("stockStatus") if pricing else None
 
             # Skip if no pricing data or no stock status (means not available)
-            if not pricing or not pricing.get("stockStatus"):
+            if not stock_status and not include_unavailable:
                 continue
 
             # Get pricing data (0.0 if unavailable or None)
-            price = pricing.get("uninterruptablePrice")
+            price = pricing.get("uninterruptablePrice") if pricing else None
             price = price if price is not None else 0.0
 
-            spot_price = pricing.get("minimumBidPrice")
+            spot_price = pricing.get("minimumBidPrice") if pricing else None
             spot_price = spot_price if spot_price is not None else 0.0
 
-            stock_status = pricing.get("stockStatus")
-
             # availableGpuCounts can be a list or None
-            quantity_raw = pricing.get("availableGpuCounts")
+            quantity_raw = pricing.get("availableGpuCounts") if pricing else None
             if isinstance(quantity_raw, list):
                 quantity = sum(quantity_raw) if quantity_raw else 0
             elif quantity_raw is not None:
@@ -349,7 +349,7 @@ class RunPodCollector(BaseCollector):
         while ensuring we don't miss any available GPUs.
 
         Returns:
-            List of GPUInstance objects (only for available combinations)
+            List of GPUInstance objects (available only by default)
         """
         # Step 1: Get all GPU types
         gpu_types = await self._get_all_gpu_types()
@@ -390,7 +390,13 @@ class RunPodCollector(BaseCollector):
         instances: list[GPUInstance] = []
         for gpu_data in gpu_pricing_results:
             if gpu_data:
-                instances.extend(self._parse_gpu_data(gpu_data, datacenters))
+                instances.extend(
+                    self._parse_gpu_data(
+                        gpu_data,
+                        datacenters,
+                        include_unavailable=self.config.collectors.include_unavailable,
+                    )
+                )
 
         # Log summary statistics
         available_instances = [
@@ -406,4 +412,4 @@ class RunPodCollector(BaseCollector):
             available_instances=len(available_instances),
         )
 
-        return instances
+        return self._apply_availability_filter(instances)

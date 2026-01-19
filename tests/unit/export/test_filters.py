@@ -1,5 +1,7 @@
 """Tests for export pipeline filter engine."""
 
+from typing import Literal
+
 import pytest
 
 from gpuport_collectors.export.config import FilterConfig
@@ -129,7 +131,10 @@ class TestComparisonOperators:
         assert apply_filter(instance, filter_config) is False
 
     @pytest.mark.parametrize("operator", ["lte", "gt", "gte"])
-    def test_comparison_with_null_returns_false_for_operator(self, operator: str) -> None:
+    def test_comparison_with_null_returns_false_for_operator(
+        self,
+        operator: Literal["lte", "gt", "gte"],
+    ) -> None:
         """Test comparison operators return False for null values."""
         instance = GPUInstance(
             provider="Test",

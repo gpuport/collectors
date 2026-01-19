@@ -230,6 +230,27 @@ class TestGPUDataParsing:
         # Should skip instances with no stockStatus
         assert len(instances) == 0
 
+    def test_parse_gpu_data_includes_unavailable_when_enabled(self, runpod_collector):
+        """Test parsing GPU data with unavailable region when include_unavailable is enabled."""
+        gpu = {
+            "id": "NVIDIA A100 80GB PCIe",
+            "displayName": "A100 80GB",
+            "memoryInGb": 80,
+            "cudaCores": 6912,
+            "us_tx_1": None,  # Unavailable
+        }
+
+        instances = runpod_collector._parse_gpu_data(
+            gpu,
+            ["US-TX-1"],
+            include_unavailable=True,
+        )
+
+        assert len(instances) == 1
+        assert instances[0].availability == AvailabilityStatus.NOT_AVAILABLE
+        assert instances[0].price == 0.0
+        assert instances[0].quantity == 0
+
     def test_parse_gpu_data_multiple_regions(self, runpod_collector):
         """Test parsing GPU data across multiple regions."""
         gpu = {

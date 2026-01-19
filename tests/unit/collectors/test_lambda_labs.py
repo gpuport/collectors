@@ -10,7 +10,7 @@ import aiohttp
 import pytest
 
 from gpuport_collectors.collectors.lambda_labs import LambdaLabsCollector
-from gpuport_collectors.config import CollectorConfig
+from gpuport_collectors.config import CollectorConfig, CollectorsConfig
 from gpuport_collectors.models import AvailabilityStatus, GPUInstance
 
 # Load mock API response fixture
@@ -27,6 +27,18 @@ def lambda_collector():
     collector = LambdaLabsCollector(config=CollectorConfig())
     yield collector
     # Cleanup
+    if "LAMBDA_API_KEY" in os.environ:
+        del os.environ["LAMBDA_API_KEY"]
+
+
+@pytest.fixture
+def lambda_collector_all():
+    """Create a Lambda Labs collector instance that includes unavailable instances."""
+    os.environ["LAMBDA_API_KEY"] = "test-api-key"
+    collector = LambdaLabsCollector(
+        config=CollectorConfig(collectors=CollectorsConfig(include_unavailable=True))
+    )
+    yield collector
     if "LAMBDA_API_KEY" in os.environ:
         del os.environ["LAMBDA_API_KEY"]
 
@@ -286,7 +298,7 @@ class TestLambdaLabsIntegration:
 
     @pytest.mark.asyncio
     async def test_fetch_instances_creates_per_region_instances(self, lambda_collector):
-        """Test that one GPUInstance is created per (gpu_type, region) pair plus unavailable GPU types."""
+        """Test that one GPUInstance is created per (gpu_type, region) pair by default."""
         # Mock the API call method directly
         lambda_collector._execute_api_call = AsyncMock(return_value=MOCK_INSTANCE_TYPES)
 
@@ -295,18 +307,17 @@ class TestLambdaLabsIntegration:
         # Count expected instances based on REAL Lambda Labs API fixture
         # Real API has 20 GPU types:
         # - 9 GPU types with regions (20 total GPU+region combinations)
-        # - 11 GPU types without regions (11 unavailable instances)
-        # Expected: 20 + 11 = 31 total instances
-        expected_count = 31
+        # - 11 GPU types without regions (filtered by default)
+        expected_count = 20
         assert len(instances) == expected_count
 
     @pytest.mark.asyncio
-    async def test_fetch_instances_captures_unavailable(self, lambda_collector):
+    async def test_fetch_instances_captures_unavailable(self, lambda_collector_all):
         """Test that instances without regional availability are captured with NOT_AVAILABLE status."""
         # Mock the API call method directly
-        lambda_collector._execute_api_call = AsyncMock(return_value=MOCK_INSTANCE_TYPES)
+        lambda_collector_all._execute_api_call = AsyncMock(return_value=MOCK_INSTANCE_TYPES)
 
-        instances = await lambda_collector.fetch_instances()
+        instances = await lambda_collector_all.fetch_instances()
 
         # From real API: gpu_1x_h100_pcie, gpu_4x_h100_sxm5, gpu_2x_h100_sxm5,
         # gpu_1x_rtx6000, gpu_1x_a100, gpu_2x_a100, etc. have empty regions_with_capacity_available
@@ -314,9 +325,9 @@ class TestLambdaLabsIntegration:
         unavailable_types = ["gpu_1x_h100_pcie", "gpu_4x_h100_sxm5", "gpu_1x_rtx6000"]
         for gpu_type in unavailable_types:
             instances_of_type = [i for i in instances if i.instance_type == gpu_type]
-            assert (
-                len(instances_of_type) == 1
-            ), f"{gpu_type} should have exactly 1 unavailable instance"
+            assert len(instances_of_type) == 1, (
+                f"{gpu_type} should have exactly 1 unavailable instance"
+            )
             assert instances_of_type[0].region == "unavailable"
             assert instances_of_type[0].availability == AvailabilityStatus.NOT_AVAILABLE
 

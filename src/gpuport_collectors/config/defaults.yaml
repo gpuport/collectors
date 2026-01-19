@@ -44,6 +44,9 @@ observability:
 
 # Collector-Specific Settings
 collectors:
+  # Include instances marked NOT_AVAILABLE in results (default: false)
+  include_unavailable: false
+
   # RunPod collector configuration
   runpod:
     enabled: true
