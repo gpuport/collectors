@@ -2,6 +2,7 @@
 
 import asyncio
 import logging
+import os
 import sys
 import time
 from dataclasses import dataclass, field
@@ -552,14 +553,21 @@ def export(
             logger.error(str(e))
             sys.exit(1)
 
-        if provider == "runpod":
-            if not api_key:
-                logger.error("RunPod API key required. Set RUNPOD_API_KEY or use --api-key")
-                sys.exit(1)
-            # Set API key in environment for RunPodCollector
-            import os
+        provider_lower = provider.lower()
+        provider_env = {
+            "runpod": "RUNPOD_API_KEY",
+            "lambdalabs": "LAMBDA_API_KEY",
+            "cudo": "CUDO_API_KEY",
+            "novita": "NOVITA_API_KEY",
+        }.get(provider_lower)
 
-            os.environ["RUNPOD_API_KEY"] = api_key
+        if provider_env:
+            if not api_key:
+                api_key = os.getenv(provider_env)
+            if not api_key:
+                logger.error(f"{provider} API key required. Set {provider_env} or use --api-key")
+                sys.exit(1)
+            os.environ[provider_env] = api_key
 
         from gpuport_collectors.config import CollectorConfig
 
@@ -654,6 +662,7 @@ def export(
 
 
 @cli.command()
+@click.pass_context
 @click.option(
     "--config",
     "-c",
@@ -661,7 +670,7 @@ def export(
     required=True,
     help="Path to export configuration YAML file",
 )
-def validate(config: str) -> None:
+def validate(ctx: click.Context, config: str) -> None:
     """Validate an export configuration file.
 
     Checks the configuration for:
@@ -673,6 +682,8 @@ def validate(config: str) -> None:
     Example:
         gpuport-collectors validate --config export.yaml
     """
+    quiet = ctx.obj.get("quiet", False)
+
     # Convert string path to Path object for internal use
     config_path = Path(config)
     logger.info(f"Validating configuration: {config_path}")
@@ -694,19 +705,22 @@ def validate(config: str) -> None:
             logger.info("✓ No validation warnings")
 
         # Show pipeline summary
-        print_summary("\nPipeline summary:")
+        print_summary("\nPipeline summary:", quiet)
         for pipeline in export_config.pipelines:
             enabled_status = "✓ enabled" if pipeline.enabled else "✗ disabled"
-            print_summary(f"  {pipeline.name}: {enabled_status}")
-            print_summary(f"    Filters: {len(pipeline.filters) if pipeline.filters else 0}")
+            print_summary(f"  {pipeline.name}: {enabled_status}", quiet)
+            print_summary(
+                f"    Filters: {len(pipeline.filters) if pipeline.filters else 0}",
+                quiet,
+            )
             # Get transformer format (all transformers have a format field)
             transformer_format = getattr(pipeline.transformer, "format", "unknown")
-            print_summary(f"    Transformer: {transformer_format}")
-            print_summary(f"    Outputs: {len(pipeline.outputs)}")
+            print_summary(f"    Transformer: {transformer_format}", quiet)
+            print_summary(f"    Outputs: {len(pipeline.outputs)}", quiet)
             for output in pipeline.outputs:
-                print_summary(f"      - {output.type}: {output.name or 'unnamed'}")
+                print_summary(f"      - {output.type}: {output.name or 'unnamed'}", quiet)
 
-        print_summary("\n✓ Configuration is valid")
+        print_summary("\n✓ Configuration is valid", quiet)
 
     except Exception as e:
         logger.error(f"Validation failed: {e}")
