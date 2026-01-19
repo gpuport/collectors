@@ -102,7 +102,7 @@ class TestCudoAPIExecution:
                 # Create async context manager for the session
                 mock_session = MagicMock()
                 mock_session_class.return_value.__aenter__.return_value = mock_session
-                mock_session_class.return_value.__aexit__.return_value = AsyncMock()
+                mock_session_class.return_value.__aexit__ = AsyncMock(return_value=None)
 
                 # Create async context manager for the response
                 mock_resp = AsyncMock()
@@ -111,7 +111,7 @@ class TestCudoAPIExecution:
 
                 mock_request = AsyncMock()
                 mock_request.__aenter__.return_value = mock_resp
-                mock_request.__aexit__.return_value = AsyncMock()
+                mock_request.__aexit__ = AsyncMock(return_value=None)
                 mock_session.request = MagicMock(return_value=mock_request)
 
                 await collector._execute_api_call("/machines-types")

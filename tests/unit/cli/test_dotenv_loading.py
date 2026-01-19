@@ -9,7 +9,9 @@ import pytest
 class TestDotenvLoading:
     """Tests for automatic .env file loading."""
 
-    def test_env_file_loads_variables(self, tmp_path: Path) -> None:
+    def test_env_file_loads_variables(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
         """Test that .env file variables are loaded automatically."""
         # Create .env file in temp directory
         env_file = tmp_path / ".env"
@@ -20,85 +22,63 @@ class TestDotenvLoading:
         )
 
         # Change to temp directory so .env is found
-        original_cwd = Path.cwd()
-        os.chdir(tmp_path)
+        monkeypatch.chdir(tmp_path)
 
-        try:
-            # Clear any existing env vars to ensure we're testing .env loading
-            if "RUNPOD_API_KEY" in os.environ:
-                del os.environ["RUNPOD_API_KEY"]
-            if "LAMBDA_API_KEY" in os.environ:
-                del os.environ["LAMBDA_API_KEY"]
-            if "CUSTOM_VAR" in os.environ:
-                del os.environ["CUSTOM_VAR"]
+        # Clear any existing env vars to ensure we're testing .env loading
+        monkeypatch.delenv("RUNPOD_API_KEY", raising=False)
+        monkeypatch.delenv("LAMBDA_API_KEY", raising=False)
+        monkeypatch.delenv("CUSTOM_VAR", raising=False)
 
-            # Import cli module to trigger load_dotenv
-            # Note: In real usage, dotenv is loaded when module is imported
-            from dotenv import load_dotenv
+        # Import cli module to trigger load_dotenv
+        # Note: In real usage, dotenv is loaded when module is imported
+        from dotenv import load_dotenv
 
-            load_dotenv(dotenv_path=env_file, override=False)
+        load_dotenv(dotenv_path=env_file, override=False)
 
-            # Verify environment variables are loaded
-            assert os.environ.get("RUNPOD_API_KEY") == "test_key_from_dotenv"
-            assert os.environ.get("LAMBDA_API_KEY") == "lambda_key_from_dotenv"
-            assert os.environ.get("CUSTOM_VAR") == "custom_value"
+        # Verify environment variables are loaded
+        assert os.environ.get("RUNPOD_API_KEY") == "test_key_from_dotenv"
+        assert os.environ.get("LAMBDA_API_KEY") == "lambda_key_from_dotenv"
+        assert os.environ.get("CUSTOM_VAR") == "custom_value"
 
-        finally:
-            # Restore original directory
-            os.chdir(original_cwd)
-            # Clean up env vars
-            os.environ.pop("RUNPOD_API_KEY", None)
-            os.environ.pop("LAMBDA_API_KEY", None)
-            os.environ.pop("CUSTOM_VAR", None)
-
-    def test_existing_env_vars_take_priority(self, tmp_path: Path) -> None:
+    def test_existing_env_vars_take_priority(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
         """Test that existing environment variables override .env file."""
         # Create .env file
         env_file = tmp_path / ".env"
         env_file.write_text("RUNPOD_API_KEY=from_dotenv\n")
 
         # Set existing environment variable
-        os.environ["RUNPOD_API_KEY"] = "from_shell"
+        monkeypatch.setenv("RUNPOD_API_KEY", "from_shell")
 
         # Change to temp directory
-        original_cwd = Path.cwd()
-        os.chdir(tmp_path)
+        monkeypatch.chdir(tmp_path)
 
-        try:
-            from dotenv import load_dotenv
+        from dotenv import load_dotenv
 
-            # Load with override=False (existing vars take priority)
-            load_dotenv(dotenv_path=env_file, override=False)
+        # Load with override=False (existing vars take priority)
+        load_dotenv(dotenv_path=env_file, override=False)
 
-            # Existing env var should remain unchanged
-            assert os.environ["RUNPOD_API_KEY"] == "from_shell"
+        # Existing env var should remain unchanged
+        assert os.environ["RUNPOD_API_KEY"] == "from_shell"
 
-        finally:
-            os.chdir(original_cwd)
-            os.environ.pop("RUNPOD_API_KEY", None)
-
-    def test_env_file_not_required(self, tmp_path: Path) -> None:
+    def test_env_file_not_required(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
         """Test that missing .env file doesn't cause errors."""
         # Change to temp directory without .env file
-        original_cwd = Path.cwd()
-        os.chdir(tmp_path)
+        monkeypatch.chdir(tmp_path)
+        monkeypatch.delenv("RUNPOD_API_KEY", raising=False)
 
-        try:
-            from dotenv import load_dotenv
+        from dotenv import load_dotenv
 
-            # Should not raise an error
-            load_dotenv(dotenv_path=tmp_path / ".env", override=False)
+        # Should not raise an error
+        load_dotenv(dotenv_path=tmp_path / ".env", override=False)
 
-            # No variables should be loaded
-            assert (
-                "RUNPOD_API_KEY" not in os.environ
-                or os.environ.get("RUNPOD_API_KEY") != "from_dotenv"
-            )
+        # No variables should be loaded
+        assert os.environ.get("RUNPOD_API_KEY") is None
 
-        finally:
-            os.chdir(original_cwd)
-
-    def test_env_file_with_export_variables(self, tmp_path: Path) -> None:
+    def test_env_file_with_export_variables(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
         """Test that export-related env vars are loaded from .env."""
         env_file = tmp_path / ".env"
         env_file.write_text(
@@ -109,43 +89,32 @@ class TestDotenvLoading:
             "AWS_SECRET_ACCESS_KEY=aws_secret\n"
         )
 
-        original_cwd = Path.cwd()
-        os.chdir(tmp_path)
+        monkeypatch.chdir(tmp_path)
 
-        try:
-            # Clear env vars
-            for var in [
-                "RUNPOD_API_KEY",
-                "GPUPORT_INGEST_URL",
-                "API_TOKEN",
-                "AWS_ACCESS_KEY_ID",
-                "AWS_SECRET_ACCESS_KEY",
-            ]:
-                os.environ.pop(var, None)
+        # Clear env vars
+        for var in [
+            "RUNPOD_API_KEY",
+            "GPUPORT_INGEST_URL",
+            "API_TOKEN",
+            "AWS_ACCESS_KEY_ID",
+            "AWS_SECRET_ACCESS_KEY",
+        ]:
+            monkeypatch.delenv(var, raising=False)
 
-            from dotenv import load_dotenv
+        from dotenv import load_dotenv
 
-            load_dotenv(dotenv_path=env_file, override=False)
+        load_dotenv(dotenv_path=env_file, override=False)
 
-            # Verify all variables are loaded
-            assert os.environ.get("RUNPOD_API_KEY") == "test_key"
-            assert os.environ.get("GPUPORT_INGEST_URL") == "https://api.example.com/ingest"
-            assert os.environ.get("API_TOKEN") == "secret_token_123"
-            assert os.environ.get("AWS_ACCESS_KEY_ID") == "aws_key"
-            assert os.environ.get("AWS_SECRET_ACCESS_KEY") == "aws_secret"
+        # Verify all variables are loaded
+        assert os.environ.get("RUNPOD_API_KEY") == "test_key"
+        assert os.environ.get("GPUPORT_INGEST_URL") == "https://api.example.com/ingest"
+        assert os.environ.get("API_TOKEN") == "secret_token_123"
+        assert os.environ.get("AWS_ACCESS_KEY_ID") == "aws_key"
+        assert os.environ.get("AWS_SECRET_ACCESS_KEY") == "aws_secret"
 
-        finally:
-            os.chdir(original_cwd)
-            for var in [
-                "RUNPOD_API_KEY",
-                "GPUPORT_INGEST_URL",
-                "API_TOKEN",
-                "AWS_ACCESS_KEY_ID",
-                "AWS_SECRET_ACCESS_KEY",
-            ]:
-                os.environ.pop(var, None)
-
-    def test_env_file_with_comments_and_blank_lines(self, tmp_path: Path) -> None:
+    def test_env_file_with_comments_and_blank_lines(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
         """Test that .env file with comments and blank lines is parsed correctly."""
         env_file = tmp_path / ".env"
         env_file.write_text(
@@ -161,25 +130,18 @@ GPUPORT_INGEST_URL=https://api.example.com/ingest
 """
         )
 
-        original_cwd = Path.cwd()
-        os.chdir(tmp_path)
+        monkeypatch.chdir(tmp_path)
 
-        try:
-            for var in ["RUNPOD_API_KEY", "GPUPORT_INGEST_URL", "DISABLED_VAR"]:
-                os.environ.pop(var, None)
+        for var in ["RUNPOD_API_KEY", "GPUPORT_INGEST_URL", "DISABLED_VAR"]:
+            monkeypatch.delenv(var, raising=False)
 
-            from dotenv import load_dotenv
+        from dotenv import load_dotenv
 
-            load_dotenv(dotenv_path=env_file, override=False)
+        load_dotenv(dotenv_path=env_file, override=False)
 
-            assert os.environ.get("RUNPOD_API_KEY") == "test_key"
-            assert os.environ.get("GPUPORT_INGEST_URL") == "https://api.example.com/ingest"
-            assert "DISABLED_VAR" not in os.environ
-
-        finally:
-            os.chdir(original_cwd)
-            for var in ["RUNPOD_API_KEY", "GPUPORT_INGEST_URL"]:
-                os.environ.pop(var, None)
+        assert os.environ.get("RUNPOD_API_KEY") == "test_key"
+        assert os.environ.get("GPUPORT_INGEST_URL") == "https://api.example.com/ingest"
+        assert "DISABLED_VAR" not in os.environ
 
     def test_cli_uses_dotenv_variables(
         self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch

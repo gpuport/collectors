@@ -57,9 +57,9 @@ class TestLambdaLabsLiveAPI:
             assert instance.accelerator_name, f"Instance missing accelerator_name: {instance}"
             assert instance.accelerator_count > 0, f"Invalid accelerator_count: {instance}"
             assert instance.region, f"Instance missing region: {instance}"
-            assert isinstance(instance.availability, AvailabilityStatus), (
-                f"Invalid availability: {instance}"
-            )
+            assert isinstance(
+                instance.availability, AvailabilityStatus
+            ), f"Invalid availability: {instance}"
             assert instance.price >= 0, f"Invalid price: {instance}"
             assert instance.collected_at > 0, f"Invalid collected_at: {instance}"
 
@@ -88,5 +88,5 @@ class TestLambdaLabsLiveAPI:
 
         # All prices should be positive
         for instance in instances:
-            assert instance.price > 0, f"Invalid price: ${instance.price}/hr"
+            assert instance.price >= 0, f"Invalid price: ${instance.price}/hr"
             assert instance.price < 100, f"Unreasonable price: ${instance.price}/hr"

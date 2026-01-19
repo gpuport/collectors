@@ -1,7 +1,7 @@
 """Tests for base collector functionality."""
 
 from contextlib import contextmanager
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import ANY, AsyncMock, MagicMock, patch
 
 import pytest
 
@@ -26,7 +26,7 @@ def _make_test_instance() -> GPUInstance:
     )
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture
 def sleep_mock():
     """Avoid real sleep delays from retry logic during tests."""
     with patch("asyncio.sleep", new_callable=AsyncMock) as sleep_mock:
@@ -37,7 +37,7 @@ class TestWithRetryDecorator:
     """Tests for the with_retry decorator."""
 
     @pytest.mark.asyncio
-    async def test_retry_success_on_first_attempt(self):
+    async def test_retry_success_on_first_attempt(self, sleep_mock):
         """Test successful execution on first attempt."""
         config = CollectorConfig(http_client=HttpClientConfig(max_retries=2, base_delay=0.01))
 
@@ -63,7 +63,7 @@ class TestWithRetryDecorator:
         assert collector.call_count == 1
 
     @pytest.mark.asyncio
-    async def test_retry_success_after_failures(self):
+    async def test_retry_success_after_failures(self, sleep_mock):
         """Test successful execution after transient failures."""
         config = CollectorConfig(http_client=HttpClientConfig(max_retries=2, base_delay=0.01))
 
@@ -91,7 +91,7 @@ class TestWithRetryDecorator:
         assert collector.call_count == 3
 
     @pytest.mark.asyncio
-    async def test_retry_exhaustion(self):
+    async def test_retry_exhaustion(self, sleep_mock):
         """Test retry exhaustion after max attempts."""
         config = CollectorConfig(http_client=HttpClientConfig(max_retries=2, base_delay=0.01))
 
@@ -142,7 +142,7 @@ class TestWithRetryDecorator:
         assert delays == [0.1, 0.2]
 
     @pytest.mark.asyncio
-    async def test_retry_unexpected_state_raises_runtime_error(self):
+    async def test_retry_unexpected_state_raises_runtime_error(self, sleep_mock):
         """Test that an unexpected retry state raises a RuntimeError."""
         config = CollectorConfig(http_client=HttpClientConfig(max_retries=0))
 
@@ -225,7 +225,11 @@ class TestFetchInstancesWithTracing:
         with pytest.raises(RuntimeError, match="boom"):
             await collector.fetch_instances_with_tracing()
 
-        collector._logger.error.assert_called_once()
+        collector._logger.error.assert_called_once_with(
+            "Failed to fetch instances",
+            error=ANY,
+            provider_name="test",
+        )
 
 
 class TestBaseCollector:

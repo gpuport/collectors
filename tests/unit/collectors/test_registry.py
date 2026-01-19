@@ -1,5 +1,8 @@
 """Tests for collector registry functionality."""
 
+import os
+from unittest.mock import patch
+
 import pytest
 
 from gpuport_collectors.base import BaseCollector
@@ -9,6 +12,7 @@ from gpuport_collectors.collectors import (
     list_providers,
 )
 from gpuport_collectors.collectors.runpod import RunPodCollector
+from gpuport_collectors.config import CollectorConfig
 
 
 class TestCollectorRegistry:
@@ -27,9 +31,9 @@ class TestCollectorRegistry:
     def test_all_collectors_are_base_collector_subclasses(self) -> None:
         """Test that all registered collectors extend BaseCollector."""
         for name, collector_class in COLLECTORS.items():
-            assert issubclass(collector_class, BaseCollector), (
-                f"{name} collector must extend BaseCollector"
-            )
+            assert issubclass(
+                collector_class, BaseCollector
+            ), f"{name} collector must extend BaseCollector"
 
 
 class TestGetCollectorClass:
@@ -102,11 +106,23 @@ class TestRegistryIntegration:
 
     def test_provider_name_matches_registry_key(self) -> None:
         """Test that collector provider_name matches registry key."""
-        for _registry_name, collector_class in COLLECTORS.items():
-            # Create a minimal instance to check provider_name
-            # We can't actually instantiate RunPodCollector without API key
-            # So we just verify the class exists and has the right structure
-            assert hasattr(collector_class, "provider_name")
+
+        def normalize(value: str) -> str:
+            return value.lower().replace(" ", "").replace(".", "")
+
+        env = {
+            "RUNPOD_API_KEY": "test",
+            "LAMBDA_API_KEY": "test",
+            "CUDO_API_KEY": "test",
+            "NOVITA_API_KEY": "test",
+        }
+
+        with patch.dict(os.environ, env, clear=False):
+            config = CollectorConfig()
+            for registry_name, collector_class in COLLECTORS.items():
+                collector = collector_class(config)
+                normalized_name = normalize(collector.provider_name)
+                assert registry_name in normalized_name
 
 
 class TestRegistryExtensibility:

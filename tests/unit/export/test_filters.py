@@ -1,6 +1,6 @@
 """Tests for export pipeline filter engine."""
 
-from typing import Literal
+from typing import Any, Literal
 
 import pytest
 
@@ -32,6 +32,20 @@ def sample_instance() -> GPUInstance:
         v_cpus=16,
         memory_gib=64.0,
     )
+
+
+def _make_instance_with_overrides(**overrides: Any) -> GPUInstance:
+    defaults: dict[str, Any] = {
+        "provider": "Test",
+        "instance_type": "test",
+        "accelerator_name": "GPU",
+        "accelerator_count": 1,
+        "region": "us-east-1",
+        "availability": AvailabilityStatus.HIGH,
+        "price": 1.0,
+    }
+    instance_kwargs: dict[str, Any] = {**defaults, **overrides}
+    return GPUInstance(**instance_kwargs)
 
 
 class TestGetFieldValue:
@@ -270,46 +284,19 @@ class TestStringPatternOperators:
 
     def test_contains_operator_with_null_value_returns_false(self) -> None:
         """Test contains operator returns False for null field values."""
-        instance = GPUInstance(
-            provider="Test",
-            instance_type="test",
-            accelerator_name="GPU",
-            accelerator_count=1,
-            region="us-east-1",
-            availability=AvailabilityStatus.HIGH,
-            price=1.0,
-            arch=None,
-        )
+        instance = _make_instance_with_overrides(arch=None)
         filter_config = FilterConfig(field="arch", operator="contains", value="x86")
         assert apply_filter(instance, filter_config) is False
 
     def test_starts_with_operator_with_null_value_returns_false(self) -> None:
         """Test starts_with operator returns False for null field values."""
-        instance = GPUInstance(
-            provider="Test",
-            instance_type="test",
-            accelerator_name="GPU",
-            accelerator_count=1,
-            region="us-east-1",
-            availability=AvailabilityStatus.HIGH,
-            price=1.0,
-            arch=None,
-        )
+        instance = _make_instance_with_overrides(arch=None)
         filter_config = FilterConfig(field="arch", operator="starts_with", value="x86")
         assert apply_filter(instance, filter_config) is False
 
     def test_regex_operator_with_null_value_returns_false(self) -> None:
         """Test regex operator returns False for null field values."""
-        instance = GPUInstance(
-            provider="Test",
-            instance_type="test",
-            accelerator_name="GPU",
-            accelerator_count=1,
-            region="us-east-1",
-            availability=AvailabilityStatus.HIGH,
-            price=1.0,
-            arch=None,
-        )
+        instance = _make_instance_with_overrides(arch=None)
         filter_config = FilterConfig(field="arch", operator="regex", value=".*")
         assert apply_filter(instance, filter_config) is False
 
