@@ -86,7 +86,7 @@ class TestLambdaLabsLiveAPI:
         """Test that pricing data is present and reasonable."""
         instances = await collector.fetch_instances()
 
-        # All prices should be positive
+        # All prices should be non-negative
         for instance in instances:
             assert instance.price >= 0, f"Invalid price: ${instance.price}/hr"
             assert instance.price < 100, f"Unreasonable price: ${instance.price}/hr"
