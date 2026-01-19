@@ -1,4 +1,4 @@
-.PHONY: help install install-dev test test-unit test-integration test-all test-cov test-cov-all test-watch lint lint-fix format format-check typecheck check ci dev clean pre-commit-install pre-commit-uninstall pre-commit-run
+.PHONY: help install install-dev test test-unit test-integration test-all test-cov test-cov-all test-watch lint lint-check lint-fix format format-check typecheck type-check check ci dev clean pre-commit-install pre-commit-uninstall pre-commit-run
 
 help: ## Show this help message
 	@echo "Usage: make [target]"
@@ -27,16 +27,19 @@ test-all: ## Run all tests (unit + integration)
 	uv run pytest tests/ -m "" -v
 
 test-cov: ## Run unit tests with coverage report
-	uv run pytest tests/unit/ -v --cov=gpuport_collectors --cov-report=term-missing --cov-report=html
+	uv run pytest tests/unit/ -v --cov=gpuport_collectors --cov-report=term-missing --cov-report=html --cov-report=xml
 
 test-cov-all: ## Run all tests with coverage report
-	uv run pytest tests/ -m "" -v --cov=gpuport_collectors --cov-report=term-missing --cov-report=html
+	uv run pytest tests/ -m "" -v --cov=gpuport_collectors --cov-report=term-missing --cov-report=html --cov-report=xml
 
 test-watch: ## Run unit tests in watch mode (requires pytest-watch)
 	uv run pytest-watch tests/unit/ -v
 
 lint: ## Run ruff linter
 	uv run ruff check src/ tests/
+
+lint-check: ## Check lint (no fixes)
+	$(MAKE) lint
 
 lint-fix: ## Run ruff linter with auto-fixes
 	uv run ruff check --fix src/ tests/
@@ -50,11 +53,14 @@ format-check: ## Check formatting with ruff
 typecheck: ## Run mypy type checker
 	uv run mypy src/ tests/
 
-check: format-check lint typecheck test ## Run all checks (format, lint, type-check, test)
+type-check: ## Run mypy type checker (check mode)
+	$(MAKE) typecheck
+
+check: format-check lint-check type-check test ## Run all checks (format, lint, type-check, test)
 
 ci: check ## Run all CI checks (format+lint in check mode, type-check, test)
 
-dev: format lint-fix typecheck test ## Run format+lint in fix mode, then type-check and test
+dev: format lint-fix type-check test ## Run format+lint in fix mode, then type-check and test
 
 clean: ## Clean up generated files
 	rm -rf .pytest_cache
