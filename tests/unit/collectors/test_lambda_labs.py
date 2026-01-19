@@ -4,7 +4,7 @@ import json
 import os
 import time
 from pathlib import Path
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import ANY, AsyncMock, MagicMock, patch
 
 import aiohttp
 import pytest
@@ -381,7 +381,7 @@ class TestLambdaLabsIntegration:
         await lambda_collector.fetch_instances()
 
         # Verify only one API call was made
-        lambda_collector._execute_api_call.assert_called_once_with("/instance-types")
+        lambda_collector._execute_api_call.assert_called_once_with("/instance-types", session=ANY)
 
     @pytest.mark.asyncio
     async def test_fetch_instances_empty_response(self, lambda_collector):

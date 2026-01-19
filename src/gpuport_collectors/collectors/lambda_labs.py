@@ -48,7 +48,11 @@ class LambdaLabsCollector(BaseCollector):
         """Return provider name."""
         return "Lambda Labs"
 
-    async def _execute_api_call(self, endpoint: str) -> dict[str, Any]:
+    async def _execute_api_call(
+        self,
+        endpoint: str,
+        session: aiohttp.ClientSession | None = None,
+    ) -> dict[str, Any]:
         """Execute a REST API call to Lambda Labs API.
 
         Args:
@@ -65,14 +69,15 @@ class LambdaLabsCollector(BaseCollector):
         # Lambda Labs uses HTTP Basic Auth with API key as username
         auth = aiohttp.BasicAuth(self.api_key, "")
 
-        async with (
-            aiohttp.ClientSession() as session,
-            session.get(
-                url,
-                auth=auth,
-                timeout=aiohttp.ClientTimeout(total=self.config.timeout),
-            ) as response,
-        ):
+        if session is None:
+            async with aiohttp.ClientSession() as session:
+                return await self._execute_api_call(endpoint, session=session)
+
+        async with session.get(
+            url,
+            auth=auth,
+            timeout=aiohttp.ClientTimeout(total=self.config.timeout),
+        ) as response:
             response.raise_for_status()
             result: dict[str, Any] = await response.json()
             return result
@@ -198,8 +203,9 @@ class LambdaLabsCollector(BaseCollector):
         )
 
         # Single API call gets everything
-        response = await self._execute_api_call("/instance-types")
-        collected_at = int(time.time())
+        async with aiohttp.ClientSession() as session:
+            response = await self._execute_api_call("/instance-types", session=session)
+            collected_at = int(time.time())
 
         # API returns {"data": {...}} structure
         data = response.get("data", response)

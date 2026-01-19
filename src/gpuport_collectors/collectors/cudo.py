@@ -49,6 +49,7 @@ class CudoCollector(BaseCollector):
         endpoint: str,
         method: str = "GET",
         params: dict[str, Any] | None = None,
+        session: aiohttp.ClientSession | None = None,
     ) -> dict[str, Any]:
         """Execute a REST API call to Cudo Compute API.
 
@@ -66,16 +67,22 @@ class CudoCollector(BaseCollector):
         url = f"{self.API_BASE_URL}{endpoint}"
         headers = {"Authorization": f"Bearer {self.api_key}"}
 
-        async with (
-            aiohttp.ClientSession() as session,
-            session.request(
-                method,
-                url,
-                headers=headers,
-                params=params,
-                timeout=aiohttp.ClientTimeout(total=self.config.timeout),
-            ) as response,
-        ):
+        if session is None:
+            async with aiohttp.ClientSession() as session:
+                return await self._execute_api_call(
+                    endpoint,
+                    method=method,
+                    params=params,
+                    session=session,
+                )
+
+        async with session.request(
+            method,
+            url,
+            headers=headers,
+            params=params,
+            timeout=aiohttp.ClientTimeout(total=self.config.timeout),
+        ) as response:
             response.raise_for_status()
             result: dict[str, Any] = await response.json()
             return result
@@ -234,8 +241,9 @@ class CudoCollector(BaseCollector):
         )
 
         # Fetch all machine types
-        response = await self._execute_api_call("/machines-types")
-        collected_at = int(time.time())
+        async with aiohttp.ClientSession() as session:
+            response = await self._execute_api_call("/machines-types", session=session)
+            collected_at = int(time.time())
 
         machine_types = response.get("machineTypes", [])
 
