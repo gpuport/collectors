@@ -44,7 +44,7 @@ jobs:
         run: |
           cd collectors
           uv run gpuport-collectors run runpod \
-            --export-config .github/export-cfg.yaml
+            --export-config ../.github/export-cfg.yaml
 
       - name: Upload artifacts on failure
         if: failure()
@@ -55,6 +55,7 @@ jobs:
             collectors/data/
             collectors/*.log
           retention-days: 7
+          if-no-files-found: ignore
 
       - name: Notify on failure
         if: failure()
