@@ -25,11 +25,11 @@ class CudoCollector(BaseCollector):
 
     API_BASE_URL = "https://rest.compute.cudo.org/v1"
 
-    def __init__(self, config: CollectorConfig) -> None:
+    def __init__(self, config: CollectorConfig | None = None) -> None:
         """Initialize Cudo Compute collector.
 
         Args:
-            config: Collector configuration
+            config: Optional collector configuration
 
         Raises:
             ValueError: If CUDO_API_KEY environment variable is not set
@@ -100,22 +100,21 @@ class CudoCollector(BaseCollector):
             "nvidia-h100" -> "NVIDIA H100"
             "nvidia-h100-nvl-pcie" -> "NVIDIA H100 NVL PCIe"
             "nvidia-l40s" -> "NVIDIA L40S"
+            "amd-mi300x" -> "AMD MI300X"
         """
-        # Remove 'nvidia-' prefix and format
-        if gpu_model_id.startswith("nvidia-"):
-            gpu_part = gpu_model_id.replace("nvidia-", "")
-        else:
-            gpu_part = gpu_model_id
+        vendor = None
+        gpu_part = gpu_model_id
+        if "-" in gpu_model_id:
+            prefix, rest = gpu_model_id.split("-", 1)
+            vendor_map = {"nvidia": "NVIDIA", "amd": "AMD"}
+            if prefix in vendor_map:
+                vendor = vendor_map[prefix]
+                gpu_part = rest
 
-        # Convert to uppercase and add NVIDIA prefix
-        parts = gpu_part.split("-")
-        formatted_parts = []
-
-        for part in parts:
-            formatted_parts.append(part.upper())
-
-        gpu_name = " ".join(formatted_parts)
-        return f"NVIDIA {gpu_name}"
+        # Convert to uppercase and add vendor prefix when known
+        parts = [part.upper() for part in gpu_part.split("-") if part]
+        gpu_name = " ".join(parts)
+        return f"{vendor} {gpu_name}" if vendor else gpu_name
 
     def _extract_gpu_memory(self, gpu_model_id: str) -> int | None:
         """Extract GPU memory in GiB from GPU model ID.
@@ -147,15 +146,18 @@ class CudoCollector(BaseCollector):
             self._logger.debug("Unknown GPU model for memory lookup", gpu_model_id=gpu_model_id)
         return memory
 
-    def _get_on_demand_price(self, prices: list[dict[str, Any]]) -> float:
+    def _get_on_demand_price(self, prices: list[dict[str, Any]] | None) -> float:
         """Extract on-demand price from prices array.
 
         Args:
-            prices: Array of price objects with different commitment terms
+            prices: Array of price objects with different commitment terms, if present
 
         Returns:
             On-demand price per hour in USD
         """
+        if not prices or not isinstance(prices, list):
+            return 0.0
+
         # Find price with no commitment term (on-demand)
         for price_obj in prices:
             if price_obj.get("commitmentTerm") == "COMMITMENT_TERM_NONE":

@@ -149,6 +149,12 @@ class TestCudoGPUParsing:
             collector = CudoCollector(CollectorConfig())
             assert collector._parse_gpu_name("nvidia-a40") == "NVIDIA A40"
 
+    def test_parse_gpu_name_amd(self):
+        """Test parsing AMD GPU name."""
+        with patch.dict("os.environ", {"CUDO_API_KEY": "test-key"}):
+            collector = CudoCollector(CollectorConfig())
+            assert collector._parse_gpu_name("amd-mi300x") == "AMD MI300X"
+
     def test_extract_gpu_memory_h100(self):
         """Test extracting H100 memory (80 GiB)."""
         with patch.dict("os.environ", {"CUDO_API_KEY": "test-key"}):
@@ -210,6 +216,12 @@ class TestCudoPriceParsing:
         with patch.dict("os.environ", {"CUDO_API_KEY": "test-key"}):
             collector = CudoCollector(CollectorConfig())
             assert collector._get_on_demand_price([]) == 0.0
+
+    def test_get_on_demand_price_none(self):
+        """Test price extraction with missing prices."""
+        with patch.dict("os.environ", {"CUDO_API_KEY": "test-key"}):
+            collector = CudoCollector(CollectorConfig())
+            assert collector._get_on_demand_price(None) == 0.0
 
 
 class TestCudoInstanceCreation:
