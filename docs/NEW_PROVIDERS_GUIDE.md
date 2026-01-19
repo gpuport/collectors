@@ -311,7 +311,7 @@ uv run pytest tests/unit/collectors/ -v
 
 ### 4. Testing
 - [ ] Capture real API response → `tests/fixtures/mock_responses/[provider].json`
-- [ ] Create `tests/unit/collectors/test_[provider].py` (7 test classes)
+- [ ] Create `tests/unit/collectors/test_[provider].py` (8 test classes)
 - [ ] Add `current_timestamp` fixture for timestamp tests
 - [ ] Mock SDK/API at correct import location
 - [ ] Target 80%+ coverage: `uv run pytest tests/unit/collectors/test_[provider].py --cov`
