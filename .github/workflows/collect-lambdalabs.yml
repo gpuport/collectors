@@ -59,6 +59,15 @@ jobs:
 
       - name: Notify on failure
         if: failure()
+        env:
+          FAILURE_WEBHOOK_URL: ${{ secrets.FAILURE_WEBHOOK_URL }}
+          RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           echo "::error::Lambda Labs GPU data collection failed"
-          # Add notification logic here (Slack, Discord, email, etc.)
+          if [ -n "${FAILURE_WEBHOOK_URL}" ]; then
+            curl -sSf -X POST -H "Content-Type: application/json" \
+              -d "{\"text\":\"Lambda Labs GPU data collection failed: ${RUN_URL}\"}" \
+              "${FAILURE_WEBHOOK_URL}"
+          else
+            echo "FAILURE_WEBHOOK_URL not set; skipping notification"
+          fi
