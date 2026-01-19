@@ -65,6 +65,11 @@ price = float(api_price) / 100.0  # Example: 6700 cents = $67.00/hour
 
 Validate against real API data to ensure correct conversion.
 
+### Timeouts
+Always set explicit request timeouts to avoid hung collectors:
+```python
+timeout = aiohttp.ClientTimeout(total=self.config.timeout)
+```
 
 ### Timestamp Validation
 Use `int(time.time())` for `collected_at` - **NOT** hardcoded values:

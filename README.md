@@ -45,7 +45,7 @@ See [`examples/`](examples/) for more configuration examples and [`docs/EXPORTS.
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Complete development setup (installs dependencies and pre-commit hooks)
-make dev-setup
+make install-dev
 ```
 
 ### Manual Installation
@@ -78,7 +78,7 @@ make format
 make lint
 
 # Run type checker
-make type-check
+make typecheck
 
 # Run tests
 make test
@@ -86,7 +86,7 @@ make test
 # Run tests with coverage
 make test-cov
 
-# Run all checks (lint + type-check + test)
+# Run all checks (lint + typecheck + test)
 make check
 
 # Run pre-commit hooks manually
@@ -98,7 +98,7 @@ make clean
 
 ### Pre-commit Hooks
 
-The project uses pre-commit hooks to ensure code quality. Hooks are automatically installed with `make dev-setup` and run on every commit:
+The project uses pre-commit hooks to ensure code quality. Hooks are automatically installed with `make install-dev` and run on every commit:
 
 - **Ruff**: Code formatting and linting
 - **Mypy**: Static type checking

@@ -206,7 +206,7 @@ credentials:
 ```
 
 **Error Handling**: If a referenced variable is not set, you'll get a clear error:
-```
+```text
 ConfigLoadError: Environment variable '${API_TOKEN}' referenced in
 configuration but not defined in environment
 ```

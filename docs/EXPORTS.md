@@ -349,14 +349,14 @@ Batch Payload Format: The exporter sends instances as a JSON array:
 [
   {
     "provider": "RunPod",
-    "gpu_name": "H100",
-    "price_usd_per_hour": 25.50,
+    "accelerator_name": "H100",
+    "price": 25.50,
     "timestamp": 1699999999
   },
   {
     "provider": "Lambda Labs",
-    "gpu_name": "A100",
-    "price_usd_per_hour": 1.29,
+    "accelerator_name": "A100",
+    "price": 1.29,
     "timestamp": 1699999999
   }
 ]

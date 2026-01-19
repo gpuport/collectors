@@ -1,4 +1,4 @@
-.PHONY: help install install-dev test test-unit test-integration test-all test-cov lint lint-fix format format-check type-check typecheck check ci dev clean dev-setup pre-commit-install pre-commit-uninstall pre-commit-run
+.PHONY: help install install-dev test test-unit test-integration test-all test-cov test-cov-all test-watch lint lint-fix format format-check typecheck check ci dev clean pre-commit-install pre-commit-uninstall pre-commit-run
 
 help: ## Show this help message
 	@echo "Usage: make [target]"
