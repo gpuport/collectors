@@ -105,12 +105,7 @@ class CudoCollector(BaseCollector):
         formatted_parts = []
 
         for part in parts:
-            # Keep known acronyms uppercase (nvl, pcie, sxm)
-            if part.lower() in ["nvl", "pcie", "sxm", "sxm4"]:
-                formatted_parts.append(part.upper())
-            else:
-                # Capitalize GPU model names
-                formatted_parts.append(part.upper())
+            formatted_parts.append(part.upper())
 
         gpu_name = " ".join(formatted_parts)
         return f"NVIDIA {gpu_name}"
@@ -140,7 +135,10 @@ class CudoCollector(BaseCollector):
             "nvidia-a6000": 48,
         }
 
-        return gpu_memory_map.get(gpu_model_id)
+        memory = gpu_memory_map.get(gpu_model_id)
+        if memory is None:
+            self._logger.debug("Unknown GPU model for memory lookup", gpu_model_id=gpu_model_id)
+        return memory
 
     def _get_on_demand_price(self, prices: list[dict[str, Any]]) -> float:
         """Extract on-demand price from prices array.

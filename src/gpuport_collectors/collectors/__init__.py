@@ -22,7 +22,7 @@ def get_collector_class(provider: str) -> type[BaseCollector]:
     """Get a collector class by provider name.
 
     Args:
-        provider: Provider name (e.g., "runpod", "lambdalabs", "vastai")
+        provider: Provider name (e.g., "runpod", "lambdalabs", "cudo")
 
     Returns:
         Collector class for the specified provider
@@ -51,7 +51,7 @@ def list_providers() -> list[str]:
     Example:
         >>> providers = list_providers()
         >>> print(providers)
-        ['runpod']
+        ['cudo', 'lambdalabs', 'novita', 'runpod']
     """
     return sorted(COLLECTORS.keys())
 

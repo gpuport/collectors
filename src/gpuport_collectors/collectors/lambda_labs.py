@@ -1,6 +1,7 @@
 """Lambda Labs GPU collector using REST API."""
 
 import os
+import re
 import time
 from typing import Any
 
@@ -107,6 +108,8 @@ class LambdaLabsCollector(BaseCollector):
             gpu_name = f"NVIDIA {model_part} 80GB"
         elif "40 GB" in gpu_part and "A100" in model_part:
             gpu_name = f"NVIDIA {model_part} 40GB"
+        elif "80 GB" in gpu_part and "H100" in model_part:
+            gpu_name = f"NVIDIA {model_part} 80GB"
         else:
             gpu_name = f"NVIDIA {model_part}"
 
@@ -122,8 +125,6 @@ class LambdaLabsCollector(BaseCollector):
             GPU memory in GiB, or None if not found
         """
         # Look for pattern like "24 GB" or "80 GB"
-        import re
-
         match = re.search(r"(\d+)\s*GB", description)
         if match:
             return int(match.group(1))
@@ -215,6 +216,9 @@ class LambdaLabsCollector(BaseCollector):
 
         for _gpu_type_key, gpu_data in data.items():
             instance_type = gpu_data["instance_type"]
+            specs = instance_type.get("specs", {})
+            if specs.get("gpus") == 0:
+                continue
             regions = gpu_data.get("regions_with_capacity_available", [])
 
             if regions:

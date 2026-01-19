@@ -1,6 +1,7 @@
 """Novita AI GPU collector using Novita Python SDK."""
 
 import os
+import re
 import time
 
 from novita import AsyncNovitaClient
@@ -71,8 +72,11 @@ class NovitaCollector(BaseCollector):
                 count = int(part[:-1])
                 break
 
-        # Use product_name if it already has "NVIDIA" prefix, else add it
-        gpu_name = product_name if "NVIDIA" in product_name.upper() else f"NVIDIA {product_name}"
+        # Use product_name if it already has NVIDIA prefix, else add it
+        if product_name.upper().startswith("NVIDIA"):
+            gpu_name = product_name
+        else:
+            gpu_name = f"NVIDIA {product_name}"
 
         return gpu_name, count
 
@@ -87,8 +91,6 @@ class NovitaCollector(BaseCollector):
             GPU memory in GiB, or None if not found
         """
         # Look for memory in product_id (e.g., "80GB", "40GB")
-        import re
-
         # Try product_id first
         match = re.search(r"(\d+)GB", product_id, re.IGNORECASE)
         if match:

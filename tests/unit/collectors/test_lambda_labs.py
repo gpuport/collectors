@@ -83,21 +83,33 @@ class TestLambdaLabsAPIExecution:
     """Tests for Lambda Labs API execution."""
 
     @pytest.mark.asyncio
-    async def test_execute_api_call_success(self, lambda_collector):
+    async def test_execute_api_call_success(self, lambda_collector, mock_aiohttp):
         """Test successful API call execution."""
-        # Mock the method directly
-        lambda_collector._execute_api_call = AsyncMock(return_value={"test": "data"})
+        mock_response = AsyncMock()
+        mock_response.raise_for_status = MagicMock()
+        mock_response.json = AsyncMock(return_value={"test": "data"})
+        mock_response.__aenter__.return_value = mock_response
+        mock_response.__aexit__ = AsyncMock(return_value=None)
+
+        mock_session = MagicMock()
+        mock_session.get = MagicMock(return_value=mock_response)
+        mock_session.__aenter__ = AsyncMock(return_value=mock_session)
+        mock_session.__aexit__ = AsyncMock(return_value=None)
+
+        mock_aiohttp.return_value = mock_session
 
         result = await lambda_collector._execute_api_call("/test-endpoint")
-
         assert result == {"test": "data"}
-        lambda_collector._execute_api_call.assert_called_once()
 
     @pytest.mark.asyncio
-    async def test_execute_api_call_http_error(self, lambda_collector):
+    async def test_execute_api_call_http_error(self, lambda_collector, mock_aiohttp):
         """Test handling of HTTP errors."""
-        # Mock the method to raise an error
-        lambda_collector._execute_api_call = AsyncMock(side_effect=aiohttp.ClientError("API error"))
+        mock_session = MagicMock()
+        mock_session.get = MagicMock(side_effect=aiohttp.ClientError("API error"))
+        mock_session.__aenter__ = AsyncMock(return_value=mock_session)
+        mock_session.__aexit__ = AsyncMock(return_value=None)
+
+        mock_aiohttp.return_value = mock_session
 
         with pytest.raises(aiohttp.ClientError):
             await lambda_collector._execute_api_call("/test-endpoint")
@@ -109,12 +121,12 @@ class TestLambdaLabsAPIExecution:
         mock_response.raise_for_status = MagicMock()
         mock_response.json = AsyncMock(return_value={})
         mock_response.__aenter__.return_value = mock_response
-        mock_response.__aexit__.return_value = AsyncMock()
+        mock_response.__aexit__ = AsyncMock(return_value=None)
 
         mock_session = MagicMock()
         mock_session.get = MagicMock(return_value=mock_response)
         mock_session.__aenter__ = AsyncMock(return_value=mock_session)
-        mock_session.__aexit__ = AsyncMock()
+        mock_session.__aexit__ = AsyncMock(return_value=None)
 
         mock_aiohttp.return_value = mock_session
 
@@ -159,7 +171,7 @@ class TestLambdaLabsGPUParsing:
     def test_parse_gpu_name_h100(self, lambda_collector):
         """Test parsing H100 description."""
         gpu_name, count = lambda_collector._parse_gpu_name("8x H100 (80 GB SXM5)")
-        assert gpu_name == "NVIDIA H100"
+        assert gpu_name == "NVIDIA H100 80GB"
         assert count == 8
 
     def test_parse_gpu_name_rtx(self, lambda_collector):
@@ -305,7 +317,7 @@ class TestLambdaLabsIntegration:
         instances = await lambda_collector.fetch_instances()
 
         # Count expected instances based on REAL Lambda Labs API fixture
-        # Real API has 20 GPU types:
+        # Real API has 20 GPU types (CPU-only entries are skipped):
         # - 9 GPU types with regions (20 total GPU+region combinations)
         # - 11 GPU types without regions (filtered by default)
         expected_count = 20
@@ -325,9 +337,9 @@ class TestLambdaLabsIntegration:
         unavailable_types = ["gpu_1x_h100_pcie", "gpu_4x_h100_sxm5", "gpu_1x_rtx6000"]
         for gpu_type in unavailable_types:
             instances_of_type = [i for i in instances if i.instance_type == gpu_type]
-            assert len(instances_of_type) == 1, (
-                f"{gpu_type} should have exactly 1 unavailable instance"
-            )
+            assert (
+                len(instances_of_type) == 1
+            ), f"{gpu_type} should have exactly 1 unavailable instance"
             assert instances_of_type[0].region == "unavailable"
             assert instances_of_type[0].availability == AvailabilityStatus.NOT_AVAILABLE
 
@@ -486,13 +498,12 @@ class TestLambdaLabsErrorHandling:
         # Missing required fields
         mock_response = {
             "data": {
-                "us-east-1": {
-                    "instance_types": {
-                        "test_type": {
-                            # Missing required fields
-                            "instance_type": "test",
-                        }
-                    }
+                "gpu_1x_test": {
+                    "instance_type": {
+                        # Missing required fields like "name" and "specs"
+                        "description": "test",
+                    },
+                    "regions_with_capacity_available": [],
                 }
             }
         }
