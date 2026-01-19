@@ -31,9 +31,9 @@ class TestCollectorRegistry:
     def test_all_collectors_are_base_collector_subclasses(self) -> None:
         """Test that all registered collectors extend BaseCollector."""
         for name, collector_class in COLLECTORS.items():
-            assert issubclass(
-                collector_class, BaseCollector
-            ), f"{name} collector must extend BaseCollector"
+            assert issubclass(collector_class, BaseCollector), (
+                f"{name} collector must extend BaseCollector"
+            )
 
 
 class TestGetCollectorClass:

@@ -1,6 +1,6 @@
 [project]
 name = "gpuport-data-collectors"
-version = "0.1.0"
+version = "0.2.0"
 description = "GPUPort Data Collectors"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -203,10 +203,6 @@ addopts = [
     "--strict-markers",
     "--strict-config",
     "-m", "not integration",  # Skip integration tests by default
-    "--cov=gpuport_collectors",
-    "--cov-report=term-missing",
-    "--cov-report=html",
-    "--cov-report=xml",
 ]
 
 asyncio_mode = "auto"

@@ -3,44 +3,13 @@
 # Run manually: pre-commit run --all-files
 
 repos:
-  # Ruff - Fast Python linter and formatter (replaces black, isort, flake8)
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.8.4
-    hooks:
-      # Run the formatter
-      - id: ruff-format
-        name: ruff format
-        description: Format code with ruff
-
-      # Run the linter with auto-fixes
-      - id: ruff
-        name: ruff lint
-        description: Lint code with ruff
-        args: [--fix, --exit-non-zero-on-fix]
-
-  # Mypy - Static type checking
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.13.0
-    hooks:
-      - id: mypy
-        name: mypy type check
-        description: Static type checking with mypy
-        additional_dependencies:
-          - pytest>=8.3.0
-          - pytest-asyncio>=0.24.0
-          - pydantic>=2.0.0
-          - pyyaml>=6.0.0
-          - types-pyyaml>=6.0.0
-        args: [--config-file=pyproject.toml]
-        exclude: ^(tests/|examples/)
-
-  # Pytest - Run unit tests
+  # Run the project CI gate via make
   - repo: local
     hooks:
-      - id: pytest-fast
-        name: pytest (fast)
-        description: Run unit tests (fast mode, no coverage)
-        entry: bash -c 'uv run python -m pytest tests/unit/ -v --tb=short -x --override-ini="addopts=" || exit 1'
+      - id: make-ci
+        name: make ci
+        description: Run format-check, lint, typecheck, and tests via Makefile
+        entry: bash -c 'RUFF_CACHE_DIR=/tmp/ruff-cache MYPY_CACHE_DIR=/tmp/mypy-cache PYTEST_ADDOPTS="-p no:cacheprovider" make ci'
         language: system
         pass_filenames: false
         always_run: true

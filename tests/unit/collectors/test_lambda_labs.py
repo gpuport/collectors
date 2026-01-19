@@ -337,9 +337,9 @@ class TestLambdaLabsIntegration:
         unavailable_types = ["gpu_1x_h100_pcie", "gpu_4x_h100_sxm5", "gpu_1x_rtx6000"]
         for gpu_type in unavailable_types:
             instances_of_type = [i for i in instances if i.instance_type == gpu_type]
-            assert (
-                len(instances_of_type) == 1
-            ), f"{gpu_type} should have exactly 1 unavailable instance"
+            assert len(instances_of_type) == 1, (
+                f"{gpu_type} should have exactly 1 unavailable instance"
+            )
             assert instances_of_type[0].region == "unavailable"
             assert instances_of_type[0].availability == AvailabilityStatus.NOT_AVAILABLE
 
