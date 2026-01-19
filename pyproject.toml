@@ -166,11 +166,13 @@ ignore_missing_imports = true
 [[tool.mypy.overrides]]
 module = "dotenv"
 ignore_missing_imports = true
+# No published stubs for python-dotenv; keep missing-imports ignored.
 
 [[tool.mypy.overrides]]
 module = "pydantic_yaml"
 ignore_missing_imports = true
 
+# No published stubs for novita SDK yet; keep missing-imports ignored.
 [[tool.mypy.overrides]]
 module = "novita"
 ignore_missing_imports = true
