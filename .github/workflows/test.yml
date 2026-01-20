@@ -39,7 +39,7 @@ jobs:
         run: uv sync
 
       - name: Run pytest with coverage
-        run: uv run python -m pytest tests/ -v --cov=gpuport_collectors --cov-report=term-missing --cov-report=xml
+        run: make test-cov
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5

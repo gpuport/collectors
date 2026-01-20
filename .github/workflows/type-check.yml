@@ -36,4 +36,4 @@ jobs:
         run: uv sync
 
       - name: Run mypy
-        run: uv run mypy src/ tests/
+        run: make type-check

@@ -104,12 +104,24 @@ class HttpClientConfig(BaseModel):
         return v
 
 
+class CollectorsConfig(BaseModel):
+    """Collector-specific configuration settings."""
+
+    model_config = {"extra": "allow"}  # Allow provider-specific settings (runpod, lambdalabs, etc.)
+
+    include_unavailable: bool = Field(
+        default=False,
+        description="Include instances marked NOT_AVAILABLE in collection results",
+    )
+
+
 class CollectorConfig(BaseModel):
     """Default configuration settings for GPUPort collectors.
 
     Attributes:
         http_client: HTTP client configuration
         observability: Observability configuration
+        collectors: Collector-specific configuration
     """
 
     model_config = {"extra": "ignore"}  # Ignore extra fields like collectors, pipelines from YAML
@@ -121,6 +133,10 @@ class CollectorConfig(BaseModel):
     observability: ObservabilityConfig = Field(
         default_factory=ObservabilityConfig,
         description="Observability configuration",
+    )
+    collectors: CollectorsConfig = Field(
+        default_factory=CollectorsConfig,
+        description="Collector-specific configuration",
     )
 
     # Convenience properties for accessing nested config
@@ -182,4 +198,10 @@ class CollectorConfig(BaseModel):
 # Create a global instance with default settings
 default_config = CollectorConfig.load_defaults()
 
-__all__ = ["CollectorConfig", "HttpClientConfig", "ObservabilityConfig", "default_config"]
+__all__ = [
+    "CollectorConfig",
+    "CollectorsConfig",
+    "HttpClientConfig",
+    "ObservabilityConfig",
+    "default_config",
+]

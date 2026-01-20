@@ -1,0 +1,91 @@
+# Export Pipeline for SkyPilot Catalog v8 + Cloudflare R2 + Backend API
+#
+# This pipeline:
+# 1. Exports GPU data in SkyPilot catalog v8 CSV format
+# 2. Uploads to Cloudflare R2 (S3-compatible)
+# 3. Sends to backend API endpoint
+#
+# Required environment variables:
+# - R2_ACCESS_KEY_ID: Cloudflare R2 access key
+# - R2_SECRET_ACCESS_KEY: Cloudflare R2 secret key
+# - R2_ACCOUNT_ID: Cloudflare account ID
+# - BACKEND_API_URL: Backend API base URL
+# - BACKEND_API_KEY: Backend API authentication key
+
+pipelines:
+  # Pipeline 1: Export to Cloudflare R2 in SkyPilot format
+  - name: skypilot-catalog-r2
+    enabled: true
+    description: Export GPU catalog in SkyPilot v8 format to Cloudflare R2
+
+    # Transform to SkyPilot catalog v8 CSV format
+    transformer:
+      format: csv
+      # SkyPilot v8 catalog schema column mapping
+      fields:
+        instance_type: InstanceType
+        v_cpus: vCPUs
+        memory_gib: MemoryGiB
+        accelerator_name: AcceleratorName
+        accelerator_count: AcceleratorCount
+        gpu_info: GpuInfo
+        region: Region
+        availability_zone: AvailabilityZone
+        price: Price
+        spot_price: SpotPrice
+      include_headers: true
+      delimiter: ","
+      null_value: ""
+
+    outputs:
+      # Upload to Cloudflare R2 (S3-compatible)
+      - type: s3
+        # Cloudflare R2 endpoint format: https://<account_id>.r2.cloudflarestorage.com
+        endpoint_url: https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com
+        bucket: gpuport-catalog
+        key_prefix: skypilot/v8
+        filename_pattern: "{provider}_vms_{date}.csv"
+        access_key_id: "${R2_ACCESS_KEY_ID}"
+        secret_access_key: "${R2_SECRET_ACCESS_KEY}"
+        region: auto  # R2 uses "auto" for region
+        metadata:
+          catalog_version: v8
+          format: skypilot
+          collected_at: "{timestamp}"
+
+  # Pipeline 2: Send complete JSON data to backend API
+  - name: backend-api
+    enabled: true
+    description: Send GPU availability data to backend API
+
+    transformer:
+      format: json
+      pretty_print: false
+
+    outputs:
+      - type: https
+        url: "${BACKEND_API_URL}/api/v1/collectors/gpu-data"
+        method: POST
+        headers:
+          Content-Type: application/json
+          Authorization: "Bearer ${BACKEND_API_KEY}"
+          X-Provider: "{provider}"
+          X-Collected-At: "{timestamp}"
+        timeout: 30
+        retry_on_failure: true
+        max_retries: 3
+
+  # Pipeline 3: Local backup (optional, for debugging)
+  - name: local-backup
+    enabled: false
+    description: Save local backup of collected data
+
+    transformer:
+      format: json
+      pretty_print: true
+
+    outputs:
+      - type: local
+        path: ./data/backups
+        filename_pattern: "{provider}_{date}.json"
+        create_dirs: true

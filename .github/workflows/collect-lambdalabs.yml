@@ -1,0 +1,73 @@
+name: Collect Lambda Labs Data
+
+on:
+  # Run every hour
+  schedule:
+    - cron: '10 * * * *'
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+env:
+  PYTHON_VERSION: '3.12'
+
+jobs:
+  collect:
+    name: Collect Lambda Labs GPU Data
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Install dependencies
+        run: |
+          cd collectors
+          uv sync
+
+      - name: Collect Lambda Labs GPU data
+        env:
+          LAMBDA_API_KEY: ${{ secrets.LAMBDA_API_KEY }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          BACKEND_API_URL: ${{ secrets.BACKEND_API_URL }}
+          BACKEND_API_KEY: ${{ secrets.BACKEND_API_KEY }}
+        run: |
+          cd collectors
+          uv run gpuport-collectors run lambdalabs \
+            --export-config ../.github/export-cfg.yaml
+
+      - name: Upload artifacts on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lambdalabs-logs-${{ github.run_id }}
+          path: |
+            collectors/data/
+            collectors/*.log
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Notify on failure
+        if: failure()
+        env:
+          FAILURE_WEBHOOK_URL: ${{ secrets.FAILURE_WEBHOOK_URL }}
+          RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          echo "::error::Lambda Labs GPU data collection failed"
+          if [ -n "${FAILURE_WEBHOOK_URL}" ]; then
+            curl -sSf -X POST -H "Content-Type: application/json" \
+              -d "{\"text\":\"Lambda Labs GPU data collection failed: ${RUN_URL}\"}" \
+              "${FAILURE_WEBHOOK_URL}"
+          else
+            echo "FAILURE_WEBHOOK_URL not set; skipping notification"
+          fi

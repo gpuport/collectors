@@ -11,7 +11,7 @@ from functools import wraps
 from typing import Any, TypeVar
 
 from gpuport_collectors.config import CollectorConfig, default_config
-from gpuport_collectors.models import GPUInstance
+from gpuport_collectors.models import AvailabilityStatus, GPUInstance
 from gpuport_collectors.observability import get_observability_manager
 
 T = TypeVar("T")
@@ -120,6 +120,16 @@ class BaseCollector(ABC):
         # Initialize observability
         self._obs_manager = get_observability_manager(self.config.observability)
         self._logger = self._obs_manager.get_logger(__name__)
+
+    def _apply_availability_filter(self, instances: list[GPUInstance]) -> list[GPUInstance]:
+        """Filter instances based on include_unavailable configuration."""
+        if self.config.collectors.include_unavailable:
+            return instances
+        return [
+            instance
+            for instance in instances
+            if instance.availability != AvailabilityStatus.NOT_AVAILABLE
+        ]
 
     @property
     @abstractmethod

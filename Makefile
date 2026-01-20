@@ -1,4 +1,4 @@
-.PHONY: help install install-dev test test-cov lint format type-check check clean dev-setup pre-commit-install pre-commit-uninstall pre-commit-run
+.PHONY: help install install-dev test test-unit test-integration test-all test-cov test-cov-all test-watch lint lint-check lint-fix format format-check typecheck type-check check ci dev clean pre-commit-install pre-commit-uninstall pre-commit-run
 
 help: ## Show this help message
 	@echo "Usage: make [target]"
@@ -9,36 +9,58 @@ help: ## Show this help message
 install: ## Install production dependencies
 	uv sync --no-dev
 
-install-dev: ## Install all dependencies including dev tools
-	uv sync
-	uv pip install pre-commit
-
-dev-setup: install-dev pre-commit-install ## Complete development environment setup
+install-dev: ## Install all dependencies including dev tools and pre-commit hooks
+	uv sync --group dev
+	$(MAKE) pre-commit-install
 	@echo "Development environment ready!"
 	@echo "Run 'make check' to verify everything works"
 
-test: ## Run tests without coverage
-	uv run pytest tests/ -v
+test: test-unit ## Run unit tests (default - fast, no API keys required)
 
-test-cov: ## Run tests with coverage report
-	uv run pytest tests/ -v --cov=gpuport_collectors --cov-report=term-missing --cov-report=html
+test-unit: ## Run unit tests only (fast, offline, mocked)
+	uv run pytest tests/unit/ -v
 
-test-watch: ## Run tests in watch mode (requires pytest-watch)
-	uv run pytest-watch tests/ -v
+test-integration: ## Run integration tests (slow, requires API keys)
+	uv run pytest tests/integration/ -m integration -v
+
+test-all: ## Run all tests (unit + integration)
+	uv run pytest tests/ -m "" -v
+
+test-cov: ## Run unit tests with coverage report
+	uv run pytest tests/unit/ -v --cov=gpuport_collectors --cov-report=term-missing --cov-report=html --cov-report=xml
+
+test-cov-all: ## Run all tests with coverage report
+	uv run pytest tests/ -m "" -v --cov=gpuport_collectors --cov-report=term-missing --cov-report=html --cov-report=xml
+
+test-watch: ## Run unit tests in watch mode (requires pytest-watch)
+	uv run pytest-watch tests/unit/ -v
 
 lint: ## Run ruff linter
 	uv run ruff check src/ tests/
 
-format: ## Format code with ruff
-	uv run ruff format src/ tests/
+lint-check: ## Check lint (no fixes)
+	$(MAKE) lint
+
+lint-fix: ## Run ruff linter with auto-fixes
 	uv run ruff check --fix src/ tests/
 
-type-check: ## Run mypy type checker
+format: ## Format code with ruff
+	uv run ruff format src/ tests/
+
+format-check: ## Check formatting with ruff
+	uv run ruff format --check src/ tests/
+
+typecheck: ## Run mypy type checker
 	uv run mypy src/ tests/
 
-check: lint type-check test ## Run all checks (lint, type-check, test)
+type-check: ## Run mypy type checker (check mode)
+	$(MAKE) typecheck
 
-ci: check ## Run all CI checks (alias for check)
+check: format-check lint-check type-check test ## Run all checks (format, lint, type-check, test)
+
+ci: check ## Run all CI checks (format+lint in check mode, type-check, test)
+
+dev: format lint-fix type-check test ## Run format+lint in fix mode, then type-check and test
 
 clean: ## Clean up generated files
 	rm -rf .pytest_cache

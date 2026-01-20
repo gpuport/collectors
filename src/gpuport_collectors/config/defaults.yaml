@@ -44,10 +44,19 @@ observability:
 
 # Collector-Specific Settings
 collectors:
+  # Include instances marked NOT_AVAILABLE in results (default: false)
+  include_unavailable: false
+
   # RunPod collector configuration
   runpod:
     enabled: true
     # API key (use RUNPOD_API_KEY environment variable)
+    api_key: null
+
+  # Lambda Labs collector configuration
+  lambdalabs:
+    enabled: true
+    # API key (use LAMBDA_API_KEY environment variable)
     api_key: null
 
 # Export Pipeline Configuration
