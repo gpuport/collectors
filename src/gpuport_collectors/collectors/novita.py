@@ -30,11 +30,11 @@ class NovitaCollector(BaseCollector):
     Similar to Lambda Labs in this regard.
     """
 
-    def __init__(self, config: CollectorConfig) -> None:
+    def __init__(self, config: CollectorConfig | None = None) -> None:
         """Initialize Novita collector.
 
         Args:
-            config: Collector configuration
+            config: Optional collector configuration
 
         Raises:
             ValueError: If NOVITA_API_KEY environment variable is not set

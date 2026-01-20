@@ -48,9 +48,6 @@ packages = ["src/gpuport_collectors"]
 [tool.hatch.build.targets.wheel.force-include]
 "src/gpuport_collectors/py.typed" = "gpuport_collectors/py.typed"
 
-[tool.hatch.metadata]
-allow-direct-references = true
-
 # Dependency groups for uv
 [dependency-groups]
 dev = [

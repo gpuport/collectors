@@ -28,11 +28,11 @@ class RunPodCollector(BaseCollector):
     GRAPHQL_ENDPOINT = "https://api.runpod.io/graphql"
     MAX_CONCURRENT_REQUESTS = 3  # Rate limiting for API calls
 
-    def __init__(self, config: CollectorConfig) -> None:
+    def __init__(self, config: CollectorConfig | None = None) -> None:
         """Initialize RunPod collector.
 
         Args:
-            config: Collector configuration
+            config: Optional collector configuration
 
         Raises:
             ValueError: If RUNPOD_API_KEY environment variable is not set

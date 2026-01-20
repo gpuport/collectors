@@ -1,7 +1,6 @@
 """Tests for Lambda Labs collector."""
 
 import json
-import os
 import time
 from pathlib import Path
 from unittest.mock import ANY, AsyncMock, MagicMock, patch
@@ -20,27 +19,19 @@ with (FIXTURES_DIR / "lambda_labs.json").open() as f:
 
 
 @pytest.fixture
-def lambda_collector():
+def lambda_collector(monkeypatch):
     """Create a Lambda Labs collector instance for testing."""
-    # Set API key for testing
-    os.environ["LAMBDA_API_KEY"] = "test-api-key"
-    collector = LambdaLabsCollector(config=CollectorConfig())
-    yield collector
-    # Cleanup
-    if "LAMBDA_API_KEY" in os.environ:
-        del os.environ["LAMBDA_API_KEY"]
+    monkeypatch.setenv("LAMBDA_API_KEY", "test-api-key")
+    return LambdaLabsCollector(config=CollectorConfig())
 
 
 @pytest.fixture
-def lambda_collector_all():
+def lambda_collector_all(monkeypatch):
     """Create a Lambda Labs collector instance that includes unavailable instances."""
-    os.environ["LAMBDA_API_KEY"] = "test-api-key"
-    collector = LambdaLabsCollector(
+    monkeypatch.setenv("LAMBDA_API_KEY", "test-api-key")
+    return LambdaLabsCollector(
         config=CollectorConfig(collectors=CollectorsConfig(include_unavailable=True))
     )
-    yield collector
-    if "LAMBDA_API_KEY" in os.environ:
-        del os.environ["LAMBDA_API_KEY"]
 
 
 @pytest.fixture
@@ -65,11 +56,10 @@ class TestLambdaLabsCollectorInit:
         assert lambda_collector.api_key == "test-api-key"
         assert lambda_collector.provider_name == "Lambda Labs"
 
-    def test_init_missing_api_key(self):
+    def test_init_missing_api_key(self, monkeypatch):
         """Test that missing API key raises error."""
         # Ensure no API key is set
-        if "LAMBDA_API_KEY" in os.environ:
-            del os.environ["LAMBDA_API_KEY"]
+        monkeypatch.delenv("LAMBDA_API_KEY", raising=False)
 
         with pytest.raises(ValueError, match="LAMBDA_API_KEY environment variable must be set"):
             LambdaLabsCollector(config=CollectorConfig())
@@ -469,12 +459,12 @@ class TestLambdaLabsErrorHandling:
 
     @pytest.mark.asyncio
     async def test_timeout_handling(self, lambda_collector):
-        """Test timeout during API call."""
+        """Test timeout during API call propagates through fetch_instances."""
         # Mock timeout error
         lambda_collector._execute_api_call = AsyncMock(side_effect=aiohttp.ServerTimeoutError())
 
         with pytest.raises(aiohttp.ServerTimeoutError):
-            await lambda_collector._execute_api_call("/instance-types")
+            await lambda_collector.fetch_instances()
 
     @pytest.mark.asyncio
     async def test_http_error_handling(self, lambda_collector):

@@ -167,13 +167,10 @@ class CudoCollector(BaseCollector):
                 return float(price_hr) if price_hr else 0.0
 
         # Fallback to first price if no on-demand found
-        if prices:
-            price_hr = prices[0].get("priceHr", {})
-            if isinstance(price_hr, dict):
-                return float(price_hr.get("value", 0.0))
-            return float(price_hr) if price_hr else 0.0
-
-        return 0.0
+        price_hr = prices[0].get("priceHr", {})
+        if isinstance(price_hr, dict):
+            return float(price_hr.get("value", 0.0))
+        return float(price_hr) if price_hr else 0.0
 
     def _create_gpu_instance(
         self,

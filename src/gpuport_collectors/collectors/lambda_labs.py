@@ -28,11 +28,11 @@ class LambdaLabsCollector(BaseCollector):
 
     API_BASE_URL = "https://cloud.lambdalabs.com/api/v1"
 
-    def __init__(self, config: CollectorConfig) -> None:
+    def __init__(self, config: CollectorConfig | None = None) -> None:
         """Initialize Lambda Labs collector.
 
         Args:
-            config: Collector configuration
+            config: Optional collector configuration
 
         Raises:
             ValueError: If LAMBDA_API_KEY environment variable is not set
